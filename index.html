@@ -282,33 +282,37 @@
         </section>
 
         <section id="about" class="py-0 py-sm-5">
-            <div class="container bg-transparent">
-                <h3 class="text-center bg-transparent">About Me</h3>
-                <div class="bg-transparent row justify-content-center px-3 py-5">
-                    <div class="col-sm-12 col-md-8 col-lg-4 mb-5 mb-sm-0 mb-md-5 mb-lg-0 d-none d-sm-none d-md-block">
-                        <div class="image d-flex px-5">
-                            <img src="/images/me.png" class="img-thumbnail mx-auto rounded-circle" alt="">
+            <div class="container">
+                <h3 class="text-center mb-4">About Me</h3>  <!-- Added mb-4 for spacing -->
+                <div class="row justify-content-center">
+                    <!-- Image Column (centered on md+ screens) -->
+                    <div class="col-md-10 col-lg-8 mb-4 mb-md-0">
+                        <div class="d-flex justify-content-center">
+                            <img src="/images/me.png" 
+                                class="img-thumbnail rounded-circle" 
+                                style="width: 250px; height: 250px; object-fit: cover;"
+                                alt="Profile Image">
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-12 col-lg-8 content">
-                        <p>I am a Flutter developer with over 3 years of professional experience building cross-platform
-                            mobile applications. My journey in mobile development began with a passion for creating
-                            beautiful, user-friendly interfaces that solve real-world problems.</p>
-                        <p>Currently, I'm working as a Senior Flutter Developer at Bug Finder, where I lead the
-                            development of mobile applications and mentor junior developers. Previously, I worked at
-                            Bringin Technologies Limited, where I contributed to several successful projects in the
-                            fintech space.</p>
+                    
+                    <!-- Content Column (centered on all screens) -->
+                    <div class="col-md-10 col-lg-8 text-center text-md-start">
+                        <p class="mb-3">I am a Flutter developer with over 3 years of professional experience building cross-platform mobile applications. My journey in mobile development began with a passion for creating beautiful, user-friendly interfaces that solve real-world problems.</p>
+                        
+                        <p class="mb-4">Currently, I'm working as a Senior Flutter Developer at Bug Finder, where I lead the development of mobile applications and mentor junior developers. Previously, I worked at Bringin Technologies Limited, where I contributed to several successful projects in the fintech space.</p>
 
-                        Here are a few technologies I've been working with recently:
-                        <ul>
-                            <li>Flutter</li>
-                            <li>Dart</li>
-                            <li>Firebase</li>
-                            <li>REST APIs</li>
-                            <li>Provider</li>
-                            <li>BLoC Pattern</li>
-                            <li>GetX</li>
-                        </ul>
+                        <div class="text-center">
+                            <p>Here are a few technologies I've been working with recently:</p>
+                            <ul class="list-inline">  <!-- Changed to list-inline for better centering -->
+                                <li class="list-inline-item">Flutter</li>
+                                <li class="list-inline-item">Dart</li>
+                                <li class="list-inline-item">Firebase</li>
+                                <li class="list-inline-item">REST APIs</li>
+                                <li class="list-inline-item">Provider</li>
+                                <li class="list-inline-item">BLoC Pattern</li>
+                                <li class="list-inline-item">GetX</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
