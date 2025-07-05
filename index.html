@@ -121,98 +121,160 @@
         }
     </script>
 
-    <header class="sticky-top">
-        <nav class="pt-3 navbar navbar-expand-lg animate">
-            <div class="container-fluid mx-xs-2 mx-sm-5 mx-md-5 mx-lg-5">
-                <a class="navbar-brand primary-font text-wrap" href="/">
-                    <img src="/fav.png" width="30" height="30" class="d-inline-block align-top">
-                    Razu Ahmed
-                </a>
+    <header class="sticky-top shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white animate py-2 py-md-3">
+        <div class="container">
+            <!-- Logo/Brand with gradient text -->
+            <a class="navbar-brand d-flex align-items-center" href="/">
+                <img src="/fav.png" width="40" height="40" class="me-2 rounded-circle shadow-sm">
+                <span class="gradient-text fw-bold fs-4">Razu Ahmed</span>
+            </a>
 
-                <div>
-                    <input id="search" autocomplete="off" class="form-control mr-sm-2 d-none d-md-block"
-                        placeholder='Ctrl &#43; k to Search...' aria-label="Search" oninput="searchOnChange(event)">
-                </div>
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
-                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <svg aria-hidden="true" height="24" viewBox="0 0 16 16" version="1.1" width="24"
-                        data-view-component="true">
-                        <path fill-rule="evenodd"
-                            d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
-                        </path>
-                    </svg>
-                </button>
-
-                <div class="collapse navbar-collapse text-wrap primary-font" id="navbarContent">
-                    <ul class="navbar-nav ms-auto text-center">
-                        <li class="nav-item navbar-text d-block d-md-none">
-                            <div class="nav-link">
-                                <input id="search" autocomplete="off" class="form-control mr-sm-2"
-                                    placeholder='Ctrl &#43; k to Search...' aria-label="Search"
-                                    oninput="searchOnChange(event)">
-                            </div>
-                        </li>
-
-                        <li class="nav-item navbar-text">
-                            <a class="nav-link" href="/#about" aria-label="about">
-                                About Me
-                            </a>
-                        </li>
-
-                        <li class="nav-item navbar-text">
-                            <a class="nav-link" href="/#experience" aria-label="experience">
-                                Experience
-                            </a>
-                        </li>
-
-                        <li class="nav-item navbar-text">
-                            <a class="nav-link" href="/#education" aria-label="education">
-                                Education
-                            </a>
-                        </li>
-
-                        <li class="nav-item navbar-text">
-                            <a class="nav-link" href="/#projects" aria-label="projects">
-                                Projects
-                            </a>
-                        </li>
-
-                        <li class="nav-item navbar-text">
-                            <a class="nav-link" href="/#contact" aria-label="contact">
-                                Contact
-                            </a>
-                        </li>
-
-                        <li class="nav-item navbar-text">
-                            <div class="text-center">
-                                <button id="theme-toggle">
-                                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                                    </svg>
-                                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="12" cy="12" r="5"></circle>
-                                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                                    </svg>
-                                </button>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+            <!-- Search bar with icon -->
+            <div class="d-none d-md-flex align-items-center ms-auto me-3">
+                <span class="position-absolute ps-3">
+                    <i class="fas fa-search text-muted"></i>
+                </span>
+                <input id="search" autocomplete="off" 
+                       class="form-control ps-5 py-2 border-0 bg-light rounded-pill" 
+                       placeholder='Search or press Ctrl+K...' 
+                       aria-label="Search">
             </div>
-        </nav>
-    </header>
+
+            <!-- Mobile toggle button with animation -->
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" 
+                    data-bs-target="#navbarContent" aria-expanded="false" 
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navigation menu -->
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <!-- Mobile search -->
+                <div class="d-md-none my-3">
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-0">
+                            <i class="fas fa-search text-muted"></i>
+                        </span>
+                        <input id="mobile-search" autocomplete="off" 
+                               class="form-control border-0 bg-light rounded-end" 
+                               placeholder="Search..." 
+                               aria-label="Mobile Search">
+                    </div>
+                </div>
+
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <!-- Navigation items with hover effect -->
+                    <li class="nav-item mx-2">
+                        <a class="nav-link px-3 py-2 rounded-pill hover-effect" href="/#about">
+                            <i class="fas fa-user d-md-none me-2"></i> About
+                        </a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link px-3 py-2 rounded-pill hover-effect" href="/#experience">
+                            <i class="fas fa-briefcase d-md-none me-2"></i> Experience
+                        </a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link px-3 py-2 rounded-pill hover-effect" href="/#education">
+                            <i class="fas fa-graduation-cap d-md-none me-2"></i> Education
+                        </a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link px-3 py-2 rounded-pill hover-effect" href="/#projects">
+                            <i class="fas fa-code d-md-none me-2"></i> Projects
+                        </a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link px-3 py-2 rounded-pill hover-effect" href="/#contact">
+                            <i class="fas fa-envelope d-md-none me-2"></i> Contact
+                        </a>
+                    </li>
+
+                    <!-- Theme toggle with tooltip -->
+                    <li class="nav-item ms-2">
+                        <button id="theme-toggle" class="btn btn-outline-secondary border-0 rounded-circle p-2" 
+                                data-bs-toggle="tooltip" data-bs-placement="bottom" title="Toggle theme">
+                            <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" 
+                                 fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                            </svg>
+                            <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" 
+                                 fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <line x1="12" y1="1" x2="12" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="23"></line>
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                <line x1="1" y1="12" x2="3" y2="12"></line>
+                                <line x1="21" y1="12" x2="23" y2="12"></line>
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Add this CSS -->
+<style>
+    /* Gradient text for brand */
+    .gradient-text {
+        background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    /* Hover effect for nav items */
+    .hover-effect {
+        transition: all 0.3s ease;
+    }
+    .hover-effect:hover {
+        background: rgba(106, 17, 203, 0.1);
+        transform: translateY(-2px);
+    }
+    
+    /* Smooth transitions */
+    .navbar, .nav-link, button {
+        transition: all 0.3s ease-in-out;
+    }
+    
+    /* Active state for nav items */
+    .nav-link.active {
+        background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+        color: white !important;
+    }
+    
+    /* Dark mode support */
+    .dark .navbar {
+        background-color: #1a1a2e !important;
+    }
+    .dark .gradient-text {
+        background: linear-gradient(90deg, #f857a6 0%, #ff5858 100%);
+    }
+    .dark .nav-link:hover {
+        background: rgba(248, 87, 166, 0.1);
+    }
+    .dark #search,
+    .dark #mobile-search {
+        background-color: #16213e !important;
+        color: white !important;
+    }
+</style>
+
+<!-- Initialize tooltips -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    });
+</script>
 
     <div id="content">
         <section id="hero" class="py-5 align-middle">
