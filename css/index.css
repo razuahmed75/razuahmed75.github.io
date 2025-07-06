@@ -582,21 +582,50 @@ header .navbar.animate {
 
 
 
-#middle_img_wrapper img{
-	width: 250px;
-	height: 250px;
-	border-radius: 50%;
-	background: #aaa;
-	padding: 2px;
-	z-index: 99;
-	transition: box-shadow 0.2s ease, height 0.1s ease, width 0.1s ease;
-		
-}
-#middle_img_wrapper img:hover{
-	width: 252px;
-	height: 252px;
-	border: 1px solid #000;
-	cursor: pointer;
-	box-shadow: 0px 19px 30px 0px;
+    /* Base styles */
+    #middle_img_wrapper {
+        display: flex;
+        justify-content: center;
+        margin: 2rem 0;
+    }
+    
+    .profile-image {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        background: #aaa;
+        padding: 2px;
+        z-index: 99;
+        transition: all 0.3s ease;
+        object-fit: cover;
+        border: 2px solid transparent;
+    }
 
-}
+    /* Light mode hover */
+    .profile-image:hover {
+        transform: scale(1.02);
+        border-color: #6a11cb; /* Purple border */
+        box-shadow: 0 10px 25px rgba(106, 17, 203, 0.3);
+        cursor: pointer;
+    }
+
+    /* Dark mode adjustments */
+    .dark .profile-image {
+        background: #333;
+    }
+
+    .dark .profile-image:hover {
+        border-color: #f857a6; /* Pink border for dark mode */
+        box-shadow: 0 10px 25px rgba(248, 87, 166, 0.3);
+    }
+
+    /* Animation for fun */
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
+    
+    .profile-image:hover {
+        animation: float 3s ease-in-out infinite;
+    }
