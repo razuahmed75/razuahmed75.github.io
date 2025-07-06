@@ -617,6 +617,7 @@ header .navbar.animate {
     .dark .profile-image:hover {
         border-color: #fcba06; /* Pink border for dark mode */
         box-shadow: 0 10px 25px rgba(245, 114, 6, 0.3);
+        border: 1px solid transparent;
     }
 
     /* Animation for fun */
