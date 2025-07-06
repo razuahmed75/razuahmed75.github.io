@@ -90,6 +90,35 @@
             height: .1em;
             background-color: var(--background-color);
         }
+        
+        /* New styles for profile image */
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .profile-image {
+                width: 150px;
+                height: 150px;
+                margin-top: 20px;
+            }
+            #hero-content {
+                text-align: center;
+            }
+        }
+        
+        .hero-row {
+            align-items: center;
+        }
+        
+        .hero-content {
+            padding-right: 30px;
+        }
     </style>
 
     <meta name="description" content="Razu Ahmed - Flutter Developer Portfolio">
@@ -275,87 +304,27 @@
     <div id="content">
         <section id="hero" class="py-5 align-middle">
             <div class="container px-3 px-sm-5 px-md-5 px-lg-5 pt-lg-3">
-          <!-- Added your photo here -->
-            <div id="middle_img_wrapper">
-                <img src="/images/my-pic.jpg" alt="Razu Ahmed's Profile Photo" class="profile-image" />
-            </div>
-
-    <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-8 content animate" id="primary-font">
-        <!-- Name with typing animation -->
-        <h2 class="typing-line" style="--typing-duration:2s;" data-text="Razu Ahmed.">
-            <span class="typing-text"></span>
-            <span class="typing-cursor"></span>
-        </h2>
-        
-        <!-- Tagline with staggered animation -->
-        <h3 class="typing-line" style="--typing-duration:2.5s;" data-text="I build mobile applications for Android and iOS">
-            <span class="typing-text"></span>
-            <span class="typing-cursor"></span>
-        </h3>
-        
-        <!-- Content with staggered animation -->
-        <p class="hero-content typing-line" style="--typing-duration:3.5s;" data-text="A passionate Flutter developer with 3+ years of experience creating beautiful, performant mobile applications. I specialize in building cross-platform solutions that deliver native experiences on both platforms.">
-            <span class="typing-text"></span>
-            <span class="typing-cursor"></span>
-        </p>
-    </div>
-</div>
-<!-- Typing animation -->
- <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const typingLines = document.querySelectorAll('.typing-line');
-    const container = document.getElementById('primary-font');
-    
-    function startTyping(index) {
-        const line = typingLines[index];
-        const text = line.getAttribute('data-text');
-        const typingText = line.querySelector('.typing-text');
-        const duration = parseFloat(line.style.getPropertyValue('--typing-duration')) * 1000;
-        
-        // Reset line for new animation cycle
-        line.classList.remove('active');
-        typingText.innerHTML = '';
-        
-        // Activate current line
-        line.classList.add('active');
-        
-        // Type the text
-        typeWriter(typingText, text, duration, () => {
-            // Deactivate current line when done
-            line.classList.remove('active');
-            
-            // Start next line after a short pause
-            setTimeout(() => {
-                const nextIndex = (index + 1) % typingLines.length;
-                startTyping(nextIndex);
-            }, 300);
-        });
-    }
-    
-    function typeWriter(element, text, duration, callback) {
-        const len = text.length;
-        const speed = duration / len;
-        let i = 0;
-        
-        function type() {
-            if (i < len) {
-                element.innerHTML += text.charAt(i);
-                i++;
-                setTimeout(type, speed);
-            } else if (callback) {
-                callback();
-            }
-        }
-        
-        type();
-    }
-    
-    // Start the first line to begin infinite loop
-    startTyping(0);
-});
-</script>
-<!-- Typing animation End -->
+                <div class="row hero-row">
+                    <!-- Left Column - Text Content -->
+                    <div class="col-md-8 col-lg-8 content animate" id="hero-content">
+                        <!-- Name with typing animation -->
+                        <h2 class="typing-line" style="--typing-duration:2s;" data-text="Razu Ahmed.">
+                            <span class="typing-text"></span>
+                            <span class="typing-cursor"></span>
+                        </h2>
+                        
+                        <!-- Tagline with staggered animation -->
+                        <h3 class="typing-line" style="--typing-duration:2.5s;" data-text="I build mobile applications for Android and iOS">
+                            <span class="typing-text"></span>
+                            <span class="typing-cursor"></span>
+                        </h3>
+                        
+                        <!-- Content with staggered animation -->
+                        <p class="hero-content typing-line" style="--typing-duration:3.5s;" data-text="A passionate Flutter developer with 3+ years of experience creating beautiful, performant mobile applications. I specialize in building cross-platform solutions that deliver native experiences on both platforms.">
+                            <span class="typing-text"></span>
+                            <span class="typing-cursor"></span>
+                        </p>
+                        
                         <div class="row">
                             <div class="col-auto h-100">
                                 <a href="https://drive.google.com/file/d/1hXgzO4uWGuucIln55PPyLH3TRbYk3bFw/view?usp=drive_link" class="btn" download>
@@ -384,20 +353,19 @@ document.addEventListener('DOMContentLoaded', function() {
                                 </span>
                             </div>
                         </div>
-                  
                     </div>
-                    <div class="col-sm-12 col-md-12 col-lg-4">
-                        <div class="row justify-content-center">
-                            <div class="col-sm-12 col-md-9 pt-5 image animate px-5 px-md-5 px-lg-0 text-center">
-                                <img src="/images/hero.svg" class="img-thumbnail mx-auto" alt="">
-                            </div>
+                    
+                    <!-- Right Column - Profile Image -->
+                    <div class="col-md-4 col-lg-4 text-center">
+                        <div id="middle_img_wrapper">
+                            <img src="/images/my-pic.jpg" alt="Razu Ahmed's Profile Photo" class="profile-image" />
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-               <section id="about" class="py-0 py-sm-5">
+        <section id="about" class="py-0 py-sm-5">
             <div class="container">
                 <h3 class="text-center mb-4">About Me</h3>  <!-- Added mb-4 for spacing -->
                 <div class="row justify-content-center">
@@ -767,7 +735,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 </div>
                                 <h5 class="card-title bg-transparent mt-1">HYIP PRO Mobile App</h5>
                                 <div class="card-text bg-transparent secondary-font">
-                                    Attention aspiring HYIP entrepreneurs! Get ready to kickstart your high-yield investment venture with the HyipPro Mobile App. This isn’t just an app; it’s your ultimate partner for building and managing a successful HYIP business.
+                                    Attention aspiring HYIP entrepreneurs! Get ready to kickstart your high-yield investment venture with the HyipPro Mobile App. This isn't just an app; it's your ultimate partner for building and managing a successful HYIP business.
                                 </div>
                             </div>
                             <div class="card-footer py-3">
@@ -803,7 +771,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 </div>
                                 <h5 class="card-title bg-transparent mt-1">Coinectra Mobile App</h5>
                                 <div class="card-text bg-transparent secondary-font">
-                                   Coinectra Mobile App is the perfect companion to the Coinectra web platform – built for users who want to trade anytime, anywhere. Whether it’s crypto swaps or fiat transactions, this mobile app brings the full power of your crypto exchange into the palm of your hand.
+                                   Coinectra Mobile App is the perfect companion to the Coinectra web platform – built for users who want to trade anytime, anywhere. Whether it's crypto swaps or fiat transactions, this mobile app brings the full power of your crypto exchange into the palm of your hand.
                                 </div>
                             </div>
                             <div class="card-footer py-3">
@@ -875,7 +843,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 </div>
                                 <h5 class="card-title bg-transparent mt-1">Paysecure-User Mobile App</h5>
                                 <div class="card-text bg-transparent secondary-font">
-                                   Pay Secure is a modern and secure Digital Wallet Mobile App designed to complement the Pay Secure Web Platform. It brings a wide range of financial services directly to users’ smartphones, enabling them to manage money effortlessly and perform everyday transactions with ease and confidence.
+                                   Pay Secure is a modern and secure Digital Wallet Mobile App designed to complement the Pay Secure Web Platform. It brings a wide range of financial services directly to users' smartphones, enabling them to manage money effortlessly and perform everyday transactions with ease and confidence.
                                 </div>
                             </div>
                             <div class="card-footer py-3">
