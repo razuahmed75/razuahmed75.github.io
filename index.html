@@ -326,7 +326,12 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Start next line after a short pause
             setTimeout(() => {
-                const nextIndex = (index + 1) % typingLines.length;
+                // to infinite repeat the animation
+                //const nextIndex = (index + 1) % typingLines.length;
+                // repeat only one time animation when page is loaded at first time
+                if (index < typingLines.length - 1) {
+                    startTyping(index + 1);
+                }
                 startTyping(nextIndex);
             }, 300);
         });
