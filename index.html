@@ -300,6 +300,61 @@
         });
     });
 </script>
+<!-- Typing animation -->
+ <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const typingLines = document.querySelectorAll('.typing-line');
+    const container = document.getElementById('primary-font');
+    
+    function startTyping(index) {
+        const line = typingLines[index];
+        const text = line.getAttribute('data-text');
+        const typingText = line.querySelector('.typing-text');
+        const duration = parseFloat(line.style.getPropertyValue('--typing-duration')) * 1000;
+        
+        // Reset line for new animation cycle
+        line.classList.remove('active');
+        typingText.innerHTML = '';
+        
+        // Activate current line
+        line.classList.add('active');
+        
+        // Type the text
+        typeWriter(typingText, text, duration, () => {
+            // Deactivate current line when done
+            line.classList.remove('active');
+            
+            // Start next line after a short pause
+            setTimeout(() => {
+                const nextIndex = (index + 1) % typingLines.length;
+                startTyping(nextIndex);
+            }, 300);
+        });
+    }
+    
+    function typeWriter(element, text, duration, callback) {
+        const len = text.length;
+        const speed = duration / len;
+        let i = 0;
+        
+        function type() {
+            if (i < len) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            } else if (callback) {
+                callback();
+            }
+        }
+        
+        type();
+    }
+    
+    // Start the first line to begin infinite loop
+    startTyping(0);
+});
+</script>
+<!-- Typing animation End -->
 
     <div id="content">
         <section id="hero" class="py-5 align-middle">
