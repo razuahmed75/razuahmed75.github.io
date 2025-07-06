@@ -628,3 +628,33 @@ header .navbar.animate {
     .profile-image:hover {
         animation: float 3s ease-in-out infinite;
     }
+
+    /* Typing animation container */
+    .typing-animation {
+        display: block;
+        overflow: hidden;
+        margin-bottom: 1rem;
+    }
+    
+    /* The typing cursor */
+    .typing-cursor {
+        display: inline-block;
+        width: 3px;
+        height: 1em;
+        background-color: var(--primary-color, #007bff);
+        animation: blink-caret 0.75s step-end infinite;
+        vertical-align: middle;
+        margin-left: 2px;
+    }
+    
+    /* Animation to hide cursor when typing is done */
+    .typing-animation.done .typing-cursor {
+        visibility: hidden;
+    }
+    
+    @keyframes blink-caret {
+        from, to { opacity: 0 }
+        50% { opacity: 1 }
+    }
+
+

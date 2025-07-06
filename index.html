@@ -289,57 +289,64 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-8 content animate" id="primary-font">
                         <!-- Name with typing animation -->
-                        <h2 class="typing-animation" style="--typing-steps:30; --typing-duration:2s;">
-                            Razu Ahmed.
+                        <h2 class="typing-animation" style="--typing-duration:2s;" data-text="Razu Ahmed.">
+                            <span class="typing-text"></span>
+                            <span class="typing-cursor"></span>
                         </h2>
                         
                         <!-- Tagline with staggered animation -->
-                        <h3 class="typing-animation" style="--typing-steps:40; --typing-duration:2.5s; animation-delay: 0.5s;">
-                            I build mobile applications for Android and iOS
+                        <h3 class="typing-animation" style="--typing-duration:2.5s;" data-text="I build mobile applications for Android and iOS">
+                            <span class="typing-text"></span>
+                            <span class="typing-cursor"></span>
                         </h3>
                         
                         <!-- Content with staggered animation -->
-                        <p class="hero-content typing-animation" style="--typing-steps:70; --typing-duration:3.5s; animation-delay: 1s;">
-                            A passionate Flutter developer with 3+ years of experience creating beautiful, performant
-                            mobile applications. I specialize in building cross-platform solutions that deliver native
-                            experiences on both platforms.
+                        <p class="hero-content typing-animation" style="--typing-duration:3.5s;" data-text="A passionate Flutter developer with 3+ years of experience creating beautiful, performant mobile applications. I specialize in building cross-platform solutions that deliver native experiences on both platforms.">
+                            <span class="typing-text"></span>
+                            <span class="typing-cursor"></span>
                         </p>
                     </div>
                 </div>
-
-                    <style>
-                        /* Typing animation */
-                        .typing-animation {
-                            display: inline-block;
-                            overflow: hidden;
-                            white-space: nowrap;
-                            border-right: 3px solid; /* Cursor */
-                            width: 0;
-                            animation: 
-                                typing var(--typing-duration) steps(var(--typing-steps)) forwards,
-                                blink-caret 0.75s step-end infinite;
-                        }
-
-                        @keyframes typing {
-                            from { width: 0 }
-                            to { width: 100% }
-                        }
-
-                        @keyframes blink-caret {
-                            from, to { border-color: transparent }
-                            50% { border-color: var(--primary-color, #007bff); } /* Use your theme color */
-                        }
-
-                        /* Responsive adjustments */
-                        @media (max-width: 768px) {
-                            .typing-animation {
-                                white-space: normal; /* Allow text wrapping on mobile */
-                                border-right: none; /* Remove cursor on mobile */
-                                animation: none; /* Disable animation on mobile */
-                                width: 100% !important;
-                            }
-                        }
-                    </style>
+      <!-- Typing animation -->
+ <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const typingElements = document.querySelectorAll('.typing-animation');
+    let delay = 0;
+    
+    typingElements.forEach((element) => {
+        const text = element.getAttribute('data-text');
+        const typingText = element.querySelector('.typing-text');
+        const duration = parseFloat(element.style.getPropertyValue('--typing-duration')) * 1000;
+        
+        setTimeout(() => {
+            typeWriter(typingText, text, duration, () => {
+                element.classList.add('done');
+            });
+        }, delay);
+        
+        delay += duration + 500; // Add 500ms pause between animations
+    });
+    
+    function typeWriter(element, text, duration, callback) {
+        const len = text.length;
+        const speed = duration / len;
+        let i = 0;
+        
+        function type() {
+            if (i < len) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            } else if (callback) {
+                callback();
+            }
+        }
+        
+        type();
+    }
+});
+</script>
+<!-- Typing animation -->
                         <div class="row">
                             <div class="col-auto h-100">
                                 <a href="https://drive.google.com/file/d/1hXgzO4uWGuucIln55PPyLH3TRbYk3bFw/view?usp=drive_link" class="btn" download>
@@ -368,6 +375,7 @@
                                 </span>
                             </div>
                         </div>
+                  
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-4">
                         <div class="row justify-content-center">
