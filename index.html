@@ -272,35 +272,38 @@
     });
 </script>
 
-    <div id="content">
-        <section id="hero" class="py-5 align-middle">
-            <div class="container px-3 px-sm-5 px-md-5 px-lg-5 pt-lg-3">
-
-    <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-8 content animate" id="primary-font">
-        <!-- Name with typing animation -->
-        <h2 class="typing-line" style="--typing-duration:2s;" data-text="Razu Ahmed.">
+    <section id="hero" class="py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Text Content - Left Side -->
+      <div class="col-lg-7 col-md-12 order-2 order-lg-1 pe-lg-5">
+        <div id="primary-font">
+          <h2 class="typing-line display-4 fw-bold mb-3" style="--typing-duration:2s;" data-text="Razu Ahmed.">
             <span class="typing-text"></span>
-            <span class="typing-cursor"></span>
-        </h2>
-        
-        <!-- Tagline with staggered animation -->
-        <h3 class="typing-line" style="--typing-duration:2.5s;" data-text="I build mobile applications for Android and iOS">
+            <span class="typing-cursor border-right"></span>
+          </h2>
+          
+          <h3 class="typing-line h3 text-primary mb-4" style="--typing-duration:2.5s;" data-text="I build mobile applications for Android and iOS">
             <span class="typing-text"></span>
-            <span class="typing-cursor"></span>
-        </h3>
-        
-        <!-- Content with staggered animation -->
-        <p class="hero-content typing-line" style="--typing-duration:3.5s;" data-text="A passionate Flutter developer with 3+ years of experience creating beautiful, performant mobile applications. I specialize in building cross-platform solutions that deliver native experiences on both platforms.">
+            <span class="typing-cursor border-right"></span>
+          </h3>
+          
+          <p class="typing-line lead mb-4" style="--typing-duration:3.5s;" data-text="A passionate Flutter developer with 3+ years of experience creating beautiful, performant mobile applications. I specialize in building cross-platform solutions that deliver native experiences on both platforms.">
             <span class="typing-text"></span>
-            <span class="typing-cursor"></span>
-        </p>
+            <span class="typing-cursor border-right"></span>
+          </p>
+        </div>
+      </div>
+      
+      <!-- Profile Image - Right Side -->
+      <div class="col-lg-5 col-md-12 order-1 order-lg-2 text-center mb-4 mb-lg-0">
+        <img src="/images/my-pic.jpg" alt="Razu Ahmed" 
+             class="rounded-circle border border-3 border-primary shadow-lg" 
+             style="width: 250px; height: 250px; object-fit: cover;">
+      </div>
     </div>
-    <!-- Added your photo here -->
-            <div id="middle_img_wrapper">
-                <img src="/images/my-pic.jpg" alt="Razu Ahmed's Profile Photo" class="profile-image" />
-            </div>
-</div>
+  </div>
+</section>
 <!-- Typing animation -->
  <script>
 document.addEventListener('DOMContentLoaded', function() {
