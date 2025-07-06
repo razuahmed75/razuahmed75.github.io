@@ -312,19 +312,16 @@
 document.addEventListener('DOMContentLoaded', function() {
     const typingLines = document.querySelectorAll('.typing-line');
     const container = document.getElementById('primary-font');
-    let currentIndex = 0;
     
     function startTyping(index) {
-        if (index >= typingLines.length) {
-            // All animations complete
-            container.classList.add('typing-complete');
-            return;
-        }
-        
         const line = typingLines[index];
         const text = line.getAttribute('data-text');
         const typingText = line.querySelector('.typing-text');
         const duration = parseFloat(line.style.getPropertyValue('--typing-duration')) * 1000;
+        
+        // Reset line for new animation cycle
+        line.classList.remove('active');
+        typingText.innerHTML = '';
         
         // Activate current line
         line.classList.add('active');
@@ -336,7 +333,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Start next line after a short pause
             setTimeout(() => {
-                startTyping(index + 1);
+                const nextIndex = (index + 1) % typingLines.length;
+                startTyping(nextIndex);
             }, 300);
         });
     }
@@ -359,7 +357,7 @@ document.addEventListener('DOMContentLoaded', function() {
         type();
     }
     
-    // Start the first line
+    // Start the first line to begin infinite loop
     startTyping(0);
 });
 </script>
