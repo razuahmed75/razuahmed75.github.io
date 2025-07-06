@@ -287,45 +287,59 @@
         <!-- </div> -->
 
                 <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-8 content animate" id="primary-font">
-                        <!-- Name with typing animation -->
-                        <h2 class="typing-animation" style="--typing-duration:2s;" data-text="Razu Ahmed.">
-                            <span class="typing-text"></span>
-                            <span class="typing-cursor"></span>
-                        </h2>
-                        
-                        <!-- Tagline with staggered animation -->
-                        <h3 class="typing-animation" style="--typing-duration:2.5s;" data-text="I build mobile applications for Android and iOS">
-                            <span class="typing-text"></span>
-                            <span class="typing-cursor"></span>
-                        </h3>
-                        
-                        <!-- Content with staggered animation -->
-                        <p class="hero-content typing-animation" style="--typing-duration:3.5s;" data-text="A passionate Flutter developer with 3+ years of experience creating beautiful, performant mobile applications. I specialize in building cross-platform solutions that deliver native experiences on both platforms.">
-                            <span class="typing-text"></span>
-                            <span class="typing-cursor"></span>
-                        </p>
-                    </div>
-                </div>
+    <div class="col-sm-12 col-md-12 col-lg-8 content animate" id="primary-font">
+        <!-- Name with typing animation -->
+        <h2 class="typing-line" style="--typing-duration:2s;" data-text="Razu Ahmed.">
+            <span class="typing-text"></span>
+            <span class="typing-cursor"></span>
+        </h2>
+        
+        <!-- Tagline with staggered animation -->
+        <h3 class="typing-line" style="--typing-duration:2.5s;" data-text="I build mobile applications for Android and iOS">
+            <span class="typing-text"></span>
+            <span class="typing-cursor"></span>
+        </h3>
+        
+        <!-- Content with staggered animation -->
+        <p class="hero-content typing-line" style="--typing-duration:3.5s;" data-text="A passionate Flutter developer with 3+ years of experience creating beautiful, performant mobile applications. I specialize in building cross-platform solutions that deliver native experiences on both platforms.">
+            <span class="typing-text"></span>
+            <span class="typing-cursor"></span>
+        </p>
+    </div>
+</div>
       <!-- Typing animation -->
  <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const typingElements = document.querySelectorAll('.typing-animation');
-    let delay = 0;
+    const typingLines = document.querySelectorAll('.typing-line');
+    const container = document.getElementById('primary-font');
+    let currentIndex = 0;
     
-    typingElements.forEach((element) => {
-        const text = element.getAttribute('data-text');
-        const typingText = element.querySelector('.typing-text');
-        const duration = parseFloat(element.style.getPropertyValue('--typing-duration')) * 1000;
+    function startTyping(index) {
+        if (index >= typingLines.length) {
+            // All animations complete
+            container.classList.add('typing-complete');
+            return;
+        }
         
-        setTimeout(() => {
-            typeWriter(typingText, text, duration, () => {
-                element.classList.add('done');
-            });
-        }, delay);
+        const line = typingLines[index];
+        const text = line.getAttribute('data-text');
+        const typingText = line.querySelector('.typing-text');
+        const duration = parseFloat(line.style.getPropertyValue('--typing-duration')) * 1000;
         
-        delay += duration + 500; // Add 500ms pause between animations
-    });
+        // Activate current line
+        line.classList.add('active');
+        
+        // Type the text
+        typeWriter(typingText, text, duration, () => {
+            // Deactivate current line when done
+            line.classList.remove('active');
+            
+            // Start next line after a short pause
+            setTimeout(() => {
+                startTyping(index + 1);
+            }, 300);
+        });
+    }
     
     function typeWriter(element, text, duration, callback) {
         const len = text.length;
@@ -344,6 +358,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         type();
     }
+    
+    // Start the first line
+    startTyping(0);
 });
 </script>
 <!-- Typing animation -->
