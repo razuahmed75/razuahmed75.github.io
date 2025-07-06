@@ -581,7 +581,7 @@ header .navbar.animate {
 
 
 
-
+/* ================custom added css classes on 2025 */
     /* Base styles */
     #middle_img_wrapper {
         display: flex;
@@ -596,6 +596,7 @@ header .navbar.animate {
         padding: 2px;
         z-index: 99;
         transition: all 0.3s ease;
+        animation: float 3s ease-in-out infinite;
         object-fit: cover;
         border: 2px solid transparent;
     }
