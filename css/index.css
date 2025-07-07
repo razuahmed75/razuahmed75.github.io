@@ -578,3 +578,106 @@ header .navbar.animate {
     box-shadow: 0px 8px 56px rgb(15 80 100 / 5%);
     padding: .5rem 1rem;
 }
+
+
+
+/* ================custom added css classes on 2025 */
+    /* Base styles */
+    #middle_img_wrapper {
+        display: flex;
+        margin: 2rem 0;
+    }
+    
+    .profile-image {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        background: #aaa;
+        padding: 2px;
+        z-index: 99;
+        transition: all 0.3s ease;
+        animation: float 3s ease-in-out infinite;
+        object-fit: cover;
+        border: 2px solid transparent;
+    }
+
+    /* Light mode hover */
+    .profile-image:hover {
+        transform: scale(1.02);
+        border-color: #6a11cb; /* Purple border */
+        box-shadow: 0 10px 25px rgba(106, 17, 203, 0.3);
+        cursor: pointer;
+    }
+
+    /* Dark mode adjustments */
+    .dark .profile-image {
+        background: #333;
+    }
+
+    .dark .profile-image:hover {
+        border-color: #fcba06; /* Pink border for dark mode */
+        box-shadow: 0 10px 25px rgba(245, 114, 6, 0.3);
+        border: 1px solid;
+    }
+
+    /* Animation for fun */
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
+    
+    .profile-image:hover {
+        animation: float 3s ease-in-out infinite;
+    }
+
+    /* Typing animation container */
+       /* Typing animation container */
+    .typing-line {
+        display: block;
+        overflow: hidden;
+        margin-bottom: 1rem;
+        min-height: 1.2em; /* Prevent layout shift */
+    }
+    
+    /* The typing cursor - initially hidden */
+    .typing-cursor {
+        display: inline-block;
+        width: 3px;
+        height: 1em;
+        background-color: var(--primary-color, #007bff);
+        vertical-align: middle;
+        margin-left: 2px;
+        visibility: hidden;
+    }
+    
+    /* Active cursor (only for current line) */
+    .typing-line.active .typing-cursor {
+        visibility: visible;
+        animation: blink-caret 0.75s step-end infinite;
+    }
+    
+    /* Hide all cursors when all animations are done */
+    .typing-complete .typing-cursor {
+        display: none;
+    }
+    
+    @keyframes blink-caret {
+        from, to { opacity: 0 }
+        50% { opacity: 1 }
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+        .typing-line {
+            white-space: normal;
+        }
+        .typing-line .typing-cursor {
+            display: none;
+        }
+        .typing-line .typing-text {
+            animation: none !important;
+        }
+    }
+
+
