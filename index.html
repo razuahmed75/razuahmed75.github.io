@@ -422,13 +422,21 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                         <!-- Codewars Badge Section -->
                         <div style="margin-top:30px;">
-                        <p style="margin-bottom:15px; font-size:16px;">
-                            Check out my Codewars profile for coding challenges and solutions
-                        </p>
-                        <a href="https://www.codewars.com/users/razuahmed75" target="_blank">
-                            <img src="https://www.codewars.com/users/razuahmed75/badges/large" alt="Razu Ahmed's Codewars Badge">
-                        </a>
+                            <p style="margin-bottom:15px; font-size:16px;">
+                                Check out my Codewars profile for coding challenges and solutions
+                            </p>
+                            <a href="https://www.codewars.com/users/razuahmed75" target="_blank">
+                                <!-- Large badge for desktop -->
+                                <img src="https://www.codewars.com/users/razuahmed75/badges/large" 
+                                    alt="Razu Ahmed's Codewars Badge" 
+                                    class="d-none d-md-inline">
+                                <!-- Small badge for mobile -->
+                                <img src="https://www.codewars.com/users/razuahmed75/badges/small" 
+                                    alt="Razu Ahmed's Codewars Badge" 
+                                    class="d-inline d-md-none">
+                            </a>
                         </div>
+                        <!-- Codewars Badge Section End -->
 
                     </div>
                     
