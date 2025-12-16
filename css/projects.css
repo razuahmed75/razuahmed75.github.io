@@ -5,6 +5,9 @@
     transition: all 0.3s ease;
     object-fit: cover;
 }
+.card-hover {
+    cursor: pointer;
+}
 
 #projects h3 {
     color: var(--text-secondary-color) !important;
