@@ -99,7 +99,6 @@ header .navbar.animate {
 
 #hero h3 {
     font-size: clamp(40px, 8vw, 60px);
-    /* color: var(--primary-color) !important; */
     opacity: 0.5;
 }
 
@@ -140,6 +139,13 @@ header .navbar.animate {
     border: 1px solid var(--primary-color);
     transition: none;
 }
+
+/* hover project image */
+.hover-img {
+    transition: all 0.3s ease;
+    object-fit: cover;
+}
+
 
 #hero a.btn.social-icon img {
     width: 1em;
