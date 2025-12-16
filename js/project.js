@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.addEventListener('mouseenter', () => {
             img.src = hoverSrc;
             img.style.width = '100%';
-            img.style.height = '280px';
+            img.style.height = '220px';
         });
 
         card.addEventListener('mouseleave', () => {
