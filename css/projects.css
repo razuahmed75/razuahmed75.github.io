@@ -3,7 +3,7 @@
 /* hover project image */
 .hover-img {
     transition: all 0.3s ease;
-    object-fit: cover;
+    object-fit: contain;
 }
 .card-hover {
     cursor: pointer;
