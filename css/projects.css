@@ -1,5 +1,11 @@
 /* projects */
 
+/* hover project image */
+.hover-img {
+    transition: all 0.3s ease;
+    object-fit: cover;
+}
+
 #projects h3 {
     color: var(--text-secondary-color) !important;
 }

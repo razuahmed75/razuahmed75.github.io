@@ -140,13 +140,6 @@ header .navbar.animate {
     transition: none;
 }
 
-/* hover project image */
-.hover-img {
-    transition: all 0.3s ease;
-    object-fit: cover;
-}
-
-
 #hero a.btn.social-icon img {
     width: 1em;
 }
