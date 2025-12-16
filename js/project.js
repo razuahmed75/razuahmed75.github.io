@@ -7,7 +7,7 @@ document.querySelectorAll('.hover-img').forEach(img => {
     img.addEventListener('mouseenter', () => {
         img.src = hoverSrc;
         img.style.width = '100%';
-        img.style.height = '280px';
+        img.style.height = '220px';
     });
 
     img.addEventListener('mouseleave', () => {
