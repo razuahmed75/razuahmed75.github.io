@@ -1,6 +1,7 @@
 .tech-container {
         font-family: sans-serif;
         max-width: 800px;
+        padding-left: 6px;
     }
     .tech-section {
         margin-bottom: 20px;
