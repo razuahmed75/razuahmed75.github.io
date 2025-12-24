@@ -24,6 +24,7 @@
         background-color: var(--secondary-color);
         color: var(--text-color);
         border-radius: 16px;
+        padding: 4px;
         font-size: 0.85rem;
         border: 1px solid var(--secondary-color);
         transition: all 0.2s;
