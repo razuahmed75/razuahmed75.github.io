@@ -23,13 +23,12 @@
     .tech-pill {
         background-color: var(--secondary-color);
         color: var(--text-color);
-        padding: 8px;
         border-radius: 16px;
         font-size: 0.85rem;
         border: 1px solid var(--secondary-color);
         transition: all 0.2s;
     }
     .tech-pill:hover {
-        background-color: var(--secondary-color);
-        color: var(--text-color);
+        background-color: #007bff;
+        color: #e4e6eb;
     }
