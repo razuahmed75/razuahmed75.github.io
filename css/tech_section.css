@@ -1,0 +1,36 @@
+.tech-container {
+        font-family: sans-serif;
+        max-width: 800px;
+    }
+    .tech-section {
+        margin-bottom: 20px;
+    }
+    .tech-header {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #333;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+    .tech-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 0;
+        list-style: none;
+    }
+    .tech-pill {
+        background-color: #f0f2f5;
+        color: #475569;
+        padding: 4px 12px;
+        border-radius: 16px;
+        font-size: 0.85rem;
+        border: 1px solid #e2e8f0;
+        transition: all 0.2s;
+    }
+    .tech-pill:hover {
+        background-color: #e2e8f0;
+        color: #1e293b;
+    }
