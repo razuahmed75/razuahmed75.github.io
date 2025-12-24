@@ -22,15 +22,15 @@
         list-style: none;
     }
     .tech-pill {
-        background-color: #f0f2f5;
+        background-color: var(--background-color);
         color: #475569;
         padding: 4px 12px;
         border-radius: 16px;
         font-size: 0.85rem;
-        border: 1px solid #e2e8f0;
+        border: 1px solid var(--background-color);
         transition: all 0.2s;
     }
     .tech-pill:hover {
-        background-color: #e2e8f0;
+        background-color: var(--background-color);
         color: #1e293b;
     }
