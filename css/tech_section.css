@@ -1,7 +1,6 @@
 .tech-container {
         font-family: sans-serif;
         max-width: 800px;
-        padding-left: 6px;
     }
     .tech-section {
         margin-bottom: 20px;
@@ -19,7 +18,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
-        padding: 0;
+        padding-left: 6px;
         list-style: none;
     }
     .tech-pill {
