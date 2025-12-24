@@ -8,7 +8,7 @@
     .tech-header {
         font-size: 1.1rem;
         font-weight: bold;
-        color: #333;
+        color: var(--text-color);
         display: flex;
         align-items: center;
         gap: 8px;
@@ -22,15 +22,15 @@
         list-style: none;
     }
     .tech-pill {
-        background-color: var(--background-color);
-        color: #475569;
+        background-color: var(--secondary-color);
+        color: var(--text-color);
         padding: 4px 12px;
         border-radius: 16px;
         font-size: 0.85rem;
-        border: 1px solid var(--background-color);
+        border: 1px solid var(--secondary-color);
         transition: all 0.2s;
     }
     .tech-pill:hover {
-        background-color: var(--background-color);
-        color: #1e293b;
+        background-color: var(--secondary-color);
+        color: var(--text-color);
     }
