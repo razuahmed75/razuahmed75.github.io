@@ -1252,6 +1252,24 @@ document.addEventListener('DOMContentLoaded', function() {
     <section id="search-content" class="py-2">
         <div class="container" id="search-results"></div>
     </section>
+    <!-- Lenis Smooth Scrolling -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.23/dist/lenis.min.js"></script>
+    <script>
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smooth: true
+    });
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+    </script>
+    <!-- Lenis Smooth Scrolling -->
+
 </body>
     <amp-auto-ads type="adsense"
         data-ad-client="ca-pub-5078640249529722">
