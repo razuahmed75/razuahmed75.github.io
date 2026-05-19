@@ -55,25 +55,22 @@ function initTheme() {
    ========================================================================== */
 function initTypewriter() {
   const el = document.getElementById('typewriter-role');
-  const canvas = document.getElementById('typewriter-cursor');
-  if (!el || !canvas) return;
+  if (!el) return;
 
-  const roles = JSON.parse(
-    el.dataset.roles ||
-    '["Flutter Developer","Mobile App Architect","Cross-Platform Engineer"]'
-  );
+  const roles = JSON.parse(el.dataset.roles || '["Developer"]');
+
+  const canvas = document.createElement('canvas');
+  canvas.id = 'typewriter-cursor';
+  el.insertAdjacentElement('afterend', canvas);
 
   const ctx = canvas.getContext('2d');
-  const W = 20, H = 40;
+  const W = 18, H = 34;
   canvas.width = W;
   canvas.height = H;
-  canvas.style.cssText = `width:${W}px;height:${H}px;vertical-align:middle;margin-left:2px;display:inline-block`;
+  canvas.style.cssText = `width:${W}px;height:${H}px;vertical-align:middle;display:inline-block;margin-left:1px`;
 
-  const ACCENT = (() => {
-    const v = getComputedStyle(document.documentElement)
-      .getPropertyValue('--accent-2-color').trim();
-    return v || '#00b4d8';
-  })();
+  const ACCENT = getComputedStyle(document.documentElement)
+    .getPropertyValue('--accent-2-color').trim() || '#00b4d8';
 
   function rgba(hex, a) {
     const h = hex.replace('#', '');
@@ -85,62 +82,58 @@ function initTypewriter() {
   let t = 0, frame = 0;
 
   function spawnParticles() {
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 4; i++) {
       particles.push({
-        x: W / 2 + (Math.random() - 0.5) * 6,
-        y: H * 0.7,
-        vx: (Math.random() - 0.5) * 1.2,
-        vy: -(Math.random() * 2.5 + 1),
+        x: W / 2 + (Math.random() - .5) * 7,
+        y: H * 0.72,
+        vx: (Math.random() - .5) * 1.4,
+        vy: -(Math.random() * 2.8 + 0.8),
         life: 1,
-        r: Math.random() * 2.5 + 1,
-        hot: Math.random() > 0.4
+        r: Math.random() * 2.8 + 0.8,
+        hot: Math.random() > 0.35
       });
     }
-    if (particles.length > 60) particles.splice(0, particles.length - 60);
+    if (particles.length > 70) particles.splice(0, particles.length - 70);
   }
 
   function createBolt() {
     boltPts = [];
-    const segs = 8;
-    for (let i = 0; i <= segs; i++) {
-      boltPts.push({ x: W / 2 + (Math.random() - 0.5) * 8, y: (i / segs) * H });
-    }
-    boltBranch = boltPts[Math.floor(segs * 0.4)];
+    const segs = 9;
+    for (let i = 0; i <= segs; i++)
+      boltPts.push({ x: W / 2 + (Math.random() - .5) * 9, y: (i / segs) * H });
+    boltBranch = boltPts[Math.floor(segs * 0.35)];
     boltLife = 1;
   }
 
-  function drawCursor() {
+  function draw() {
     ctx.clearRect(0, 0, W, H);
-    t += 0.07;
-    frame++;
-
+    t += 0.07; frame++;
     spawnParticles();
 
     for (let i = particles.length - 1; i >= 0; i--) {
       const p = particles[i];
-      p.x += p.vx;
-      p.y += p.vy;
-      p.vy -= 0.07;
-      p.life -= 0.04;
+      p.x += p.vx; p.y += p.vy;
+      p.vy -= 0.09; p.vx *= 0.98;
+      p.life -= 0.038;
       if (p.life <= 0) { particles.splice(i, 1); continue; }
       const prog = 1 - p.life;
       const color = p.hot
-        ? prog < 0.3 ? `rgba(255,255,200,${p.life * 0.95})`
-          : prog < 0.6 ? `rgba(255,160,20,${p.life * 0.85})`
-          : `rgba(255,60,10,${p.life * 0.7})`
-        : rgba(ACCENT, p.life * 0.8);
+        ? prog < 0.25 ? `rgba(255,252,210,${p.life * 0.95})`
+          : prog < 0.55 ? `rgba(255,150,20,${p.life * 0.88})`
+          : `rgba(255,50,10,${p.life * 0.72})`
+        : rgba(ACCENT, p.life * 0.85);
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r * p.life, 0, Math.PI * 2);
       ctx.fillStyle = color;
       ctx.fill();
     }
 
-    if (frame % 8 === 0) createBolt();
+    if (frame % 9 === 0) createBolt();
 
     if (boltLife > 0 && boltPts.length > 1) {
       ctx.save();
-      ctx.strokeStyle = rgba(ACCENT, boltLife * 0.9);
-      ctx.lineWidth = 1.2;
+      ctx.strokeStyle = rgba(ACCENT, boltLife * 0.92);
+      ctx.lineWidth = 1.1;
       ctx.globalAlpha = boltLife;
       ctx.beginPath();
       ctx.moveTo(boltPts[0].x, boltPts[0].y);
@@ -150,39 +143,38 @@ function initTypewriter() {
         const a = Math.random() * Math.PI - Math.PI / 2;
         ctx.beginPath();
         ctx.moveTo(boltBranch.x, boltBranch.y);
-        ctx.lineTo(boltBranch.x + Math.cos(a) * 10, boltBranch.y + Math.sin(a) * 10);
-        ctx.lineWidth = 0.6;
-        ctx.globalAlpha = boltLife * 0.45;
+        ctx.lineTo(boltBranch.x + Math.cos(a) * 11, boltBranch.y + Math.sin(a) * 11);
+        ctx.lineWidth = 0.55;
+        ctx.globalAlpha = boltLife * 0.4;
         ctx.stroke();
       }
       ctx.restore();
-      boltLife -= 0.14;
+      boltLife -= 0.13;
     }
 
-    const pulse = Math.sin(t * 4) * 0.15 + 0.85;
+    const pulse = Math.sin(t * 4.5) * 0.18 + 0.82;
     ctx.save();
     ctx.globalAlpha = pulse;
-    ctx.fillStyle = rgba(ACCENT, 0.9);
-    ctx.fillRect(W / 2 - 1.5, 0, 3, H);
+    ctx.fillStyle = rgba(ACCENT, 0.95);
+    ctx.fillRect(W / 2 - 1.5, 2, 3, H - 4);
     ctx.restore();
 
-    requestAnimationFrame(drawCursor);
+    requestAnimationFrame(draw);
   }
 
-  drawCursor();
+  draw();
 
   let ri = 0, ci = 0, isDeleting = false, delay = 150;
   const type = () => {
     const cur = roles[ri];
-    if (isDeleting) { el.textContent = cur.substring(0, --ci); delay = 75; }
-    else { el.textContent = cur.substring(0, ++ci); delay = 150; }
-    if (!isDeleting && ci === cur.length) { isDeleting = true; delay = 2000; }
-    else if (isDeleting && ci === 0) { isDeleting = false; ri = (ri + 1) % roles.length; delay = 500; }
+    if (isDeleting) { el.textContent = cur.substring(0, --ci); delay = 60; }
+    else { el.textContent = cur.substring(0, ++ci); delay = 140; }
+    if (!isDeleting && ci === cur.length) { isDeleting = true; delay = 2200; }
+    else if (isDeleting && ci === 0) { isDeleting = false; ri = (ri + 1) % roles.length; delay = 420; }
     setTimeout(type, delay);
   };
-  setTimeout(type, 1000);
+  setTimeout(type, 900);
 }
-
 
 /* ==========================================================================
    3. ACTIVE NAV LINKS
