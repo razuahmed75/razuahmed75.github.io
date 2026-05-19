@@ -111,8 +111,7 @@
         const thumbH = Math.max(36, canvasH * 0.08);
 
         // REVERSED: thumb starts at bottom (scrollRatio=0), moves up as you scroll
-        // const reversedRatio = 1 - scrollRatio;
-        const ty = reversedRatio * (canvasH - thumbH);
+        const ty = scrollRatio * (canvasH - thumbH);
         const midY = ty + thumbH * 0.5;
 
         // Track line
