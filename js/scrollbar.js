@@ -29,7 +29,6 @@
         const v = getComputedStyle(document.documentElement)
             .getPropertyValue('--accent-2-color')
             .trim();
-
         return v || '#00b4d8';
     }
 
@@ -43,10 +42,8 @@
 
     function resizeCanvas() {
         canvasH = window.innerHeight;
-
         canvas.width = CW * DPR;
         canvas.height = canvasH * DPR;
-
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.scale(DPR, DPR);
     }
@@ -65,40 +62,40 @@
         ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
         ctx.lineTo(x + r, y + h);
         ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+        ctx.lineTo(x + r, y);
+        ctx.quadraticCurveTo(x, y, x + r, y);
         ctx.closePath();
     }
 
     function createBolt(ty, thumbH) {
         boltPts = [];
         boltBranch = null;
-
-        const segments = 10;
-
+        const segments = 12;
         for (let i = 0; i <= segments; i++) {
             boltPts.push({
-                x: cx + (Math.random() - 0.5) * 7,
+                x: cx + (Math.random() - 0.5) * 8,
                 y: ty + (i / segments) * thumbH
             });
         }
-
-        boltBranch = boltPts[3];
+        boltBranch = boltPts[Math.floor(segments * 0.4)];
         boltLife = 1;
     }
 
+    // Particles float UPWARD from the thumb center
     function spawnParticles(ty, thumbH, accent) {
-        for (let i = 0; i < 5; i++) {
+        const spawnY = ty + thumbH * 0.5;
+        for (let i = 0; i < 6; i++) {
             particles.push({
-                x: cx,
-                y: ty + thumbH,
-                vx: (Math.random() - 0.5) * 0.6,
-                vy: Math.random() * 2.5 + 1.2,
+                x: cx + (Math.random() - 0.5) * 6,
+                y: spawnY,
+                vx: (Math.random() - 0.5) * 0.8,
+                vy: -(Math.random() * 2 + 1),
                 life: 1,
                 r: Math.random() * 2 + 1,
                 cyan: Math.random() > 0.4,
                 accent
             });
         }
-
         if (particles.length > MAX_PARTICLES) {
             particles.splice(0, particles.length - MAX_PARTICLES);
         }
@@ -106,17 +103,19 @@
 
     function draw() {
         const ACCENT = getAccent();
-
         updateScrollRatio();
-
         ctx.clearRect(0, 0, CW, canvasH);
-
         t += 0.05;
         frame++;
 
-        const thumbH = Math.max(32, canvasH * 0.08);
-        const ty = scrollRatio * (canvasH - thumbH);
+        const thumbH = Math.max(36, canvasH * 0.08);
 
+        // REVERSED: thumb starts at bottom (scrollRatio=0), moves up as you scroll
+        const reversedRatio = 1 - scrollRatio;
+        const ty = reversedRatio * (canvasH - thumbH);
+        const midY = ty + thumbH * 0.5;
+
+        // Track line
         ctx.beginPath();
         ctx.moveTo(cx, 8);
         ctx.lineTo(cx, canvasH - 8);
@@ -124,103 +123,114 @@
         ctx.lineWidth = 1;
         ctx.stroke();
 
+        // Tick marks along track
+        const tickCount = 8;
+        for (let i = 0; i <= tickCount; i++) {
+            const yt = 8 + (i / tickCount) * (canvasH - 16);
+            const near = Math.abs(yt - midY) < (canvasH / tickCount / 2);
+            ctx.beginPath();
+            ctx.moveTo(cx - 3, yt);
+            ctx.lineTo(cx + 3, yt);
+            ctx.strokeStyle = rgba(ACCENT, near ? 0.5 : 0.12);
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+        }
+
         if (Math.abs(scrollRatio - lastScrollRatio) > 0.003) {
             spawnParticles(ty, thumbH, ACCENT);
         }
         lastScrollRatio = scrollRatio;
 
+        // Particles drift upward
         for (let i = particles.length - 1; i >= 0; i--) {
             const p = particles[i];
-
             p.x += p.vx;
             p.y += p.vy;
-            p.vy += 0.12;
-            p.life -= 0.04;
-
+            p.vy -= 0.08;   // upward acceleration (no gravity pull down)
+            p.life -= 0.035;
             if (p.life <= 0) {
                 particles.splice(i, 1);
                 continue;
             }
-
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.r * p.life, 0, Math.PI * 2);
-
             ctx.fillStyle = p.cyan
-                ? rgba(ACCENT, p.life * 0.85)
-                : rgba(ACCENT, p.life * 0.7);
-
+                ? rgba(ACCENT, p.life * 0.9)
+                : `rgba(255,255,255,${p.life * 0.6})`;
             ctx.fill();
         }
 
-        if (frame % 8 === 0) {
-            createBolt(ty, thumbH);
-        }
+        // Lightning bolt every 7 frames
+        if (frame % 7 === 0) createBolt(ty, thumbH);
 
         if (boltLife > 0 && boltPts.length > 1) {
             ctx.save();
-
             ctx.shadowColor = ACCENT;
-            ctx.shadowBlur = 8;
-            ctx.strokeStyle = rgba(ACCENT, boltLife * 0.9);
+            ctx.shadowBlur = 10;
+            ctx.strokeStyle = rgba(ACCENT, boltLife * 0.85);
             ctx.lineWidth = 1.2;
             ctx.globalAlpha = boltLife;
-
             ctx.beginPath();
             ctx.moveTo(boltPts[0].x, boltPts[0].y);
-
             for (const p of boltPts) ctx.lineTo(p.x, p.y);
-
             ctx.stroke();
-
             if (boltBranch) {
                 const a = Math.random() * Math.PI - Math.PI / 2;
-
                 ctx.beginPath();
                 ctx.moveTo(boltBranch.x, boltBranch.y);
                 ctx.lineTo(
-                    boltBranch.x + Math.cos(a) * 10,
-                    boltBranch.y + Math.sin(a) * 10
+                    boltBranch.x + Math.cos(a) * 12,
+                    boltBranch.y + Math.sin(a) * 12
                 );
-
-                ctx.lineWidth = 0.8;
-                ctx.globalAlpha = boltLife * 0.5;
+                ctx.lineWidth = 0.7;
+                ctx.globalAlpha = boltLife * 0.45;
                 ctx.stroke();
             }
-
             ctx.restore();
-
-            boltLife -= 0.18;
+            boltLife -= 0.16;
         }
 
+        // Thumb body
         ctx.save();
         ctx.shadowColor = ACCENT;
-        ctx.shadowBlur = 10;
+        ctx.shadowBlur = 14;
 
-        ctx.beginPath();
-        ctx.moveTo(cx, ty);
-        ctx.lineTo(cx - 5, ty + 9);
-        ctx.lineTo(cx + 5, ty + 9);
-        ctx.closePath();
-        ctx.fillStyle = rgba(ACCENT, 1);
+        // Outer glow fill
+        roundedRect(cx - 4, ty, 8, thumbH, 3);
+        ctx.fillStyle = rgba(ACCENT, 0.15);
         ctx.fill();
 
-        roundedRect(cx - 4, ty + 8, 8, thumbH - 10, 2);
-        ctx.fillStyle = rgba(ACCENT, 0.9);
+        // Solid thumb
+        roundedRect(cx - 3, ty + 1, 6, thumbH - 2, 2);
+        ctx.fillStyle = rgba(ACCENT, 0.85);
+        ctx.fill();
+
+        // CENTERED arrow — pointing down (toward scroll direction)
+        ctx.beginPath();
+        ctx.moveTo(cx, midY + 5);
+        ctx.lineTo(cx - 5, midY - 4);
+        ctx.lineTo(cx + 5, midY - 4);
+        ctx.closePath();
+        ctx.fillStyle = 'rgba(255,255,255,0.95)';
+        ctx.fill();
+
+        // Pulsing dot at center of arrow
+        const pulse = Math.sin(t * 3) * 0.3 + 0.6;
+        ctx.beginPath();
+        ctx.arc(cx, midY, 2.2, 0, Math.PI * 2);
+        ctx.fillStyle = rgba(ACCENT, pulse);
         ctx.fill();
 
         ctx.restore();
 
-        ctx.beginPath();
-        ctx.arc(cx, ty + thumbH * 0.3, 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255,255,255,0.55)';
-        ctx.fill();
-
-        const pulse = Math.sin(t * 3) * 0.25 + 0.55;
-
-        ctx.beginPath();
-        ctx.arc(cx, ty + 11, 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = rgba(ACCENT, pulse);
-        ctx.fill();
+        // Gloss highlights on thumb
+        const glossFracs = [0.2, 0.5, 0.8];
+        for (const frac of glossFracs) {
+            ctx.beginPath();
+            ctx.arc(cx - 1, ty + thumbH * frac, 1.5, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255,255,255,${0.12 * (1 - frac) + 0.06})`;
+            ctx.fill();
+        }
 
         animationId = requestAnimationFrame(draw);
     }
