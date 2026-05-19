@@ -2,19 +2,9 @@
    PORTFOLIO SCRIPTS (razuahmed75.github.io)
    ========================================================================== */
 
-
-/* ==========================================================================
-   PORTFOLIO CONFIGURATION
-   ========================================================================== */
 const CONTACT_CONFIG = {
-  // Provider to use: 'web3forms' (Recommended) or 'formspree'
   provider: 'web3forms',
-  
-  // Your Web3Forms Access Key
-  // Go to https://web3forms.com/ to get your free access key sent to your email
   web3formsKey: '3d9cb423-c521-4981-a0db-23897a6aa9ad',
-  
-  // Your Formspree Form ID (if using Formspree)
   formspreeId: 'xnjrnwpk'
 };
 
@@ -24,350 +14,400 @@ document.addEventListener('DOMContentLoaded', () => {
   initTypewriter();
   initActiveNav();
   initMobileMenu();
-  // initRevealAnimations(); // Handled by GSAP ScrollTrigger
   initProjectHover();
   initContactForm();
+  injectToastStyles();
 });
 
-/**
- * 1. Theme Management (Light / Dark)
- */
+/* ==========================================================================
+   1. THEME MANAGEMENT
+   ========================================================================== */
 function initTheme() {
   const toggleBtn = document.getElementById('theme-toggle');
   if (!toggleBtn) return;
 
   const getSavedTheme = () => localStorage.getItem('pref-theme');
-  const getSystemTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  
+
   const applyTheme = (theme) => {
-    if (theme === 'dark') {
-      document.body.classList.add('dark');
-    } else {
-      document.body.classList.remove('dark');
-    }
+    document.body.classList.toggle('dark', theme === 'dark');
     updateThemeIcon(theme);
   };
 
   const updateThemeIcon = (theme) => {
-    const sunIcon = toggleBtn.querySelector('.sun-icon');
+    const sunIcon  = toggleBtn.querySelector('.sun-icon');
     const moonIcon = toggleBtn.querySelector('.moon-icon');
-    if (sunIcon && moonIcon) {
-      if (theme === 'dark') {
-        sunIcon.style.display = 'block';
-        moonIcon.style.display = 'none';
-      } else {
-        sunIcon.style.display = 'none';
-        moonIcon.style.display = 'block';
-      }
-    }
+    if (!sunIcon || !moonIcon) return;
+    sunIcon.style.display  = theme === 'dark' ? 'block' : 'none';
+    moonIcon.style.display = theme === 'dark' ? 'none'  : 'block';
   };
 
-  // Initial Theme Setup
-  const savedTheme = getSavedTheme();
-  const activeTheme = savedTheme || 'dark';
-  applyTheme(activeTheme);
+  applyTheme(getSavedTheme() || 'dark');
 
-  // Toggle Theme on Click
   toggleBtn.addEventListener('click', () => {
-    const currentTheme = document.body.classList.contains('dark') ? 'dark' : 'light';
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    const newTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
     applyTheme(newTheme);
     localStorage.setItem('pref-theme', newTheme);
   });
 }
 
-/**
- * 2. Typewriter Effect
- */
+/* ==========================================================================
+   2. TYPEWRITER EFFECT
+   ========================================================================== */
 function initTypewriter() {
-  const element = document.getElementById('typewriter-role');
-  if (!element) return;
+  const el = document.getElementById('typewriter-role');
+  if (!el) return;
 
-  const roles = JSON.parse(element.dataset.roles || '["Flutter Developer", "Mobile App Architect", "Cross-Platform Engineer"]');
-  let roleIndex = 0;
-  let charIndex = 0;
+  const roles = JSON.parse(el.dataset.roles || '["Flutter Developer","Mobile App Architect","Cross-Platform Engineer"]');
+  let roleIndex  = 0;
+  let charIndex  = 0;
   let isDeleting = false;
-  let delay = 150;
+  let delay      = 150;
 
-  function type() {
-    const currentRole = roles[roleIndex];
-    
+  const type = () => {
+    const current = roles[roleIndex];
+
     if (isDeleting) {
-      element.textContent = currentRole.substring(0, charIndex - 1);
-      charIndex--;
+      el.textContent = current.substring(0, --charIndex);
       delay = 75;
     } else {
-      element.textContent = currentRole.substring(0, charIndex + 1);
-      charIndex++;
+      el.textContent = current.substring(0, ++charIndex);
       delay = 150;
     }
 
-    if (!isDeleting && charIndex === currentRole.length) {
+    if (!isDeleting && charIndex === current.length) {
       isDeleting = true;
-      delay = 2000; // Pause at full word
+      delay = 2000;
     } else if (isDeleting && charIndex === 0) {
       isDeleting = false;
       roleIndex = (roleIndex + 1) % roles.length;
-      delay = 500; // Pause before typing next word
+      delay = 500;
     }
 
     setTimeout(type, delay);
-  }
+  };
 
-  // Start the typewriter after a short delay
   setTimeout(type, 1000);
 }
 
-/**
- * 3. Active Nav Links & Section Highlighting
- */
+/* ==========================================================================
+   3. ACTIVE NAV LINKS
+   ========================================================================== */
 function initActiveNav() {
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
-  
-  const options = {
-    root: null,
-    rootMargin: '-30% 0px -60% 0px', // Trigger when section occupies the center viewport area
-    threshold: 0
-  };
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${id}` || link.getAttribute('href') === `/#${id}`) {
-            link.classList.add('active');
-          }
-        });
-      }
+      if (!entry.isIntersecting) return;
+      const id = entry.target.getAttribute('id');
+      navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        link.classList.toggle('active', href === `#${id}` || href === `/#${id}`);
+      });
     });
-  }, options);
+  }, { root: null, rootMargin: '-30% 0px -60% 0px', threshold: 0 });
 
-  sections.forEach(section => observer.observe(section));
+  sections.forEach(s => observer.observe(s));
 
-  // Also check initial page position to highlight active link
-  const currentHash = window.location.hash;
-  if (currentHash) {
+  const hash = window.location.hash;
+  if (hash) {
     navLinks.forEach(link => {
-      if (link.getAttribute('href').endsWith(currentHash)) {
-        link.classList.add('active');
-      }
+      if (link.getAttribute('href').endsWith(hash)) link.classList.add('active');
     });
   }
 }
 
-/**
- * 4. Mobile Drawer toggle
- */
+/* ==========================================================================
+   4. MOBILE DRAWER
+   ========================================================================== */
 function initMobileMenu() {
-  const hamburger = document.getElementById('hamburger-toggle');
-  const drawer = document.getElementById('mobile-drawer');
-  const overlay = document.getElementById('drawer-overlay');
+  const hamburger  = document.getElementById('hamburger-toggle');
+  const drawer     = document.getElementById('mobile-drawer');
+  const overlay    = document.getElementById('drawer-overlay');
   const mobileLinks = document.querySelectorAll('.mobile-drawer .nav-link');
 
   if (!hamburger || !drawer || !overlay) return;
 
-  const toggleMenu = () => {
-    hamburger.classList.toggle('open');
-    drawer.classList.toggle('open');
-    overlay.classList.toggle('open');
-    if (drawer.classList.contains('open')) {
-      document.body.style.overflow = 'hidden';
-      if (window.lenis) window.lenis.stop();
-    } else {
-      document.body.style.overflow = '';
-      if (window.lenis) window.lenis.start();
-    }
+  const open = () => {
+    hamburger.classList.add('open');
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    window.lenis?.stop();
   };
 
-  const closeMenu = () => {
+  const close = () => {
     hamburger.classList.remove('open');
     drawer.classList.remove('open');
     overlay.classList.remove('open');
     document.body.style.overflow = '';
-    if (window.lenis) window.lenis.start();
+    window.lenis?.start();
   };
 
-  hamburger.addEventListener('click', toggleMenu);
-  overlay.addEventListener('click', closeMenu);
+  hamburger.addEventListener('click', () => drawer.classList.contains('open') ? close() : open());
+  overlay.addEventListener('click', close);
 
   mobileLinks.forEach(link => {
     link.addEventListener('click', (e) => {
-      const targetId = link.getAttribute('href');
-      if (targetId.startsWith('#') && targetId !== '#') {
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
+      const href = link.getAttribute('href');
+      if (href.startsWith('#') && href !== '#') {
+        const target = document.querySelector(href);
+        if (target) {
           e.preventDefault();
-          closeMenu();
+          close();
           setTimeout(() => {
-            if (window.lenis) {
-              window.lenis.scrollTo(targetElement, {
-                offset: -80
-              });
-            } else {
-              targetElement.scrollIntoView({ behavior: 'smooth' });
-            }
+            window.lenis
+              ? window.lenis.scrollTo(target, { offset: -80 })
+              : target.scrollIntoView({ behavior: 'smooth' });
           }, 150);
         }
       } else {
-        closeMenu();
+        close();
       }
     });
   });
 }
 
-/**
- * 5. Reveal on Scroll (Intersection Observer)
- */
-function initRevealAnimations() {
-  const revealElements = document.querySelectorAll('.reveal, .reveal-stagger');
-  
-  const options = {
-    root: null,
-    rootMargin: '0px 0px -100px 0px', // Trigger slightly before element enters viewport
-    threshold: 0.1
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target); // Animates once
-      }
-    });
-  }, options);
-
-  revealElements.forEach(el => observer.observe(el));
-}
-
-/**
- * 6. Projects Image Cover Hover Hover Effect (Preserving existing logic)
- */
+/* ==========================================================================
+   5. PROJECT CARD HOVER
+   ========================================================================== */
 function initProjectHover() {
   document.querySelectorAll('.project-card').forEach(card => {
     const img = card.querySelector('.project-icon');
-    if (!img) return;
+    if (!img || !img.dataset.hover) return;
 
-    const originalSrc = img.src;
-    const hoverSrc = img.dataset.hover;
-    if (!hoverSrc) return;
+    const original = img.src;
+    const hover    = img.dataset.hover;
 
     card.addEventListener('mouseenter', () => {
-      img.src = hoverSrc;
+      img.src = hover;
       img.style.transform = 'scale(1.05)';
     });
-
     card.addEventListener('mouseleave', () => {
-      img.src = originalSrc;
+      img.src = original;
       img.style.transform = '';
     });
   });
 }
 
-/**
- * 7. Contact Form Handling
- */
+/* ==========================================================================
+   6. CONTACT FORM
+   ========================================================================== */
 function initContactForm() {
-  const form = document.getElementById('contact-form');
-  const statusDiv = document.getElementById('contact-form-status');
-  if (!form || !statusDiv) return;
+  const form      = document.getElementById('contact-form');
+  if (!form) return;
 
-  // Dynamically configure the form endpoint and parameters based on CONTACT_CONFIG
   if (CONTACT_CONFIG.provider === 'web3forms') {
     form.action = 'https://api.web3forms.com/submit';
-    
-    // Check if access_key hidden field already exists, otherwise create it
     let keyInput = form.querySelector('input[name="access_key"]');
     if (!keyInput) {
-      keyInput = document.createElement('input');
-      keyInput.type = 'hidden';
-      keyInput.name = 'access_key';
+      keyInput = Object.assign(document.createElement('input'), { type: 'hidden', name: 'access_key' });
       form.appendChild(keyInput);
     }
     keyInput.value = CONTACT_CONFIG.web3formsKey;
   } else if (CONTACT_CONFIG.provider === 'formspree') {
     form.action = `https://formspree.io/f/${CONTACT_CONFIG.formspreeId}`;
-    
-    // Remove access_key hidden input if it exists
-    const keyInput = form.querySelector('input[name="access_key"]');
-    if (keyInput) {
-      keyInput.remove();
-    }
+    form.querySelector('input[name="access_key"]')?.remove();
   }
 
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const data = new FormData(event.target);
-    const submitBtn = form.querySelector('.btn-submit');
-    const originalBtnHtml = submitBtn.innerHTML;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-    // Loading State
-    submitBtn.disabled = true;
+    const submitBtn     = form.querySelector('.btn-submit');
+    const originalHtml  = submitBtn.innerHTML;
+
+    submitBtn.disabled  = true;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
     try {
-      const response = await fetch(event.target.action, {
+      const res = await fetch(e.target.action, {
         method: form.method,
-        body: data,
-        headers: {
-          Accept: "application/json",
-        },
+        body: new FormData(e.target),
+        headers: { Accept: 'application/json' }
       });
 
-      if (response.ok) {
-        showStatus('success', 'Thanks for your submission! I will reach out soon.');
+      if (res.ok) {
+        showToast('success', 'Message sent!', "Thanks for reaching out — I'll get back to you soon.");
         form.reset();
       } else {
-        const result = await response.json();
-        let errMessage = 'Submission failed';
-        if (result.errors && Array.isArray(result.errors)) {
-          errMessage = result.errors.map(e => e.message).join(', ');
-        } else if (result.message) {
-          errMessage = result.message;
-        }
-        showStatus('danger', errMessage);
+        const data = await res.json();
+        const msg  = data.errors?.map(err => err.message).join(', ') || data.message || 'Submission failed.';
+        showToast('error', 'Failed to send', msg);
       }
-    } catch (error) {
-      showStatus('danger', 'Oops! There was a problem submitting your form');
+    } catch {
+      showToast('error', 'Network error', 'Please check your connection and try again.');
     } finally {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = originalBtnHtml;
+      submitBtn.disabled  = false;
+      submitBtn.innerHTML = originalHtml;
     }
   });
-
-  function showStatus(type, message) {
-    statusDiv.style.position = 'fixed';
-    statusDiv.style.bottom = '24px';
-    statusDiv.style.right = '24px';
-    statusDiv.style.zIndex = '2000';
-
-    const alertClass = type === 'success' ? 'bg-emerald-500 text-white' : 'bg-rose-500 text-white';
-    const iconClass = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
-
-    statusDiv.innerHTML = `
-      <div class="flex items-center gap-3 px-6 py-4 rounded-xl shadow-2xl transition-all duration-300 transform translate-y-0 ${alertClass}" style="background-color: ${type === 'success' ? '#10b981' : '#ef4444'}; color: #fff; font-family: var(--font-sans); display: flex; align-items: center; gap: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.25);">
-        <i class="fas ${iconClass} text-lg"></i>
-        <div class="text-sm font-semibold">${message}</div>
-        <button type="button" class="ml-auto bg-transparent border-none text-white cursor-pointer hover:opacity-80" onclick="this.parentElement.remove()" style="background: none; border: none; color: #fff; cursor: pointer; margin-left: 12px; font-weight: bold;">✕</button>
-      </div>
-    `;
-
-    setTimeout(() => {
-      const activeAlert = statusDiv.firstElementChild;
-      if (activeAlert) {
-        activeAlert.style.opacity = '0';
-        activeAlert.style.transform = 'translateY(10px)';
-        setTimeout(() => statusDiv.innerHTML = '', 300);
-      }
-    }, 4000);
-  }
 }
 
-/**
- * 8. Lenis Smooth Scrolling Integration
- */
+/* ==========================================================================
+   7. TOAST NOTIFICATIONS
+   ========================================================================== */
+function injectToastStyles() {
+  if (document.getElementById('toast-styles')) return;
+  const style = document.createElement('style');
+  style.id = 'toast-styles';
+  style.textContent = `
+    #toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
+    }
+    .toast {
+      pointer-events: all;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      min-width: 300px;
+      max-width: 420px;
+      border: 0.5px solid;
+      position: relative;
+      overflow: hidden;
+      animation: toastSlideIn .3s cubic-bezier(.175,.885,.32,1.1) both;
+    }
+    .toast.removing {
+      animation: toastSlideOut .22s ease-in both;
+    }
+    .toast-success {
+      background: #F8FDFB;
+      border-color: #5DCAA5;
+      box-shadow: 0 4px 24px rgba(15,110,86,.12);
+    }
+    .toast-error {
+      background: #FFF8F8;
+      border-color: #F09595;
+      box-shadow: 0 4px 24px rgba(163,45,45,.12);
+    }
+    .dark .toast-success { background: #0a1f1a; border-color: #1D9E75; }
+    .dark .toast-error   { background: #1f0a0a; border-color: #E24B4A; }
+    .toast-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .toast-success .toast-icon { background: #E1F5EE; color: #0F6E56; }
+    .toast-error   .toast-icon { background: #FCEBEB; color: #A32D2D; }
+    .dark .toast-success .toast-icon { background: #085041; color: #5DCAA5; }
+    .dark .toast-error   .toast-icon { background: #4A1B0C; color: #F09595; }
+    .toast-body   { flex: 1; min-width: 0; }
+    .toast-title  { font-size: 14px; font-weight: 600; line-height: 1.3; margin-bottom: 3px; }
+    .toast-success .toast-title { color: #085041; }
+    .toast-error   .toast-title { color: #791F1F; }
+    .dark .toast-success .toast-title { color: #9FE1CB; }
+    .dark .toast-error   .toast-title { color: #F5C4B3; }
+    .toast-msg { font-size: 13px; line-height: 1.5; color: #6b7280; }
+    .dark .toast-msg { color: #9ca3af; }
+    .toast-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #9ca3af;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-size: 16px;
+      line-height: 1;
+      flex-shrink: 0;
+      opacity: .55;
+      transition: opacity .15s;
+    }
+    .toast-close:hover { opacity: 1; }
+    .toast-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2.5px;
+      animation: toastProgress 4s linear forwards;
+    }
+    .toast-success .toast-progress { background: #1D9E75; }
+    .toast-error   .toast-progress { background: #E24B4A; }
+    @keyframes toastSlideIn {
+      from { transform: translateX(64px) scale(.95); opacity: 0; }
+      to   { transform: translateX(0)    scale(1);   opacity: 1; }
+    }
+    @keyframes toastSlideOut {
+      to { transform: translateX(64px) scale(.95); opacity: 0; max-height: 0; padding: 0; margin: 0; }
+    }
+    @keyframes toastProgress {
+      from { width: 100%; }
+      to   { width: 0%; }
+    }
+    @media (max-width: 480px) {
+      #toast-container { left: 16px; right: 16px; bottom: 16px; }
+      .toast { min-width: 0; width: 100%; }
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+function getToastContainer() {
+  let tc = document.getElementById('toast-container');
+  if (!tc) {
+    tc = document.createElement('div');
+    tc.id = 'toast-container';
+    document.body.appendChild(tc);
+  }
+  return tc;
+}
+
+function showToast(type, title, message) {
+  const tc      = getToastContainer();
+  const isOk    = type === 'success';
+  const toast   = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+  toast.setAttribute('role', 'alert');
+  toast.setAttribute('aria-live', 'assertive');
+
+  const successIcon = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`;
+  const errorIcon   = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`;
+
+  toast.innerHTML = `
+    <div class="toast-icon">${isOk ? successIcon : errorIcon}</div>
+    <div class="toast-body">
+      <div class="toast-title">${title}</div>
+      ${message ? `<div class="toast-msg">${message}</div>` : ''}
+    </div>
+    <button class="toast-close" aria-label="Dismiss notification">✕</button>
+    <div class="toast-progress"></div>
+  `;
+
+  const dismiss = () => {
+    if (toast.classList.contains('removing')) return;
+    toast.classList.add('removing');
+    toast.addEventListener('animationend', () => toast.remove(), { once: true });
+  };
+
+  toast.querySelector('.toast-close').addEventListener('click', dismiss);
+
+  const timer = setTimeout(dismiss, 4000);
+  toast.addEventListener('mouseenter', () => {
+    clearTimeout(timer);
+    toast.querySelector('.toast-progress').style.animationPlayState = 'paused';
+  });
+  toast.addEventListener('mouseleave', () => {
+    toast.querySelector('.toast-progress').style.animationPlayState = 'running';
+    setTimeout(dismiss, 1500);
+  });
+
+  tc.appendChild(toast);
+}
+
+/* ==========================================================================
+   8. LENIS SMOOTH SCROLLING
+   ========================================================================== */
 function initLenis() {
   if (typeof Lenis === 'undefined') return;
 
@@ -380,24 +420,15 @@ function initLenis() {
 
   window.lenis = lenis;
 
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-
+  const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
   requestAnimationFrame(raf);
 
-  // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href');
-      if (targetId === '#') return;
-      
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        e.preventDefault();
-        lenis.scrollTo(targetElement);
-      }
+      const id = this.getAttribute('href');
+      if (id === '#') return;
+      const target = document.querySelector(id);
+      if (target) { e.preventDefault(); lenis.scrollTo(target); }
     });
   });
 }
