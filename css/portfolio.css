@@ -1747,22 +1747,4 @@ h2.section-title,
   opacity: 0;
 }
 
-/* Typewriter blinking cursor styling */
-#typewriter-role::after {
-  content: '|';
-  margin-left: 3px;
-  color: var(--accent-2-color);
-  font-weight: 400;
-  animation: typewriter-caret 1s steps(2, start) infinite;
-}
-
-@keyframes typewriter-caret {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
 
