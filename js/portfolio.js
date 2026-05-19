@@ -64,10 +64,9 @@ function initTypewriter() {
   el.insertAdjacentElement('afterend', canvas);
 
   const ctx = canvas.getContext('2d');
-  const W = 18, H = 34;
-  canvas.width = W;
-  canvas.height = H;
-  canvas.style.cssText = `width:${W}px;height:${H}px;vertical-align:middle;display:inline-block;margin-left:1px`;
+  const W = 14, H = 40;
+  canvas.width = W; canvas.height = H;
+  canvas.style.cssText = `width:${W}px;height:${H}px;display:inline-block;vertical-align:bottom;margin-left:2px`;
 
   const ACCENT = getComputedStyle(document.documentElement)
     .getPropertyValue('--accent-2-color').trim() || '#00b4d8';
@@ -84,12 +83,12 @@ function initTypewriter() {
   function spawnParticles() {
     for (let i = 0; i < 4; i++) {
       particles.push({
-        x: W / 2 + (Math.random() - .5) * 7,
-        y: H * 0.72,
-        vx: (Math.random() - .5) * 1.4,
-        vy: -(Math.random() * 2.8 + 0.8),
+        x: W / 2 + (Math.random() - .5) * 6,
+        y: H - 6,
+        vx: (Math.random() - .5) * 1.2,
+        vy: -(Math.random() * 2.5 + 0.8),
         life: 1,
-        r: Math.random() * 2.8 + 0.8,
+        r: Math.random() * 2.2 + 0.6,
         hot: Math.random() > 0.35
       });
     }
@@ -98,11 +97,70 @@ function initTypewriter() {
 
   function createBolt() {
     boltPts = [];
-    const segs = 9;
+    const segs = 8;
     for (let i = 0; i <= segs; i++)
-      boltPts.push({ x: W / 2 + (Math.random() - .5) * 9, y: (i / segs) * H });
+      boltPts.push({ x: W / 2 + (Math.random() - .5) * 7, y: 2 + (i / segs) * (H - 4) });
     boltBranch = boltPts[Math.floor(segs * 0.35)];
     boltLife = 1;
+  }
+
+  function drawPen() {
+    const cx = W / 2;
+    const nibTip = H - 2, nibTop = nibTip - 11;
+    const bw = 10, capTop = 2, capBot = nibTop - 1, capR = bw / 2;
+
+    ctx.save();
+
+    ctx.beginPath();
+    ctx.moveTo(cx - capR, capTop + capR);
+    ctx.arcTo(cx - capR, capTop, cx, capTop, capR);
+    ctx.arcTo(cx + capR, capTop, cx + capR, capTop + capR, capR);
+    ctx.lineTo(cx + capR, capBot);
+    ctx.lineTo(cx - capR, capBot);
+    ctx.closePath();
+    ctx.fillStyle = rgba(ACCENT, 0.22);
+    ctx.fill();
+    ctx.strokeStyle = rgba(ACCENT, 0.95);
+    ctx.lineWidth = 1.3;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(cx - capR, capTop + 8);
+    ctx.lineTo(cx + capR, capTop + 8);
+    ctx.strokeStyle = rgba(ACCENT, 0.5);
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(cx - capR, nibTop);
+    ctx.lineTo(cx + capR, nibTop);
+    ctx.lineTo(cx, nibTip);
+    ctx.closePath();
+    ctx.fillStyle = rgba(ACCENT, 0.35);
+    ctx.fill();
+    ctx.strokeStyle = rgba(ACCENT, 0.95);
+    ctx.lineWidth = 1.1;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(cx, nibTop + 3);
+    ctx.lineTo(cx, nibTip - 2);
+    ctx.strokeStyle = rgba(ACCENT, 0.45);
+    ctx.lineWidth = 0.7;
+    ctx.stroke();
+
+    const pulse = Math.sin(t * 4) * 0.35 + 0.65;
+    ctx.beginPath();
+    ctx.arc(cx, nibTip, 3.5 * pulse, 0, Math.PI * 2);
+    ctx.fillStyle = rgba(ACCENT, 0.12 * pulse);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.arc(cx, nibTip, 1.6, 0, Math.PI * 2);
+    ctx.fillStyle = rgba(ACCENT, 0.95);
+    ctx.fill();
+
+    ctx.restore();
   }
 
   function draw() {
@@ -143,7 +201,7 @@ function initTypewriter() {
         const a = Math.random() * Math.PI - Math.PI / 2;
         ctx.beginPath();
         ctx.moveTo(boltBranch.x, boltBranch.y);
-        ctx.lineTo(boltBranch.x + Math.cos(a) * 11, boltBranch.y + Math.sin(a) * 11);
+        ctx.lineTo(boltBranch.x + Math.cos(a) * 10, boltBranch.y + Math.sin(a) * 10);
         ctx.lineWidth = 0.55;
         ctx.globalAlpha = boltLife * 0.4;
         ctx.stroke();
@@ -152,13 +210,7 @@ function initTypewriter() {
       boltLife -= 0.13;
     }
 
-    const pulse = Math.sin(t * 4.5) * 0.18 + 0.82;
-    ctx.save();
-    ctx.globalAlpha = pulse;
-    ctx.fillStyle = rgba(ACCENT, 0.95);
-    ctx.fillRect(W / 2 - 1.5, 2, 3, H - 4);
-    ctx.restore();
-
+    drawPen();
     requestAnimationFrame(draw);
   }
 
