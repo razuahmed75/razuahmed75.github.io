@@ -2,6 +2,22 @@
    PORTFOLIO SCRIPTS (razuahmed75.github.io)
    ========================================================================== */
 
+
+/* ==========================================================================
+   PORTFOLIO CONFIGURATION
+   ========================================================================== */
+const CONTACT_CONFIG = {
+  // Provider to use: 'web3forms' (Recommended) or 'formspree'
+  provider: 'web3forms',
+  
+  // Your Web3Forms Access Key
+  // Go to https://web3forms.com/ to get your free access key sent to your email
+  web3formsKey: '3d9cb423-c521-4981-a0db-23897a6aa9ad',
+  
+  // Your Formspree Form ID (if using Formspree)
+  formspreeId: 'xnjrnwpk'
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initLenis();
@@ -238,6 +254,29 @@ function initContactForm() {
   const statusDiv = document.getElementById('contact-form-status');
   if (!form || !statusDiv) return;
 
+  // Dynamically configure the form endpoint and parameters based on CONTACT_CONFIG
+  if (CONTACT_CONFIG.provider === 'web3forms') {
+    form.action = 'https://api.web3forms.com/submit';
+    
+    // Check if access_key hidden field already exists, otherwise create it
+    let keyInput = form.querySelector('input[name="access_key"]');
+    if (!keyInput) {
+      keyInput = document.createElement('input');
+      keyInput.type = 'hidden';
+      keyInput.name = 'access_key';
+      form.appendChild(keyInput);
+    }
+    keyInput.value = CONTACT_CONFIG.web3formsKey;
+  } else if (CONTACT_CONFIG.provider === 'formspree') {
+    form.action = `https://formspree.io/f/${CONTACT_CONFIG.formspreeId}`;
+    
+    // Remove access_key hidden input if it exists
+    const keyInput = form.querySelector('input[name="access_key"]');
+    if (keyInput) {
+      keyInput.remove();
+    }
+  }
+
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
@@ -262,7 +301,12 @@ function initContactForm() {
         form.reset();
       } else {
         const result = await response.json();
-        const errMessage = result.errors ? result.errors.map(e => e.message).join(', ') : 'Submission failed';
+        let errMessage = 'Submission failed';
+        if (result.errors && Array.isArray(result.errors)) {
+          errMessage = result.errors.map(e => e.message).join(', ');
+        } else if (result.message) {
+          errMessage = result.message;
+        }
         showStatus('danger', errMessage);
       }
     } catch (error) {

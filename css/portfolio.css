@@ -1539,3 +1539,130 @@ html.lenis body {
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
 }
+
+/* ==========================================================================
+   MOBILE RESPONSIVENESS FIXES
+   ========================================================================== */
+
+/* Display Utility Classes for Codewars Badge */
+.d-none {
+  display: none !important;
+}
+.d-inline {
+  display: inline-block !important;
+}
+
+@media (max-width: 768px) {
+  .d-md-none {
+    display: inline-block !important;
+  }
+  .d-md-inline {
+    display: none !important;
+  }
+  
+  /* Reduce side padding on mobile screens to gain space */
+  .container-custom {
+    padding: 0 var(--space-2); /* 16px padding instead of 24px */
+  }
+  
+  /* Compact section padding for mobile */
+  .section-padding {
+    padding: var(--space-6) 0; /* 48px padding instead of 96px */
+  }
+}
+
+@media (min-width: 769px) {
+  .d-md-none {
+    display: none !important;
+  }
+  .d-md-inline {
+    display: inline-block !important;
+  }
+}
+
+/* Stacking and resizing stat cards on mobile */
+@media (max-width: 576px) {
+  .about-right {
+    gap: var(--space-1);
+  }
+  .stat-card {
+    padding: var(--space-2);
+    min-height: 110px;
+  }
+  .stat-number {
+    font-size: var(--text-2xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .about-right {
+    grid-template-columns: 1fr;
+  }
+  /* Hide hero floating tags to prevent overflow/clutter on narrow devices */
+  .floating-tag {
+    display: none !important;
+  }
+}
+
+/* Prevent timeline headers from wrapping awkwardly or overflowing */
+@media (max-width: 576px) {
+  .timeline-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .timeline-company {
+    margin-left: 0;
+    display: block;
+    margin-top: 4px;
+  }
+}
+
+/* Featured Project layout and actions alignment */
+@media (max-width: 768px) {
+  .project-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2);
+    text-align: center;
+  }
+  .project-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+}
+
+@media (max-width: 576px) {
+  .project-links {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .project-links .project-store-link {
+    margin-left: 0 !important; /* override inline styles */
+    justify-content: center;
+    background: var(--surface-color-2);
+    padding: 10px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+  }
+  .project-link-btn {
+    justify-content: center;
+    width: 100%;
+  }
+  .contact-form-container {
+    padding: var(--space-2);
+  }
+  .contact-card-row {
+    padding: var(--space-2);
+    gap: var(--space-2);
+  }
+}
+
+/* Word break for contact items like long emails/links to prevent card blowout */
+.contact-card-value {
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
