@@ -187,17 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
       );
     }
 
-    // Character by character typing effect on subtitle role
-    const typewriterRole = document.getElementById('typewriter-role');
-    if (typewriterRole) {
-      typewriterRole.textContent = '';
-      gsap.to(typewriterRole, {
-        text: "Senior Flutter & Web Developer",
-        duration: 3.0,
-        delay: 1.8,
-        ease: 'none'
-      });
-    }
   }
 
   /* ==========================================================================

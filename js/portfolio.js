@@ -21,7 +21,7 @@ const CONTACT_CONFIG = {
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initLenis();
-  // initTypewriter(); // Handled by GSAP TextPlugin
+  initTypewriter();
   initActiveNav();
   initMobileMenu();
   // initRevealAnimations(); // Handled by GSAP ScrollTrigger
