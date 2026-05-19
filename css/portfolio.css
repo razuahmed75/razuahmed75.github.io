@@ -172,6 +172,7 @@ body::-webkit-scrollbar-thumb:hover {
   left: 0;
   width: 100%;
   z-index: 1000;
+  border-bottom: 1px solid var(--border-color);
   background: var(--glass-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -1708,7 +1709,7 @@ html.lenis body {
 .header-nav.scrolled {
   background: rgba(10, 10, 15, 0.85);
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid var(--accent-2-color);
+
 }
 body:not(.dark) .header-nav.scrolled {
   background: rgba(255, 255, 255, 0.85);
