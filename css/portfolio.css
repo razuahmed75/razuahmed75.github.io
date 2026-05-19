@@ -1153,6 +1153,8 @@ body.dark .theme-toggle-btn svg {
   bottom: 8px;
   width: 2px;
   background: linear-gradient(to bottom, var(--accent-2-color), var(--border-color) 80%);
+  transform: scaleY(var(--timeline-scale, 0));
+  transform-origin: top center;
 }
 
 .timeline-item {
@@ -1479,25 +1481,25 @@ textarea.form-control {
 /* ==========================================================================
    ANIMATIONS & TRANSITIONS (INTERSECTION OBSERVER REVEALS)
    ========================================================================== */
-.reveal {
+body:not(.gsap-enabled) .reveal {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity var(--transition-slow), transform var(--transition-slow);
 }
 
-.reveal.visible {
+body:not(.gsap-enabled) .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
 /* Stagger classes */
-.reveal-stagger > * {
+body:not(.gsap-enabled) .reveal-stagger > * {
   opacity: 0;
   transform: translateY(15px);
   transition: opacity var(--transition-slow), transform var(--transition-slow);
 }
 
-.reveal-stagger.visible > * {
+body:not(.gsap-enabled) .reveal-stagger.visible > * {
   opacity: 1;
   transform: translateY(0);
 }
@@ -1665,4 +1667,84 @@ html.lenis body {
   word-break: break-all;
   overflow-wrap: break-word;
 }
+
+/* Responsive Mobile Drawer Enhancements */
+@media (max-width: 480px) {
+  .mobile-drawer {
+    width: 85vw;
+    right: -90vw;
+    padding: 80px var(--space-2) var(--space-3);
+  }
+  .mobile-drawer.open {
+    right: 0;
+  }
+}
+
+/* GSAP Animations & Page Transitions CSS */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent-2-color);
+  z-index: 9999;
+  transform-origin: left;
+  transform: scaleX(0);
+  will-change: transform;
+}
+
+#page-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--surface-color);
+  z-index: 10000;
+  transform-origin: top center;
+  will-change: transform;
+}
+
+.header-nav.scrolled {
+  background: rgba(10, 10, 15, 0.85);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid var(--accent-2-color);
+}
+body:not(.dark) .header-nav.scrolled {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* Performance Optimizations via will-change */
+.header-nav,
+.nav-link,
+#hero h1,
+.hero-greeting,
+.hero-subtitle,
+.cta-buttons a,
+.social-links a,
+.hero-avatar-wrapper,
+.scroll-down,
+.about-text,
+.stat-number,
+h2.section-title,
+.heading-line,
+#skills h3,
+.skill-badge,
+.project-hero-card,
+.project-card,
+.timeline::before,
+.timeline-item,
+.timeline-dot,
+.contact-info-container,
+.contact-form-container input,
+.contact-form-container textarea,
+.contact-form-container button {
+  will-change: transform, opacity;
+}
+
+.gsap-hidden {
+  opacity: 0;
+}
+
 

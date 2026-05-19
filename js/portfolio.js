@@ -21,10 +21,10 @@ const CONTACT_CONFIG = {
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initLenis();
-  initTypewriter();
+  // initTypewriter(); // Handled by GSAP TextPlugin
   initActiveNav();
   initMobileMenu();
-  initRevealAnimations();
+  // initRevealAnimations(); // Handled by GSAP ScrollTrigger
   initProjectHover();
   initContactForm();
 });
@@ -194,7 +194,27 @@ function initMobileMenu() {
   overlay.addEventListener('click', closeMenu);
 
   mobileLinks.forEach(link => {
-    link.addEventListener('click', closeMenu);
+    link.addEventListener('click', (e) => {
+      const targetId = link.getAttribute('href');
+      if (targetId.startsWith('#') && targetId !== '#') {
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          closeMenu();
+          setTimeout(() => {
+            if (window.lenis) {
+              window.lenis.scrollTo(targetElement, {
+                offset: -80
+              });
+            } else {
+              targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+          }, 150);
+        }
+      } else {
+        closeMenu();
+      }
+    });
   });
 }
 
