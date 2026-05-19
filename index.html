@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta name="google-adsense-account" content="ca-pub-5078640249529722">
@@ -13,27 +13,15 @@
     <meta name="generator" content="Hugo 0.119.0">
     <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
     <link rel="icon" href="/fav_icon.png" type="image/png">
-
+    <link rel="icon" href="/fav.png" type="image/png">
 
     <title>Razu Ahmed – Flutter & Web Developer Portfolio</title>
     <meta name="description" content="Razu Ahmed is a professional Flutter and web developer specializing in responsive mobile apps and modern websites. View projects, skills, and contact info.">
-    <link rel="icon" href="/fav.png" type="image/png">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Alata&family=Lora&family=Roboto&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alata&family=Lora&family=Roboto&display=swap" media="print" onload="this.media='all'">
-    <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Alata&family=Lora&family=Roboto&display=swap" rel="stylesheet">
-    </noscript>
-
-    <link rel="stylesheet" href="/css/font.css" media="all">
 
     <!-- Open Graph for social sharing -->
     <meta property="og:title" content="Razu Ahmed – Flutter & Web Developer Portfolio" />
     <meta property="og:description" content="Explore the portfolio of Razu Ahmed, a Flutter and web developer based in Bangladesh." />
-    <meta property="og:image" conten="https://razuahmed75.github.io/images/IMG_20250814_021503.jpg" />
+    <meta property="og:image" content="https://razuahmed75.github.io/images/IMG_20250814_021503.jpg" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://razuahmed75.github.io/" />
     <meta property="og:site_name" content="Razu Ahmed Portfolio" />
@@ -43,1247 +31,828 @@
     <meta name="twitter:title" content="Razu Ahmed – Flutter & Web Developer" />
     <meta name="twitter:description" content="Check out Razu Ahmed's portfolio with Flutter apps, web projects, and contact info." />
 
+    <!-- Custom Redesigned Stylesheet -->
+    <link rel="stylesheet" href="/css/portfolio.css" media="all">
 
-    <link rel="stylesheet" href="/bootstrap-5/css/bootstrap.min.css" media="all">
-    <link rel="stylesheet" href="/css/header.css" media="all">
-    <link rel="stylesheet" href="/css/footer.css" media="all">
-
-    <link rel="stylesheet" href="/css/theme.css" media="all">
-
-    <style>
-        :root {
-            --text-color: #343a40;
-            --text-secondary-color: #6c757d;
-            --background-color: #eaedf0;
-            --secondary-background-color: #64ffda1a;
-            --primary-color: #007bff;
-            --secondary-color: #f8f9fa;
-
-            --text-color-dark: #e4e6eb;
-            --text-secondary-color-dark: #b0b3b8;
-            --background-color-dark: #18191a;
-            --secondary-background-color-dark: #212529;
-            --primary-color-dark: #ffffff;
-            --secondary-color-dark: #212529;
-        }
-
-        body {
-            font-size: 1rem;
-            font-weight: 400;
-            line-height: 1.5;
-            text-align: left;
-        }
-
-        html {
-            background-color: var(--background-color) !important;
-        }
-
-        body::-webkit-scrollbar {
-            width: .5em;
-            height: .5em;
-            background-color: var(--background-color);
-        }
-
-        ::-webkit-scrollbar-track {
-            box-shadow: inset 0 0 6px var(--background-color);
-            border-radius: 1rem;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            border-radius: 1rem;
-            background-color: var(--primary-color);
-            outline: 1px solid var(--background-color);
-        }
-
-        #search-content::-webkit-scrollbar {
-            width: .5em;
-            height: .1em;
-            background-color: var(--background-color);
-        }
-        
-        /* New styles for profile image */
-        .profile-image {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 5px solid white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        @media (max-width: 768px) {
-            .profile-image {
-                width: 150px;
-                height: 150px;
-                margin-top: 20px;
-            }
-            #hero-content {
-                text-align: center;
-            }
-        }
-        
-        .hero-row {
-            align-items: center;
-        }
-        
-        .hero-content {
-            padding-right: 30px;
-        }
-    </style>
-
-    <meta name="description" content="Razu Ahmed - Flutter Developer Portfolio">
-    <link rel="stylesheet" href="/css/index.css" media="all">
-    <link rel="stylesheet" href="/css/projects.css" media="all">
-    <link rel="stylesheet" href="/css/tech_section.css" media="all">
-
+    <!-- Local FontAwesome icons (for offline support) -->
     <script defer src="/fontawesome-5/all-5.15.4.js"></script>
-     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5078640249529722"
-     crossorigin="anonymous"></script>
-    <title>Razu Ahmed - Portfolio</title>
-</head>
 
-<body class="light">
+    <!-- Theme initialization script to prevent flash -->
     <script>
-        let localStorageValue = localStorage.getItem("pref-theme");
-        let mediaQuery = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-        switch (localStorageValue) {
-            case "dark":
-                document.body.classList.add('dark');
-                break;
-            case "light":
-                document.body.classList.remove('dark');
-                break;
-            default:
-                if (mediaQuery) {
-                    document.body.classList.add('dark');
-                }
-                break;
+        const savedTheme = localStorage.getItem('pref-theme') || 'dark';
+        if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
         }
     </script>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5078640249529722"
+        crossorigin="anonymous"></script>
+</head>
 
-    <header class="sticky-top shadow-sm">
-    <nav class="navbar navbar-expand-lg navbar-light bg-white animate py-2 py-md-3">
-        <div class="container">
-            <!-- Logo/Brand with gradient text -->
-            <a class="navbar-brand d-flex align-items-center" href="/">
-                <img src="/fav.png" alt="Razu Ahmed Portfolio Logo" width="40" height="40" class="me-2 rounded-circle shadow-sm">
+<body class="dark">
+    <!-- Sticky Glassmorphism Header -->
+    <header class="header-nav">
+        <div class="container-custom navbar-container">
+            <!-- Logo / Brand -->
+            <a href="#" class="nav-logo">
+                <img src="/fav.png" alt="Razu Ahmed" width="36" height="36">
                 <span>Razu Ahmed</span>
             </a>
 
-            <!-- Mobile toggle button with animation -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="true" aria-label="Toggle navigation"><svg aria-hidden="true" height="24" viewBox="0 0 16 16" width="24" data-view-component="true"><path fill-rule="evenodd" d="M1 2.75A.75.75.0 011.75 2h12.5a.75.75.0 110 1.5H1.75A.75.75.0 011 2.75zm0 5A.75.75.0 011.75 7h12.5a.75.75.0 110 1.5H1.75A.75.75.0 011 7.75zM1.75 12a.75.75.0 100 1.5h12.5a.75.75.0 100-1.5H1.75z"></path></svg></button>
+            <!-- Desktop Navigation Links -->
+            <ul class="nav-menu">
+                <li><a href="#hero" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="https://razuahmed75.blogspot.com/" target="_blank" class="nav-link">Blogs <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i></a></li>
+                <li><a href="https://razuahmed75.blogspot.com/p/photo-gallery.html" target="_blank" class="nav-link">Gallery <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i></a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
 
-            <!-- Navigation menu -->
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <!-- Mobile search -->
-                <div class="d-md-none my-3">
-                    <div class="input-group">
-                        <span class="input-group-text bg-light border-0">
-                            <i class="fas fa-search text-muted"></i>
-                        </span>
-                        <input id="mobile-search" autocomplete="off" 
-                               class="form-control border-0 bg-light rounded-end" 
-                               placeholder="Search..." 
-                               aria-label="Mobile Search">
-                    </div>
-                </div>
+            <!-- Right Actions (Theme Toggle & Hamburger) -->
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
+                    <!-- Sun Icon (visible in dark mode) -->
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <!-- Moon Icon (visible in light mode) -->
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
 
-                <ul class="navbar-nav ms-auto align-items-lg-center">
-                    <!-- Navigation items with hover effect -->
-                    <li class="nav-item mx-2">
-                        <a class="nav-link px-3 py-2 rounded-pill hover-effect" href="/#about">
-                            <i class="fas fa-user d-md-none me-2"></i> About
-                        </a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link px-3 py-2 rounded-pill hover-effect" href="/#experience">
-                            <i class="fas fa-briefcase d-md-none me-2"></i> Experience
-                        </a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link px-3 py-2 rounded-pill hover-effect" href="/#projects">
-                            <i class="fas fa-code d-md-none me-2"></i> Projects
-                        </a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link px-3 py-2 rounded-pill hover-effect" href="/#education">
-                            <i class="fas fa-graduation-cap d-md-none me-2"></i> Education
-                        </a>
-                    </li>
-                    
-                    <!-- Blog Section Added Here -->
-                    <li class="nav-item mx-2">
-                        <a class="nav-link px-3 py-2 rounded-pill hover-effect" href="https://razuahmed75.blogspot.com/" target="_blank">
-                            <i class="fas fa-blog d-md-none me-2"></i> Blogs
-                        </a>
-                    </li>
-                    <!-- Gallery Section Added Here -->
-                    <li class="nav-item mx-2">
-                        <a class="nav-link px-3 py-2 rounded-pill hover-effect" href="https://razuahmed75.blogspot.com/p/photo-gallery.html" target="_blank">
-                            <i class="fas fa-blog d-md-none me-2"></i> Gallery
-                        </a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link px-3 py-2 rounded-pill hover-effect" href="/#contact">
-                            <i class="fas fa-envelope d-md-none me-2"></i> Contact
-                        </a>
-                    </li>
-
-                    <!-- Theme toggle with tooltip -->
-                    <li class="nav-item ms-2">
-                        <button id="theme-toggle" class="btn btn-outline-secondary border-0 rounded-circle p-2" 
-                                data-bs-toggle="tooltip" data-bs-placement="bottom" title="Toggle theme">
-                            <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" 
-                                 fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                            </svg>
-                            <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" 
-                                 fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="5"></circle>
-                                <line x1="12" y1="1" x2="12" y2="3"></line>
-                                <line x1="12" y1="21" x2="12" y2="23"></line>
-                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                                <line x1="1" y1="12" x2="3" y2="12"></line>
-                                <line x1="21" y1="12" x2="23" y2="12"></line>
-                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
+                <button id="hamburger-toggle" class="hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
-    </nav>
-</header>
+    </header>
 
-<!-- Add this CSS -->
-<style>
-    /* Gradient text for brand */
-    .gradient-text {
-        background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    
-    /* Hover effect for nav items */
-    .hover-effect {
-        transition: all 0.3s ease;
-    }
-    .hover-effect:hover {
-        background: rgba(106, 17, 203, 0.1);
-        transform: translateY(-2px);
-    }
-    
-    /* Smooth transitions */
-    .navbar, .nav-link, button {
-        transition: all 0.3s ease-in-out;
-    }
-    
-    /* Active state for nav items */
-    .nav-link.active {
-       
-        color: white !important;
-    }
-    
-    /* Dark mode support */
-    .dark .navbar {
-        background-color: #1a1a2e !important;
-    }
-    .dark .gradient-text {
-        background: linear-gradient(90deg, #f857a6 0%, #ff5858 100%);
-    }
-    .dark .nav-link:hover {
-        background: rgba(248, 87, 166, 0.1);
-    }
-    .dark #search,
-    .dark #mobile-search {
-        background-color: #16213e !important;
-        color: white !important;
-    }
-</style>
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-drawer" class="mobile-drawer">
+        <ul class="nav-menu-mobile">
+            <li><a href="#hero" class="nav-link">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#experience" class="nav-link">Experience</a></li>
+            <li><a href="#education" class="nav-link">Education</a></li>
+            <li><a href="https://razuahmed75.blogspot.com/" target="_blank" class="nav-link">Blogs <i class="fas fa-external-link-alt" style="font-size: 0.8rem;"></i></a></li>
+            <li><a href="https://razuahmed75.blogspot.com/p/photo-gallery.html" target="_blank" class="nav-link">Gallery <i class="fas fa-external-link-alt" style="font-size: 0.8rem;"></i></a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </div>
+    <div id="drawer-overlay" class="drawer-overlay"></div>
 
-<!-- Initialize tooltips -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl);
-        });
-    });
-</script>
-<!-- Typing animation -->
- <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const typingLines = document.querySelectorAll('.typing-line');
-    const container = document.getElementById('primary-font');
-    
-    function startTyping(index) {
-        const line = typingLines[index];
-        const text = line.getAttribute('data-text');
-        const typingText = line.querySelector('.typing-text');
-        const duration = parseFloat(line.style.getPropertyValue('--typing-duration')) * 1000;
-        
-        // Reset line for new animation cycle
-        line.classList.remove('active');
-        typingText.innerHTML = '';
-        
-        // Activate current line
-        line.classList.add('active');
-        
-        // Type the text
-        typeWriter(typingText, text, duration, () => {
-            // Deactivate current line when done
-            line.classList.remove('active');
-            
-            // Start next line after a short pause
-            setTimeout(() => {
-                // to infinite repeat the animation
-                //const nextIndex = (index + 1) % typingLines.length;
-                // repeat only one time animation when page is loaded at first time
-                if (index < typingLines.length - 1) {
-                    startTyping(index + 1);
-                }
-                startTyping(nextIndex);
-            }, 300);
-        });
-    }
-    
-    function typeWriter(element, text, duration, callback) {
-        const len = text.length;
-        const speed = duration / len;
-        let i = 0;
-        
-        function type() {
-            if (i < len) {
-                element.innerHTML += text.charAt(i);
-                i++;
-                setTimeout(type, speed);
-            } else if (callback) {
-                callback();
-            }
-        }
-        
-        type();
-    }
-    
-    // Start the first line to begin infinite loop
-    startTyping(0);
-});
-</script>
-<!-- Typing animation End -->
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-bg-grid"></div>
+            <div class="container-custom hero-grid">
+                <div class="hero-left">
+                    <span class="hero-greeting reveal" style="transition-delay: 100ms;">Hi, I'm</span>
+                    <h1 class="hero-title reveal" style="transition-delay: 200ms;">
+                        <span class="text-gradient">Razu Ahmed</span>
+                    </h1>
+                    <h2 class="hero-subtitle reveal" style="transition-delay: 300ms;">
+                        <span id="typewriter-role" data-roles='["Senior Flutter Developer", "Mobile App Architect", "Cross-Platform Engineer"]'></span>
+                    </h2>
+                    <p class="hero-description reveal" style="transition-delay: 400ms;">
+                        Crafting exceptional, high-performance mobile applications for Android & iOS.
+                    </p>
+                    
+                    <div class="hero-ctas reveal" style="transition-delay: 500ms;">
+                        <a href="#projects" class="btn-primary">View Projects <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://surl.li/wledoq" target="_blank" class="btn-secondary" download>Download CV <i class="fas fa-download"></i></a>
+                    </div>
 
-    <div id="content">
-        <section id="hero" class="py-5 align-middle">
-            <div class="container px-3 px-sm-5 px-md-5 px-lg-5 pt-lg-3">
-                <div class="row flex-column-reverse flex-md-row">
-                    <!-- Left Column - Text Content (comes first in DOM but shows second on desktop) -->
-                    <div class="col-md-8 col-lg-8 content animate pe-md-4 pe-lg-5">
-                        <!-- Name with typing animation -->
-                        <h2 class="typing-line font-Roboto" style="--typing-duration:2s;" data-text="Razu Ahmed.">
-                            <span class="typing-text"></span>
-                            <span class="typing-cursor"></span>
-                        </h2>
-                        
-                        <!-- Tagline with staggered animation -->
-                        <h3 class="typing-line font-Roboto" style="--typing-duration:2.5s;" data-text="I build mobile applications for Android and iOS">
-                            <span class="typing-text"></span>
-                            <span class="typing-cursor"></span>
-                        </h3>
-                        
-                        <!-- Content with staggered animation -->
-                        <p class="hero-content typing-line font-Roboto" style="--typing-duration:3.5s;" data-text="A passionate Flutter developer with 4+ years of experience creating beautiful, performant mobile applications. I specialize in building cross-platform solutions that deliver native experiences on both platforms.">
-                            <span class="typing-text"></span>
-                            <span class="typing-cursor"></span>
+                    <div class="social-row reveal" style="transition-delay: 600ms;">
+                        <a href="https://github.com/razuahmed75" target="_blank" class="social-btn" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/razuahmed75" target="_blank" class="social-btn" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://twitter.com/razuahmed8641" target="_blank" class="social-btn" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.facebook.com/razu8641/" target="_blank" class="social-btn" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+
+                    <!-- Codewars Badge Section -->
+                    <div class="codewars-card reveal" style="transition-delay: 700ms;">
+                        <p>Check out my Codewars profile for coding challenges:</p>
+                        <a href="https://www.codewars.com/users/razuahmed75" target="_blank">
+                            <img src="https://www.codewars.com/users/razuahmed75/badges/large" alt="Codewars Badge" class="d-none d-md-inline">
+                            <img src="https://www.codewars.com/users/razuahmed75/badges/small" alt="Codewars Badge" class="d-inline d-md-none" style="display: none;">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-right reveal" style="transition-delay: 300ms;">
+                    <div class="hero-avatar-wrapper">
+                        <div class="avatar-glow"></div>
+                        <img src="/images/my-pic.jpg" alt="Razu Ahmed - Professional Flutter Developer" class="hero-avatar">
+                        <!-- Floating Tech Badges -->
+                        <div class="floating-tag floating-tag-1">
+                            <i class="fab fa-google" style="color: #4285F4;"></i>
+                            <span>Flutter</span>
+                        </div>
+                        <div class="floating-tag floating-tag-2">
+                            <i class="fab fa-android" style="color: #3DDC84;"></i>
+                            <span>Android & iOS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom scroll arrow -->
+            <div class="scroll-indicator" onclick="document.getElementById('about').scrollIntoView();">
+                <span>Scroll Down</span>
+                <svg viewBox="0 0 24 24">
+                    <path d="M7 10l5 5 5-5"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section-padding reveal">
+            <div class="container-custom">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-grid">
+                    <div class="about-left">
+                        <p class="about-bio">
+                            I am a <strong>Senior Flutter Developer</strong> with over 4 years of professional experience building cross-platform mobile applications. My journey in mobile development began with a passion for creating beautiful, user-friendly interfaces that solve real-world problems.
                         </p>
-                        
-                        <div class="row mt-3">
-                            <div class="col-auto">
-                                <a href="https://surl.li/wledoq" target="_blank" class="btn" download>
-                                    Download Resume
-                                </a>
+                        <p class="about-bio">
+                            Currently, I'm working as a Senior Flutter Developer at <strong><a href="https://bugfinder.net" target="_blank" style="color: var(--accent-2-color); text-decoration: underline;">Bug Finder</a></strong>, where I lead the development of mobile applications and mentor junior developers. Previously, I worked at <strong>Bringin Technologies Limited</strong>, where I contributed to several successful projects in the fintech space.
+                        </p>
+                    </div>
+
+                    <div class="about-right reveal-stagger">
+                        <div class="stat-card">
+                            <div class="stat-number">4+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Apps Built</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Technologies</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">Active</div>
+                            <div class="stat-label">Open Source</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section-padding reveal">
+            <div class="container-custom">
+                <h2 class="section-title">Skills & Toolkit</h2>
+                <div class="skills-container">
+                    <!-- Mobile Group -->
+                    <div class="skills-group">
+                        <h3 class="skills-title"><i class="fas fa-mobile-alt" style="color: var(--accent-2-color);"></i> Mobile Development & Flutter</h3>
+                        <div class="skills-flex">
+                            <span class="skill-badge"><i class="fab fa-google" style="color: #4285F4;"></i> Flutter & Dart</span>
+                            <span class="skill-badge"><i class="fas fa-layer-group"></i> State Management (Riverpod / GetX / Bloc / Provider)</span>
+                            <span class="skill-badge"><i class="fas fa-microchip"></i> Multi-threading & Dart Isolates</span>
+                            <span class="skill-badge"><i class="fas fa-redo"></i> Event Loop & Microtask Queue</span>
+                            <span class="skill-badge"><i class="fas fa-dumpster"></i> Garbage Collection & Memory Profiling</span>
+                            <span class="skill-badge"><i class="fas fa-exchange-alt"></i> Platform Channels & Native Integration (iOS & Android)</span>
+                            <span class="skill-badge"><i class="fas fa-stream"></i> Reactive Programming (Streams / RxDart)</span>
+                            <span class="skill-badge"><i class="fas fa-database"></i> Local Databases (Hive / Isar / SQLite / ObjectBox)</span>
+                            <span class="skill-badge"><i class="fas fa-wifi"></i> Networking (Dio + Retrofit / Chopper)</span>
+                            <span class="skill-badge"><i class="fas fa-exclamation-triangle"></i> Advanced Error Handling & Dart Zones</span>
+                            <span class="skill-badge"><i class="fas fa-vial"></i> Unit & Widget Testing</span>
+                        </div>
+                    </div>
+
+                    <!-- Backend Group -->
+                    <div class="skills-group">
+                        <h3 class="skills-title"><i class="fas fa-server" style="color: var(--accent-2-color);"></i> Backend & Cloud</h3>
+                        <div class="skills-flex">
+                            <span class="skill-badge"><i class="fas fa-fire" style="color: #FFCA28;"></i> Firebase</span>
+                            <span class="skill-badge"><i class="fas fa-cloud"></i> Cloud Functions</span>
+                            <span class="skill-badge"><i class="fas fa-project-diagram"></i> REST & GraphQL</span>
+                            <span class="skill-badge"><i class="fas fa-key"></i> OAuth2 & JWT</span>
+                        </div>
+                    </div>
+
+                    <!-- DevOps Group -->
+                    <div class="skills-group">
+                        <h3 class="skills-title"><i class="fas fa-tools" style="color: var(--success-color);"></i> DevOps & Collaboration</h3>
+                        <div class="skills-flex">
+                            <span class="skill-badge"><i class="fab fa-git-alt" style="color: #F1502F;"></i> Git</span>
+                            <span class="skill-badge"><i class="fab fa-github-actions"></i> GitHub Actions</span>
+                            <span class="skill-badge"><i class="fas fa-infinity"></i> CI/CD pipelines</span>
+                            <span class="skill-badge"><i class="fas fa-users"></i> Agile methodologies (Trello, ClickUp)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section-padding reveal">
+            <div class="container-custom">
+                <div class="projects-header">
+                    <h2 class="section-title" style="margin-bottom: 8px;">Featured Projects</h2>
+                    <p style="color: var(--text-muted);">Explore a selection of mobile applications designed and developed with clean, maintainable architecture.</p>
+                </div>
+
+                <!-- Hero Featured Project -->
+                <div class="featured-project">
+                    <div class="project-hero-card">
+                        <div class="project-hero-content">
+                            <div>
+                                <span class="featured-tag">Featured Project</span>
+                                <h3 class="project-hero-title" style="margin-top: var(--space-1);">Giftily Mobile App</h3>
+                                <p class="project-hero-desc" style="margin-top: var(--space-1);">
+                                    Game Top-Ups & Gift Cards Made Easy. Discover the ultimate platform for digital top-ups and gift cards — fast, secure, and made just for gamers in Algeria! Elevate your gaming experience with a feature-packed mobile app designed to cater to the needs of professional gamers and enthusiasts alike.
+                                </p>
                             </div>
-                            <div class="col-auto">
-                                <div class="d-flex">
-                                    <a href="https://github.com/razuahmed75" target="_blank" class="btn social-icon mx-1">
-                                        <i class="fab fa-github"></i>
-                                    </a>
-                                    <a href="https://www.linkedin.com/in/razuahmed75" target="_blank" class="btn social-icon mx-1">
-                                        <i class="fab fa-linkedin"></i>
-                                    </a>
-                                    <a href="https://twitter.com/razuahmed8641" target="_blank" class="btn social-icon mx-1">
-                                        <i class="fab fa-twitter"></i>
-                                    </a>
-                                    <a href="https://www.facebook.com/razu8641/" target="_blank" class="btn social-icon mx-1">
-                                        <i class="fab fa-facebook"></i>
+                            <div class="project-hero-info">
+                                <div class="project-hero-tags">
+                                    <span class="project-badge">Flutter</span>
+                                    <span class="project-badge">Riverpod</span>
+                                    <span class="project-badge">Firebase</span>
+                                    <span class="project-badge">Pusher</span>
+                                    <span class="project-badge">REST API</span>
+                                    <span class="project-badge">Dio + Retrofit</span>
+                                    <span class="project-badge">Dart Isolate</span>
+                                    <span class="project-badge">Isar (Local Storage)</span>
+                                </div>
+                                <div class="project-hero-actions">
+                                    <div class="project-links">
+                                        <a href="https://play.google.com/store/apps/details?id=com.giftily_dz.app&hl=en" target="_blank" class="project-store-link">
+                                            <img src="/images/googleplay.png" alt="Google Play">
+                                            <span>Play Store</span>
+                                        </a>
+                                        <a href="https://codecanyon.net/item/gamers-arena-on-demand-game-shop-cross-platform-mobile-application/51225336" target="_blank" class="project-store-link" style="margin-left: var(--space-2);">
+                                            <img src="/images/envato.webp" alt="Envato">
+                                            <span>CodeCanyon</span>
+                                        </a>
+                                    </div>
+                                    <a href="https://play.google.com/store/apps/details?id=com.giftily_dz.app&hl=en" target="_blank" class="project-link-btn">
+                                        View Live <i class="fas fa-external-link-alt"></i>
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <!-- Codewars Badge Section -->
-                        <div style="margin-top:30px;">
-                            <p style="margin-bottom:15px; font-size:16px;">
-                                Check out my Codewars profile for coding challenges and solutions
+                        <div class="project-hero-img-wrapper">
+                            <img src="/images/covers/game_cover.png" alt="Giftily App Cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="projects-grid reveal-stagger">
+                    <!-- Project 2: Lama.ng -->
+                    <div class="project-card">
+                        <div class="project-card-header"></div>
+                        <div class="project-card-body">
+                            <div class="project-card-head">
+                                <img src="/images/lama.png" data-hover="/images/covers/lama_cover.webp" alt="Lama.ng" class="project-icon">
+                                <h3 class="project-card-title">Lama.ng Mobile App</h3>
+                            </div>
+                            <p class="project-card-desc">
+                                Connecting users with trusted service providers across various categories. Explore, compare, and hire reliable professionals easily.
                             </p>
-                            <a href="https://www.codewars.com/users/razuahmed75" target="_blank">
-                                <!-- Large badge for desktop -->
-                                <img src="https://www.codewars.com/users/razuahmed75/badges/large" 
-                                    alt="Razu Ahmed's Codewars Badge" 
-                                    class="d-none d-md-inline">
-                                <!-- Small badge for mobile -->
-                                <img src="https://www.codewars.com/users/razuahmed75/badges/small" 
-                                    alt="Razu Ahmed's Codewars Badge" 
-                                    class="d-inline d-md-none">
-                            </a>
-                        </div>
-                        <!-- Codewars Badge Section End -->
-
-                    </div>
-                    
-                    <!-- Right Column - Profile Image (comes second in DOM but shows first on mobile) -->
-                    <div class="col-md-4 col-lg-4 text-center text-md-start mb-4 mb-md-0 position-md-sticky top-0 align-self-md-start">
-                        <div id="middle_img_wrapper">
-                            <img src="/images/my-pic.jpg" alt="Razu Ahmed - Professional Flutter Developer" class="profile-image img-fluid" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="py-0 py-sm-5">
-            <div class="container">
-                <h3 class="text-center mb-4">About Me</h3>  <!-- Added mb-4 for spacing -->
-                <div class="row justify-content-center">
-                    
-                    <!-- Content Column (centered on all screens) -->
-                    <div class="col-md-10 col-lg-8 text-center text-md-start">
-                        <p class="mb-3">I am a Flutter developer with over 4 years of professional experience building cross-platform mobile applications. My journey in mobile development began with a passion for creating beautiful, user-friendly interfaces that solve real-world problems.</p>
-                        
-                        <p class="mb-4">Currently, I'm working as a Senior Flutter Developer at Bug Finder, where I lead the development of mobile applications and mentor junior developers. Previously, I worked at Bringin Technologies Limited, where I contributed to several successful projects in the fintech space.</p>
-
-                        <div class="tech-container">
-                            <div class="tech-section">
-                                <div class="tech-header">📱 Mobile Development & Flutter</div>
-                                    <ul class="tech-list">
-                                        <li class="tech-pill">Flutter & Dart</li>
-                                        <li class="tech-pill">State Management (Riverpod / GetX / Bloc / Provider)</li>
-                                        <li class="tech-pill">Multi-threading & Dart Isolates</li>
-                                        <li class="tech-pill">Event Loop & Microtask Queue</li>
-                                        <li class="tech-pill">Garbage Collection & Memory Profiling</li>
-                                        <li class="tech-pill">Platform Channels & Native Integration (iOS & Android)</li>
-                                        <li class="tech-pill">Reactive Programming (Streams / RxDart)</li>
-                                        <li class="tech-pill">Local Databases (Hive / Isar / SQLite / ObjectBox)</li>
-                                        <li class="tech-pill">Networking (Dio + Retrofit / Chopper)</li>
-                                        <li class="tech-pill">Advanced Error Handling & Dart Zones</li>
-                                        <li class="tech-pill">Unit & Widget Testing</li>
-                                    </ul>
-
-                            </div>
-
-                            <div class="tech-section">
-                                <div class="tech-header">☁️ Backend & Cloud</div>
-                                <ul class="tech-list">
-                                    <li class="tech-pill">Firebase</li>
-                                    <li class="tech-pill">Cloud Functions</li>
-                                    <li class="tech-pill">REST & GraphQL</li>
-                                    <li class="tech-pill">OAuth2 & JWT</li>
-                                </ul>
-                            </div>
-                            <div class="tech-section">
-                                <div class="tech-header">⚙️ DevOps</div>
-                                <ul class="tech-list">
-                                    <li class="tech-pill">Git</li>
-                                    <li class="tech-pill">GitHub Actions</li>
-                                    <li class="tech-pill">CI/CD pipelines</li>
-                                    <li class="tech-pill">Agile methodologies (Trello, ClickUp)</li>
-                                </ul>
+                            <div class="project-card-tags">
+                                <span class="project-badge">Flutter</span>
+                                <span class="project-badge">Riverpod</span>
+                                <span class="project-badge">Firebase</span>
+                                <span class="project-badge">Google Map</span>
+                                <span class="project-badge">Pusher</span>
                             </div>
                         </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-
-        <section id="experience" class="py-5">
-            <div class="container">
-                <h3 class="text-center">Experience</h3>
-                <div class="row justify-content-center">
-                    <div class="col-sm-12 col-md-8 col-lg-8 py-5">
-                        <div class="experience-container px-3 pt-2">
-                            <ul class="nav nav-pills mb-3 bg-transparent primary-font" id="pills-tab" role="tablist">
-                                <li class="nav-item px-1 bg-transparent" role="presentation">
-                                    <div class="nav-link active bg-transparent text-dark" aria-selected="true" role="tab"
-                                        data-bs-toggle="pill" id='Bugfinder-tab'
-                                        data-bs-target='#pills-Bugfinder' aria-controls='Bugfinder'>
-                                        Bug Finder
-                                    </div>
-                                </li>
-                                <li class="nav-item px-1 bg-transparent" role="presentation">
-                                    <div class="nav-link bg-transparent text-dark" aria-selected="true" role="tab"
-                                        data-bs-toggle="pill" id='Bringin-Technologies-tab'
-                                        data-bs-target='#pills-Bringin-Technologies'
-                                        aria-controls='Bringin-Technologies'>
-                                        Bringin Technologies
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="tab-content pb-5 pt-2 bg-transparent primary-font" id="pills-tabContent">
-                                <div class="tab-pane fade show active bg-transparent" role="tabpanel"
-                                    id='pills-Bugfinder' aria-labelledby='pills-Bugfinder-tab'>
-                                    <div>
-                                        <span class="h4">Senior Flutter Developer</span>
-                                        <small>-</small>
-                                        <a href="https://bugfinder.net" target="_blank">Bug Finder</a>
-                                        <div class="pb-1">
-                                            <small>Nov 2023 - Present</small>
-                                            <span class="p-2">
-                                                <span style="cursor: pointer;" data-bs-toggle="tooltip"
-                                                    data-bs-placement="top"
-                                                    data-bs-original-title="Leading Flutter development team">
-                                                    <i class="fas fa-info-circle fa-xs"></i>
-                                                </span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <p>As a Senior Flutter Developer at Bug Finder, I lead the mobile development team
-                                        and architect solutions for complex business requirements. My responsibilities
-                                        include:</p>
-                                    <ul>
-                                        <li>Designing and implementing scalable Flutter applications</li>
-                                        <li>Mentoring junior developers and conducting code reviews</li>
-                                        <li>Managed international collaborations and project execution.</li>
-                                        <li>Optimizing app performance and reducing build sizes</li>
-                                        <li>Integrating with backend APIs and third-party services</li>
-                                        <li>Implementing CI/CD pipelines for automated testing and deployment</li>
-                                    </ul>
-                                </div>
-                                <div class="tab-pane fade bg-transparent" role="tabpanel"
-                                    id='pills-Bringin-Technologies'
-                                    aria-labelledby='pills-Bringin-Technologies-tab'>
-                                    <div>
-                                        <span class="h4">Junior Flutter Developer</span>
-                                        <small>-</small>
-                                        <a href="https://www.linkedin.com/company/unboltapp/" target="_blank">Bringin Technologies Ltd.</a>
-                                        <div class="pb-1">
-                                            <small>Feb 2023 - Sep 2023</small>
-                                            <span class="p-2">
-                                                <span style="cursor: pointer;" data-bs-toggle="tooltip"
-                                                    data-bs-placement="top"
-                                                    data-bs-original-title="Developed fintech applications">
-                                                    <i class="fas fa-info-circle fa-xs"></i>
-                                                </span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <p>At Bringin Technologies, I contributed to the development of their flagship
-                                        fintech application. My key contributions included:</p>
-                                    <ul>
-                                        <li>Worked on UI/UX improvements that increased user retention by 15%</li>
-                                        <li>Integrated with payment gateways and banking APIs</li>
-                                        <li>Fixed critical bugs and improved app stability</li>
-                                        <li>Collaborated with designers and backend developers</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="projects" class="py-5">
-            <div class="container">
-                <h3 class="text-center">Projects</h3>
-                <div class="row justify-content-center px-3 px-md-5">
-                      <!-- Game App -->
-                    <div class="col-lg-4 col-md-6 my-3">
-                        <div class="card my-3 h-100 card-hover" title="Game App">
-                            <div class="card-head">
-                                <img class="card-img-top hover-img" src="/images/game.png" data-hover="/images/covers/game_cover.png" alt="Giftily Mobile App - Game Top-Ups & Gift Cards" style="width: 70px; height: 70px; object-fit: cover;">
-                            </div>
-                            <div class="card-body bg-transparent p-3">
-                                <div class="pb-2 bg-transparent">
-                                    <span class="badge badge-secondary">Flutter</span>
-                                    <span class="badge badge-secondary">Riverpod</span>
-                                    <span class="badge badge-secondary">Firebase</span>
-                                    <span class="badge badge-secondary">Pusher</span>
-                                    <span class="badge badge-secondary">REST API</span>
-                                    <span class="badge badge-secondary">Dio + Retrofit</span>
-                                     <span class="badge badge-secondary">Dart Isolate</span>
-                                    <span class="badge badge-secondary">Isar (Local Storage)</span>
-                                </div>
-                                <h5 class="card-title bg-transparent mt-1">Giftily Mobile App</h5>
-                                <div class="card-text bg-transparent secondary-font">
-                                    Giftily - Game Top-Ups & Gift Cards Made Easy. Discover the ultimate platform for digital top-ups and gift cards — fast, secure, and made just for gamers in Algeria! – now available in the palm of your hands! Elevate your gaming experience with our feature-packed mobile app designed to cater to the needs of professional gamers and enthusiasts alike.                                </div>
-                            </div>
-                            <div class="card-footer py-3">
-                                <span class="m-1 mx-2">
-                                    <a href="https://play.google.com/store/apps/details?id=com.giftily_dz.app&hl=en"
-                                        target="_blank">
-                                         <img src="/images/googleplay.png" alt="Giftily Mobile App on Google Play Store" style="width: 25px; height: 25px; object-fit: cover; border-radius: 5px;">
-                                    </a>
-                                </span>
-                                <span class="float-end">
-                                    <a class="btn btn-sm"
-                                        href="https://play.google.com/store/apps/details?id=com.giftily_dz.app&hl=en"
-                                        target="_blank">
-                                        View
-                                    </a>
-                                </span>
-                            </div>
-                            <div class="card-footer py-3">
-                                <span class="m-1 mx-2">
-                                    <a href="https://codecanyon.net/item/gamers-arena-on-demand-game-shop-cross-platform-mobile-application/51225336"
-                                        target="_blank">
-                                         <img src="/images/envato.webp" alt="Gamers Arena Mobile App on Envato Marketplace" style="width: 25px; height: 25px; object-fit: cover; border-radius: 5px;">
-                                    </a>
-                                </span>
-                                <span class="float-end">
-                                    <a class="btn btn-sm"
-                                        href="https://codecanyon.net/item/gamers-arena-on-demand-game-shop-cross-platform-mobile-application/51225336"
-                                        target="_blank">
-                                        View
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                     <!-- Lama.ng App -->
-                    <div class="col-lg-4 col-md-6 my-3">
-                        <div class="card my-3 h-100 card-hover" title="Service App">
-                            <div class="card-head">
-                                <img class="card-img-top hover-img" src="/images/lama.png" data-hover="/images/covers/lama_cover.webp" alt="Lama.ng Mobile App - Connecting users with trusted service providers easily." style="width: 70px; height: 70px; object-fit: cover;">
-                            </div>
-                            <div class="card-body bg-transparent p-3">
-                                <div class="pb-2 bg-transparent">
-                                    <span class="badge badge-secondary">Flutter</span>
-                                    <span class="badge badge-secondary">Riverpod</span>
-                                    <span class="badge badge-secondary">Firebase</span>
-                                    <span class="badge badge-secondary">Google Map</span>
-                                    <span class="badge badge-secondary">Pusher</span>
-                                    <span class="badge badge-secondary">REST API</span>
-                                    <span class="badge badge-secondary">Dio + Retrofit</span>
-                                    <span class="badge badge-secondary">Isar (Local Storage)</span>
-                                </div>
-                                <h5 class="card-title bg-transparent mt-1">Lama.ng Mobile App</h5>
-                                <div class="card-text bg-transparent secondary-font">
-                                    Lama.ng is a reputable online platform that bridges the gap between individuals and trusted service providers across various categories. It offers a user-friendly interface where people can find, compare, and hire reliable professionals for their specific needs.</div>
-                            </div>
-                            <div class="card-footer py-3">
-                                <span class="m-1 mx-2">
-                                    <a href="https://play.google.com/store/apps/details?id=com.lama.ng&hl=en"
-                                        target="_blank">
-                                         <img src="/images/googleplay.png" alt="Lama.ng Mobile App on Google Play Store" style="width: 25px; height: 25px; object-fit: cover; border-radius: 5px;">
-                                    </a>
-                                </span>
-                                <span class="float-end">
-                                    <a class="btn btn-sm"
-                                        href="https://play.google.com/store/apps/details?id=com.lama.ng&hl=en"
-                                        target="_blank">
-                                        View
-                                    </a>
-                                </span>
-                            </div>
-                            <div class="card-footer py-3">
-                                <span class="m-1 mx-2">
-                                     <a href="https://apps.apple.com/us/app/lama-ng/id6756806464"
-                                        target="_blank">
-                                         <img src="/images/appstore.png" alt="Lama.ng Mobile App on Apple App Store" style="width: 25px; height: 25px; object-fit: cover; border-radius: 5px;">
-                                    </a>
-                                </span>
-                                <span class="float-end">
-                                    <a class="btn btn-sm"
-                                        href="https://apps.apple.com/us/app/lama-ng/id6756806464"
-                                        target="_blank">
-                                        View
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Bill Payment App -->
-                    <div class="col-lg-4 col-md-6 my-3">
-                        <div class="card my-3 h-100 card-hover" title="Bill Payment App">
-                            <div class="card-head">
-                                <img class="card-img-top hover-img" src="/images/bill.png" data-hover="/images/covers/bill_cover.png" alt="Golala BillPay Mobile App - Bill Payment Solution" style="width: 70px; height: 70px; object-fit: cover;">
-                            </div>
-                            <div class="card-body bg-transparent p-3">
-                                <div class="pb-2 bg-transparent">
-                                    <span class="badge badge-secondary">Flutter</span>
-                                    <span class="badge badge-secondary">GetX</span>
-                                    <span class="badge badge-secondary">Pusher</span>
-                                    <span class="badge badge-secondary">REST API</span>
-                                    <span class="badge badge-secondary">Dio + Retrofit</span>
-                                    <span class="badge badge-secondary">Isar (Local Storage)</span>
-                                </div>
-                                <h5 class="card-title bg-transparent mt-1">Golala BillPay Mobile App</h5>
-                                <div class="card-text bg-transparent secondary-font">
-                                    Introducing the ultimate convenience in bill management and payment – the Bill Pay mobile app. Say goodbye to the hassle of waiting in long queues or remembering multiple due dates. With Bill Pay, you have a one-stop solution for all your top-up, recharge, and utility bill payment needs, right at your fingertips.
-                                </div>
-                            </div>
-                            <div class="card-footer py-3">
-                                <span class="m-1 mx-2">
-                                    <a href="https://play.google.com/store/apps/details?id=com.golala.billpayment&hl=en"
-                                        target="_blank">
-                                         <img src="/images/googleplay.png" alt="Golala BillPay on Google Play Store" style="width: 25px; height: 25px; object-fit: cover; border-radius: 5px;">
-                                    </a>
-                                </span>
-                                <span class="float-end">
-                                    <a class="btn btn-sm"
-                                        href="https://play.google.com/store/apps/details?id=com.golala.billpayment&hl=en"
-                                        target="_blank">
-                                        View
-                                    </a>
-                                </span>
-                            </div>
-                            <div class="card-footer py-3">
-                                <span class="m-1 mx-2">
-                                     <a href="https://apps.apple.com/us/app/golala-billpay-solutions/id6743252509"
-                                        target="_blank">
-                                         <img src="/images/appstore.png" alt="Golala BillPay on Apple App Store" style="width: 25px; height: 25px; object-fit: cover; border-radius: 5px;">
-                                    </a>
-                                </span>
-                                <span class="float-end">
-                                    <a class="btn btn-sm"
-                                        href="https://apps.apple.com/us/app/golala-billpay-solutions/id6743252509"
-                                        target="_blank">
-                                        View
-                                    </a>
-                                </span>
-                            </div>
-                            <div class="card-footer py-3">
-                                <span class="m-1 mx-2">
-                                    <a href="https://codecanyon.net/item/bill-pay-topup-recharge-and-utility-bill-payment-mobile-app/50124639?s_rank=26"
-                                        target="_blank">
-                                         <img src="/images/envato.webp" alt="BillPayment Mobile App on Envato Marketplace" style="width: 25px; height: 25px; object-fit: cover; border-radius: 5px;">
-                                    </a>
-                                </span>
-                                <span class="float-end">
-                                    <a class="btn btn-sm"
-                                        href="https://codecanyon.net/item/bill-pay-topup-recharge-and-utility-bill-payment-mobile-app/50124639?s_rank=26"
-                                        target="_blank">
-                                        View
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Investment App -->
-                    <div class="col-lg-4 col-md-6 my-3">
-                        <div class="card my-3 h-100 card-hover" title="Investment App">
-                            <div class="card-head">
-                                <img class="card-img-top hover-img" src="/images/agriwealth.png" data-hover="/images/covers/agriwealth_cover.png" alt="Agriwealth Mobile App - Agricultural Investment Platform" style="width: 70px; height: 70px; object-fit: cover;">
-                            </div>
-                            <div class="card-body bg-transparent p-3">
-                                <div class="pb-2 bg-transparent">
-                                    <span class="badge badge-secondary">Flutter</span>
-                                    <span class="badge badge-secondary">GetX</span>
-                                    <span class="badge badge-secondary">Firebase</span>
-                                    <span class="badge badge-secondary">Pusher</span>
-                                    <span class="badge badge-secondary">REST API</span>
-                                    <span class="badge badge-secondary">Hive</span>
-                                </div>
-                                <h5 class="card-title bg-transparent mt-1">Agriwealth Mobile App</h5>
-                                <div class="card-text bg-transparent secondary-font">
-                                   Take your agricultural investments with you, wherever you go, with the AgriWealth Mobile App! This companion app is designed to complement the AgriWealth investment platform, providing seamless access to your portfolio, transactions, and real-time updates right from your phone.
-                                </div>
-                            </div>
-                            <div class="card-footer py-3">
-                                <span class="m-1 mx-2">
-                                    <a href="https://play.google.com/store/apps/details?id=com.stip.club"
-                                        target="_blank">
-                                         <img src="/images/googleplay.png" alt="Giftily Mobile App on Google Play Store" style="width: 25px; height: 25px; object-fit: cover; border-radius: 5px;">
-                                    </a>
-                                </span>
-                                <span class="float-end">
-                                    <a class="btn btn-sm"
-                                        href="https://play.google.com/store/apps/details?id=com.stip.club"
-                                        target="_blank">
-                                        View
-                                    </a>
-                                </span>
-                            </div>
-                            <div class="card-footer py-3">
-                                <span class="m-1 mx-2">
-                                    <a href="https://codecanyon.net/item/agriwealth-agricultural-hyip-investment-mobile-application-android-ios/55396787?s_rank=15"
-                                        target="_blank">
-                                         <img src="/images/envato.webp" alt="Agriwealth Mobile App on Envato Marketplace" style="width: 25px; height: 25px; object-fit: cover; border-radius: 5px;">
-                                    </a>
-                                </span>
-                                <span class="float-end">
-                                    <a class="btn btn-sm"
-                                        href="https://codecanyon.net/item/agriwealth-agricultural-hyip-investment-mobile-application-android-ios/55396787?s_rank=15"
-                                        target="_blank">
-                                        View
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Listing App -->
-                    <div class="col-lg-4 col-md-6 my-3">
-                        <div class="card my-3 h-100 card-hover" title="Listing App">
-                            <div class="card-head">
-                                <img class="card-img-top hover-img" src="/images/listplace.png" data-hover="/images/covers/listplace_cover.png" alt="Listplace Mobile App - Business Directory Listing" style="width: 70px; height: 70px; object-fit: cover;">
-                            </div>
-                            <div class="card-body bg-transparent p-3">
-                                <div class="pb-2 bg-transparent">
-                                    <span class="badge badge-secondary">Flutter</span>
-                                    <span class="badge badge-secondary">GetX</span>
-                                    <span class="badge badge-secondary">Pusher</span>
-                                    <span class="badge badge-secondary">Google Map</span>
-                                    <span class="badge badge-secondary">REST API</span>
-                                    <span class="badge badge-secondary">Hive</span>
-                                </div>
-                                <h5 class="card-title bg-transparent mt-1">Listplace Mobile App</h5>
-                                <div class="card-text bg-transparent secondary-font">
-                                     Listplace Mobile App, designed to bring the power of our Ultimate Directory Listing Platform to your fingertips! Now, users can explore, add, and manage listings effortlessly from their mobile devices, ensuring a seamless experience wherever they go.
-                                </div>
-                            </div>
-                            <div class="card-footer py-3">
-                                <span class="m-1 mx-2">
-                                    <a href="https://codecanyon.net/item/listplace-business-directory-listing-flutter-app-android-ios/57380835?s_rank=10"
-                                        target="_blank">
-                                         <img src="/images/envato.webp" alt="Listplace Mobile App on Envato Marketplace" style="width: 25px; height: 25px; object-fit: cover; border-radius: 5px;">
-                                    </a>
-                                </span>
-                                <span class="float-end">
-                                    <a class="btn btn-sm"
-                                        href="https://codecanyon.net/item/listplace-business-directory-listing-flutter-app-android-ios/57380835?s_rank=10"
-                                        target="_blank">
-                                        View
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Hyip App -->
-                    <div class="col-lg-4 col-md-6 my-3">
-                        <div class="card my-3 h-100 card-hover" title="Investment App">
-                            <div class="card-head">
-                                <img class="card-img-top hover-img" src="/images/hyip.png" data-hover="/images/covers/hyip_cover.png" alt="HYIP PRO Mobile App - High Yield Investment Platform" style="width: 70px; height: 70px; object-fit: cover;">
-                            </div>
-                            <div class="card-body bg-transparent p-3">
-                                <div class="pb-2 bg-transparent">
-                                    <span class="badge badge-secondary">Flutter</span>
-                                    <span class="badge badge-secondary">GetX</span>
-                                    <span class="badge badge-secondary">Pusher</span>
-                                    <span class="badge badge-secondary">REST API</span>
-                                    <span class="badge badge-secondary">Hive</span>
-                                </div>
-                                <h5 class="card-title bg-transparent mt-1">HYIP PRO Mobile App</h5>
-                                <div class="card-text bg-transparent secondary-font">
-                                    Attention aspiring HYIP entrepreneurs! Get ready to kickstart your high-yield investment venture with the HyipPro Mobile App. This isn't just an app; it's your ultimate partner for building and managing a successful HYIP business.
-                                </div>
-                            </div>
-                            <div class="card-footer py-3">
-                                <span class="m-1 mx-2">
-                                    <a href="https://codecanyon.net/item/hyip-pro-cross-platform-mobile-application/49701045?s_rank=28"
-                                        target="_blank">
-                                         <img src="/images/envato.webp" alt="HYIP PRO Mobile App on Envato Marketplace" style="width: 25px; height: 25px; object-fit: cover; border-radius: 5px;">
-                                    </a>
-                                </span>
-                                <span class="float-end">
-                                    <a class="btn btn-sm"
-                                        href="https://codecanyon.net/item/hyip-pro-cross-platform-mobile-application/49701045?s_rank=28"
-                                        target="_blank">
-                                        View
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Coinectra App -->
-                    <div class="col-lg-4 col-md-6 my-3">
-                        <div class="card my-3 h-100 card-hover" title="Crypto currency App">
-                            <div class="card-head">
-                                <img class="card-img-top hover-img" src="/images/coinectra.png" data-hover="/images/covers/coinectra_cover.png" alt="Coinectra Mobile App - Crypto Currency Exchange" style="width: 70px; height: 70px; object-fit: cover;">
-                            </div>
-                            <div class="card-body bg-transparent p-3">
-                                <div class="pb-2 bg-transparent">
-                                    <span class="badge badge-secondary">Flutter</span>
-                                    <span class="badge badge-secondary">GetX</span>
-                                    <span class="badge badge-secondary">Pusher</span>
-                                    <span class="badge badge-secondary">REST API</span>
-                                    <span class="badge badge-secondary">Hive</span>
-                                </div>
-                                <h5 class="card-title bg-transparent mt-1">Coinectra Mobile App</h5>
-                                <div class="card-text bg-transparent secondary-font">
-                                   Coinectra Mobile App is the perfect companion to the Coinectra web platform – built for users who want to trade anytime, anywhere. Whether it's crypto swaps or fiat transactions, this mobile app brings the full power of your crypto exchange into the palm of your hand.
-                                </div>
-                            </div>
-                            <div class="card-footer py-3">
-                                <span class="m-1 mx-2">
-                                    <a href="https://codecanyon.net/item/coinectra-buy-sell-and-crypto-currency-exchange-flutter-app-android-ios/58421141?s_rank=6"
-                                        target="_blank">
-                                         <img src="/images/envato.webp" alt="Coinectra Mobile App on Envato Marketplace" style="width: 25px; height: 25px; object-fit: cover; border-radius: 5px;">
-                                    </a>
-                                </span>
-                                <span class="float-end">
-                                    <a class="btn btn-sm"
-                                        href="https://codecanyon.net/item/coinectra-buy-sell-and-crypto-currency-exchange-flutter-app-android-ios/58421141?s_rank=6"
-                                        target="_blank">
-                                        View
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                      <!-- Waiz App -->
-                    <div class="col-lg-4 col-md-6 my-3">
-                        <div class="card my-3 h-100 card-hover" title="Money Transfer App">
-                            <div class="card-head">
-                                <img class="card-img-top hover-img" src="/images/waiz.png" data-hover="/images/covers/waiz_cover.png" alt="Waiz Mobile App - Digital Wallet and Remittance" style="width: 70px; height: 70px; object-fit: cover;">
-                            </div>
-                            <div class="card-body bg-transparent p-3">
-                                <div class="pb-2 bg-transparent">
-                                    <span class="badge badge-secondary">Flutter</span>
-                                    <span class="badge badge-secondary">GetX</span>
-                                    <span class="badge badge-secondary">Pusher</span>
-                                    <span class="badge badge-secondary">REST API</span>
-                                    <span class="badge badge-secondary">Hive</span>
-                                </div>
-                                <h5 class="card-title bg-transparent mt-1">Waiz Mobile App</h5>
-                                <div class="card-text bg-transparent secondary-font">
-                                   Introducing Waiz, a complete solution designed for effortless global money transfers. Our innovative web and mobile application simplifies sending and receiving money worldwide, ensuring reliability, speed, and affordability. Built with advanced technology and a user-friendly interface, Waiz delivers a straightforward and efficient financial transaction experience.
-                                </div>
-                            </div>
-                            <div class="card-footer py-3">
-                                <span class="m-1 mx-2">
-                                    <a href="https://codecanyon.net/item/waiz-digital-wallet-and-remittance-app-and-website-with-admin-panel/53238316?s_rank=22"
-                                        target="_blank">
-                                         <img src="/images/envato.webp" alt="Waiz Mobile App on Envato Marketplace" style="width: 25px; height: 25px; object-fit: cover; border-radius: 5px;">
-                                    </a>
-                                </span>
-                                <span class="float-end">
-                                    <a class="btn btn-sm"
-                                        href="https://codecanyon.net/item/waiz-digital-wallet-and-remittance-app-and-website-with-admin-panel/53238316?s_rank=22"
-                                        target="_blank">
-                                        View
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Paysecure-user App -->
-                    <div class="col-lg-4 col-md-6 my-3">
-                        <div class="card my-3 h-100 card-hover" title="Digital Wallet App">
-                            <div class="card-head">
-                                <img class="card-img-top hover-img" src="/images/paysecure-user.png" data-hover="/images/covers/paysecure_user_cover.png" alt="Paysecure User Mobile App - Digital Wallet Solution" style="width: 70px; height: 70px; object-fit: cover;">
-                            </div>
-                            <div class="card-body bg-transparent p-3">
-                                <div class="pb-2 bg-transparent">
-                                    <span class="badge badge-secondary">Flutter</span>
-                                    <span class="badge badge-secondary">GetX</span>
-                                    <span class="badge badge-secondary">Pusher</span>
-                                    <span class="badge badge-secondary">REST API</span>
-                                    <span class="badge badge-secondary">Hive</span>
-                                </div>
-                                <h5 class="card-title bg-transparent mt-1">Paysecure-User Mobile App</h5>
-                                <div class="card-text bg-transparent secondary-font">
-                                   Pay Secure is a modern and secure Digital Wallet Mobile App designed to complement the Pay Secure Web Platform. It brings a wide range of financial services directly to users' smartphones, enabling them to manage money effortlessly and perform everyday transactions with ease and confidence.
-                                </div>
-                            </div>
-                            <div class="card-footer py-3">
-                                <span class="m-1 mx-2">
-                                    <a href="https://codecanyon.net/item/paysecure-digital-wallet-flutter-app-android-ios/58040829?s_rank=7"
-                                        target="_blank">
-                                         <img src="/images/envato.webp" alt="Paysecure User App on Envato Marketplace" style="width: 25px; height: 25px; object-fit: cover; border-radius: 5px;">
-                                    </a>
-                                </span>
-                                <span class="float-end">
-                                    <a class="btn btn-sm"
-                                        href="https://codecanyon.net/item/paysecure-digital-wallet-flutter-app-android-ios/58040829?s_rank=7"
-                                        target="_blank">
-                                        View
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Paysecure-merchant App -->
-                    <div class="col-lg-4 col-md-6 my-3">
-                        <div class="card my-3 h-100 card-hover" title="Digital Wallet App">
-                            <div class="card-head">
-                                <img class="card-img-top hover-img" src="/images/paysecure-merchant.png" data-hover="/images/covers/paysecure_merchant_cover.png" alt="Paysecure Merchant Mobile App - Business Payment Solution" style="width: 70px; height: 70px; object-fit: cover;">
-                            </div>
-                            <div class="card-body bg-transparent p-3">
-                                <div class="pb-2 bg-transparent">
-                                    <span class="badge badge-secondary">Flutter</span>
-                                    <span class="badge badge-secondary">GetX</span>
-                                    <span class="badge badge-secondary">Pusher</span>
-                                    <span class="badge badge-secondary">REST API</span>
-                                    <span class="badge badge-secondary">Hive</span>
-                                </div>
-                                <h5 class="card-title bg-transparent mt-1">Paysecure-Merchant Mobile App</h5>
-                                <div class="card-text bg-transparent secondary-font">
-                                   The Pay Secure Merchant App is a mobile solution built specifically for business owners who want to manage digital payments with ease and security. This app empowers merchants to accept payments, manage transactions, and track financial activity directly from their mobile device — anytime, anywhere.
-                                </div>
-                            </div>
-                            <div class="card-footer py-3">
-                                <span class="m-1 mx-2">
-                                    <a href="https://codecanyon.net/item/pay-secure-digital-wallet-application-for-merchant-android-ios/58793831?s_rank=1"
-                                        target="_blank">
-                                         <img src="/images/envato.webp" alt="Paysecure Merchant App on Envato Marketplace" style="width: 25px; height: 25px; object-fit: cover; border-radius: 5px;">
-                                    </a>
-                                </span>
-                                <span class="float-end">
-                                    <a class="btn btn-sm"
-                                        href="https://codecanyon.net/item/pay-secure-digital-wallet-application-for-merchant-android-ios/58793831?s_rank=1"
-                                        target="_blank">
-                                        View
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Paysecure-agent App -->
-                    <div class="col-lg-4 col-md-6 my-3">
-                        <div class="card my-3 h-100 card-hover" title="Digital Wallet App">
-                            <div class="card-head">
-                                <img class="card-img-top hover-img" src="/images/paysecure-agent.png" data-hover="/images/covers/paysecure_agent_cover.png" alt="Paysecure Agent Mobile App - Field Agent Solution" style="width: 70px; height: 70px; object-fit: cover;">
-                            </div>
-                            <div class="card-body bg-transparent p-3">
-                                <div class="pb-2 bg-transparent">
-                                    <span class="badge badge-secondary">Flutter</span>
-                                    <span class="badge badge-secondary">GetX</span>
-                                    <span class="badge badge-secondary">Pusher</span>
-                                <span class="badge badge-secondary">REST API</span>
-                                    <span class="badge badge-secondary">Hive</span>
-                                </div>
-                                <h5 class="card-title bg-transparent mt-1">Paysecure-Agent Mobile App</h5>
-                                <div class="card-text bg-transparent secondary-font">
-                                   The Pay Secure Agent App is a dedicated mobile tool for field agents and local representatives within the Pay Secure ecosystem. It enables agents to assist users with essential wallet services like deposits, withdrawals, and cash handling — all while maintaining full control and security from their mobile device.
-                                </div>
-                            </div>
-                            <div class="card-footer py-3">
-                                <span class="m-1 mx-2">
-                                    <a href="https://codecanyon.net/item/pay-secure-digital-wallet-application-for-agent-android-ios/58793829?s_rank=2"
-                                        target="_blank">
-                                         <img src="/images/envato.webp" alt="Paysecure Agent App on Envato Marketplace" style="width: 25px; height: 25px; object-fit: cover; border-radius: 5px;">
-                                    </a>
-                                </span>
-                                <span class="float-end">
-                                    <a class="btn btn-sm"
-                                        href="https://codecanyon.net/item/pay-secure-digital-wallet-application-for-agent-android-ios/58793829?s_rank=2"
-                                        target="_blank">
-                                        View
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                  
-                    <!-- Add more projects as needed -->
-
-                </div>
-            </div>
-        </section>
-
-        <section id="education" class="py-5">
-            <div class="container">
-                <h3 class="text-center">Education</h3>
-                <div class="row justify-content-center py-5">
-                    <div class="col-12 p-0">
-                        <div class="row row align-items-center justify-content-center m-1 mb-4">
-                            <div class="col-md-9">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="float-end">
-                                            <small>2024 - Current</small>
-                                        </div>
-                                        <h5 class="card-title">Bachelor of Science in Computer Science</h5>
-                                        <a href="https://eub.edu.bd/" target="_blank">
-                                            <h6>
-                                                European University of Bangladesh
-                                            </h6>
-                                        </a>
-                                        <div class="py-1 education-content">
-                                            <p>Currently pursuing my BSc in Computer Science while working full-time as a
-                                                Flutter developer.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 p-0">
-                        <div class="row row align-items-center justify-content-center m-1 mb-4">
-                            <div class="col-md-9">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="float-end">
-                                            <small>2018 - 2022</small>
-                                        </div>
-                                        <h5 class="card-title">Diploma in Computer Science</h5>
-                                        <a href="https://munshiganj.polytech.gov.bd/" target="_blank">
-                                            <h6>
-                                                Munshiganj Polytechnic Institute
-                                            </h6>
-                                        </a>
-                                        <div class="py-1">
-                                            GPA:
-                                            <i>
-                                                <small>3.48 out of 4.00</small>
-                                            </i>
-                                        </div>
-                                        <div class="py-1 education-content">
-                                            <p>Completed my diploma with a focus on software development and computer
-                                                fundamentals.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <section id="contact" class="py-5">
-            <div class="container">
-                <h1 class="text-center">Get in Touch</h1>
-                <div class="px-0 px-md-5 px-lg-5">
-                    <div class="row justify-content-center px-md-5">
-                        <div class="col-md-8 py-3">
-                            <div class="text-center">
-                                I'm always open to discussing new projects, creative ideas or opportunities to be part
-                                of your vision. Feel free to reach out!
-                            </div>
-                            <div class="text-center pt-3">
-                                <a href="#" 
-                                onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=razuahmed8641@gmail.com', '_blank')" 
-                                class="btn">
-                                Hire Me
+                        <div class="project-card-footer">
+                            <div class="project-footer-row">
+                                <a href="https://play.google.com/store/apps/details?id=com.lama.ng&hl=en" target="_blank" class="project-store-link">
+                                    <img src="/images/googleplay.png" alt="Google Play"> Play Store
                                 </a>
+                                <a href="https://play.google.com/store/apps/details?id=com.lama.ng&hl=en" target="_blank" class="project-cta-link">View</a>
+                            </div>
+                            <div class="project-footer-row">
+                                <a href="https://apps.apple.com/us/app/lama-ng/id6756806464" target="_blank" class="project-store-link">
+                                    <img src="/images/appstore.png" alt="App Store"> App Store
+                                </a>
+                                <a href="https://apps.apple.com/us/app/lama-ng/id6756806464" target="_blank" class="project-cta-link">View</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Golala BillPay -->
+                    <div class="project-card">
+                        <div class="project-card-header"></div>
+                        <div class="project-card-body">
+                            <div class="project-card-head">
+                                <img src="/images/bill.png" data-hover="/images/covers/bill_cover.png" alt="Golala" class="project-icon">
+                                <h3 class="project-card-title">Golala BillPay App</h3>
+                            </div>
+                            <p class="project-card-desc">
+                                One-stop mobile payment solution for all your top-up, recharge, and utility bill management needs right at your fingertips.
+                            </p>
+                            <div class="project-card-tags">
+                                <span class="project-badge">Flutter</span>
+                                <span class="project-badge">GetX</span>
+                                <span class="project-badge">Pusher</span>
+                                <span class="project-badge">REST API</span>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <div class="project-footer-row">
+                                <a href="https://play.google.com/store/apps/details?id=com.golala.billpayment&hl=en" target="_blank" class="project-store-link">
+                                    <img src="/images/googleplay.png" alt="Google Play"> Play Store
+                                </a>
+                                <a href="https://play.google.com/store/apps/details?id=com.golala.billpayment&hl=en" target="_blank" class="project-cta-link">View</a>
+                            </div>
+                            <div class="project-footer-row">
+                                <a href="https://apps.apple.com/us/app/golala-billpay-solutions/id6743252509" target="_blank" class="project-store-link">
+                                    <img src="/images/appstore.png" alt="App Store"> App Store
+                                </a>
+                                <a href="https://apps.apple.com/us/app/golala-billpay-solutions/id6743252509" target="_blank" class="project-cta-link">View</a>
+                            </div>
+                            <div class="project-footer-row">
+                                <a href="https://codecanyon.net/item/bill-pay-topup-recharge-and-utility-bill-payment-mobile-app/50124639?s_rank=26" target="_blank" class="project-store-link">
+                                    <img src="/images/envato.webp" alt="Envato"> CodeCanyon
+                                </a>
+                                <a href="https://codecanyon.net/item/bill-pay-topup-recharge-and-utility-bill-payment-mobile-app/50124639?s_rank=26" target="_blank" class="project-cta-link">View</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: Agriwealth -->
+                    <div class="project-card">
+                        <div class="project-card-header"></div>
+                        <div class="project-card-body">
+                            <div class="project-card-head">
+                                <img src="/images/agriwealth.png" data-hover="/images/covers/agriwealth_cover.png" alt="Agriwealth" class="project-icon">
+                                <h3 class="project-card-title">Agriwealth App</h3>
+                            </div>
+                            <p class="project-card-desc">
+                                Agricultural investment mobile companion application providing seamless access to portfolio, transactions, and real-time updates.
+                            </p>
+                            <div class="project-card-tags">
+                                <span class="project-badge">Flutter</span>
+                                <span class="project-badge">GetX</span>
+                                <span class="project-badge">Firebase</span>
+                                <span class="project-badge">Hive</span>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <div class="project-footer-row">
+                                <a href="https://play.google.com/store/apps/details?id=com.stip.club" target="_blank" class="project-store-link">
+                                    <img src="/images/googleplay.png" alt="Google Play"> Play Store
+                                </a>
+                                <a href="https://play.google.com/store/apps/details?id=com.stip.club" target="_blank" class="project-cta-link">View</a>
+                            </div>
+                            <div class="project-footer-row">
+                                <a href="https://codecanyon.net/item/agriwealth-agricultural-hyip-investment-mobile-application-android-ios/55396787?s_rank=15" target="_blank" class="project-store-link">
+                                    <img src="/images/envato.webp" alt="Envato"> CodeCanyon
+                                </a>
+                                <a href="https://codecanyon.net/item/agriwealth-agricultural-hyip-investment-mobile-application-android-ios/55396787?s_rank=15" target="_blank" class="project-cta-link">View</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 5: Listplace -->
+                    <div class="project-card">
+                        <div class="project-card-header"></div>
+                        <div class="project-card-body">
+                            <div class="project-card-head">
+                                <img src="/images/listplace.png" data-hover="/images/covers/listplace_cover.png" alt="Listplace" class="project-icon">
+                                <h3 class="project-card-title">Listplace Mobile App</h3>
+                            </div>
+                            <p class="project-card-desc">
+                                Business Directory Listing app. Users can explore, add, and manage listings easily from their mobile devices on the go.
+                            </p>
+                            <div class="project-card-tags">
+                                <span class="project-badge">Flutter</span>
+                                <span class="project-badge">GetX</span>
+                                <span class="project-badge">Pusher</span>
+                                <span class="project-badge">Google Map</span>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <div class="project-footer-row">
+                                <a href="https://codecanyon.net/item/listplace-business-directory-listing-flutter-app-android-ios/57380835?s_rank=10" target="_blank" class="project-store-link">
+                                    <img src="/images/envato.webp" alt="Envato"> CodeCanyon
+                                </a>
+                                <a href="https://codecanyon.net/item/listplace-business-directory-listing-flutter-app-android-ios/57380835?s_rank=10" target="_blank" class="project-cta-link">View</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 6: HYIP PRO -->
+                    <div class="project-card">
+                        <div class="project-card-header"></div>
+                        <div class="project-card-body">
+                            <div class="project-card-head">
+                                <img src="/images/hyip.png" data-hover="/images/covers/hyip_cover.png" alt="HYIP PRO" class="project-icon">
+                                <h3 class="project-card-title">HYIP PRO Mobile App</h3>
+                            </div>
+                            <p class="project-card-desc">
+                                High Yield Investment Platform companion app for building, launching, and managing a successful investment venture easily.
+                            </p>
+                            <div class="project-card-tags">
+                                <span class="project-badge">Flutter</span>
+                                <span class="project-badge">GetX</span>
+                                <span class="project-badge">Pusher</span>
+                                <span class="project-badge">REST API</span>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <div class="project-footer-row">
+                                <a href="https://codecanyon.net/item/hyip-pro-cross-platform-mobile-application/49701045?s_rank=28" target="_blank" class="project-store-link">
+                                    <img src="/images/envato.webp" alt="Envato"> CodeCanyon
+                                </a>
+                                <a href="https://codecanyon.net/item/hyip-pro-cross-platform-mobile-application/49701045?s_rank=28" target="_blank" class="project-cta-link">View</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 7: Coinectra -->
+                    <div class="project-card">
+                        <div class="project-card-header"></div>
+                        <div class="project-card-body">
+                            <div class="project-card-head">
+                                <img src="/images/coinectra.png" data-hover="/images/covers/coinectra_cover.png" alt="Coinectra" class="project-icon">
+                                <h3 class="project-card-title">Coinectra Mobile App</h3>
+                            </div>
+                            <p class="project-card-desc">
+                                Crypto Currency Exchange companion app. Trade crypto swaps, execute fiat transactions, and monitor balances securely.
+                            </p>
+                            <div class="project-card-tags">
+                                <span class="project-badge">Flutter</span>
+                                <span class="project-badge">GetX</span>
+                                <span class="project-badge">Pusher</span>
+                                <span class="project-badge">REST API</span>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <div class="project-footer-row">
+                                <a href="https://codecanyon.net/item/coinectra-buy-sell-and-crypto-currency-exchange-flutter-app-android-ios/58421141?s_rank=6" target="_blank" class="project-store-link">
+                                    <img src="/images/envato.webp" alt="Envato"> CodeCanyon
+                                </a>
+                                <a href="https://codecanyon.net/item/coinectra-buy-sell-and-crypto-currency-exchange-flutter-app-android-ios/58421141?s_rank=6" target="_blank" class="project-cta-link">View</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 8: Waiz -->
+                    <div class="project-card">
+                        <div class="project-card-header"></div>
+                        <div class="project-card-body">
+                            <div class="project-card-head">
+                                <img src="/images/waiz.png" data-hover="/images/covers/waiz_cover.png" alt="Waiz" class="project-icon">
+                                <h3 class="project-card-title">Waiz Mobile App</h3>
+                            </div>
+                            <p class="project-card-desc">
+                                Global Digital Wallet and Remittance app. Simplifies international money transfers with reliability, speed, and lower costs.
+                            </p>
+                            <div class="project-card-tags">
+                                <span class="project-badge">Flutter</span>
+                                <span class="project-badge">GetX</span>
+                                <span class="project-badge">Pusher</span>
+                                <span class="project-badge">Hive</span>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <div class="project-footer-row">
+                                <a href="https://codecanyon.net/item/waiz-digital-wallet-and-remittance-app-and-website-with-admin-panel/53238316?s_rank=22" target="_blank" class="project-store-link">
+                                    <img src="/images/envato.webp" alt="Envato"> CodeCanyon
+                                </a>
+                                <a href="https://codecanyon.net/item/waiz-digital-wallet-and-remittance-app-and-website-with-admin-panel/53238316?s_rank=22" target="_blank" class="project-cta-link">View</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 9: Paysecure User -->
+                    <div class="project-card">
+                        <div class="project-card-header"></div>
+                        <div class="project-card-body">
+                            <div class="project-card-head">
+                                <img src="/images/paysecure-user.png" data-hover="/images/covers/paysecure_user_cover.png" alt="Paysecure" class="project-icon">
+                                <h3 class="project-card-title">Paysecure-User App</h3>
+                            </div>
+                            <p class="project-card-desc">
+                                Modern Digital Wallet Mobile App. Enables users to manage money, transfer balances, and run secure transactions.
+                            </p>
+                            <div class="project-card-tags">
+                                <span class="project-badge">Flutter</span>
+                                <span class="project-badge">GetX</span>
+                                <span class="project-badge">Pusher</span>
+                                <span class="project-badge">REST API</span>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <div class="project-footer-row">
+                                <a href="https://codecanyon.net/item/paysecure-digital-wallet-flutter-app-android-ios/58040829?s_rank=7" target="_blank" class="project-store-link">
+                                    <img src="/images/envato.webp" alt="Envato"> CodeCanyon
+                                </a>
+                                <a href="https://codecanyon.net/item/paysecure-digital-wallet-flutter-app-android-ios/58040829?s_rank=7" target="_blank" class="project-cta-link">View</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 10: Paysecure Merchant -->
+                    <div class="project-card">
+                        <div class="project-card-header"></div>
+                        <div class="project-card-body">
+                            <div class="project-card-head">
+                                <img src="/images/paysecure-merchant.png" data-hover="/images/covers/paysecure_merchant_cover.png" alt="Paysecure Merchant" class="project-icon">
+                                <h3 class="project-card-title">Paysecure-Merchant</h3>
+                            </div>
+                            <p class="project-card-desc">
+                                Business payment solution app. Empowers merchants to accept payments, track transaction history, and check settlements.
+                            </p>
+                            <div class="project-card-tags">
+                                <span class="project-badge">Flutter</span>
+                                <span class="project-badge">GetX</span>
+                                <span class="project-badge">Pusher</span>
+                                <span class="project-badge">Hive</span>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <div class="project-footer-row">
+                                <a href="https://codecanyon.net/item/pay-secure-digital-wallet-application-for-merchant-android-ios/58793831?s_rank=1" target="_blank" class="project-store-link">
+                                    <img src="/images/envato.webp" alt="Envato"> CodeCanyon
+                                </a>
+                                <a href="https://codecanyon.net/item/pay-secure-digital-wallet-application-for-merchant-android-ios/58793831?s_rank=1" target="_blank" class="project-cta-link">View</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 11: Paysecure Agent -->
+                    <div class="project-card">
+                        <div class="project-card-header"></div>
+                        <div class="project-card-body">
+                            <div class="project-card-head">
+                                <img src="/images/paysecure-agent.png" data-hover="/images/covers/paysecure_agent_cover.png" alt="Paysecure Agent" class="project-icon">
+                                <h3 class="project-card-title">Paysecure-Agent App</h3>
+                            </div>
+                            <p class="project-card-desc">
+                                Field Agent Mobile App. Allows representatives to assist users with cash deposits, withdrawals, and wallet transactions.
+                            </p>
+                            <div class="project-card-tags">
+                                <span class="project-badge">Flutter</span>
+                                <span class="project-badge">GetX</span>
+                                <span class="project-badge">Pusher</span>
+                                <span class="project-badge">REST API</span>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <div class="project-footer-row">
+                                <a href="https://codecanyon.net/item/pay-secure-digital-wallet-application-for-agent-android-ios/58793829?s_rank=2" target="_blank" class="project-store-link">
+                                    <img src="/images/envato.webp" alt="Envato"> CodeCanyon
+                                </a>
+                                <a href="https://codecanyon.net/item/pay-secure-digital-wallet-application-for-agent-android-ios/58793829?s_rank=2" target="_blank" class="project-cta-link">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="projects-cta-container">
+                    <a href="https://github.com/razuahmed75" target="_blank" class="btn-primary">View All on GitHub <i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="section-padding reveal">
+            <div class="container-custom">
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="timeline">
+                    <!-- Bug Finder -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <div class="timeline-header">
+                                <div>
+                                    <span class="timeline-role">Senior Flutter Developer</span>
+                                    <span class="timeline-company"><a href="https://bugfinder.net" target="_blank">@ Bug Finder</a></span>
+                                </div>
+                                <span class="timeline-date">Nov 2023 - Present</span>
+                            </div>
+                            <div class="timeline-desc">
+                                <p>Lead the mobile development team and architect high-performance solutions for complex business requirements.</p>
+                                <ul>
+                                    <li>Designing and implementing scalable Flutter applications</li>
+                                    <li>Mentoring junior developers and conducting thorough code reviews</li>
+                                    <li>Managing international collaborations and project execution</li>
+                                    <li>Optimizing app performance and reducing build sizes</li>
+                                    <li>Integrating with backend REST APIs and third-party web services</li>
+                                    <li>Implementing automated CI/CD pipelines for testing and deployment</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bringin Technologies -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <div class="timeline-header">
+                                <div>
+                                    <span class="timeline-role">Junior Flutter Developer</span>
+                                    <span class="timeline-company"><a href="https://www.linkedin.com/company/unboltapp/" target="_blank">@ Bringin Technologies Ltd.</a></span>
+                                </div>
+                                <span class="timeline-date">Feb 2023 - Sep 2023</span>
+                            </div>
+                            <div class="timeline-desc">
+                                <p>Contributed to development and improvements of the flagship fintech mobile application.</p>
+                                <ul>
+                                    <li>Worked on UI/UX enhancements increasing user retention by 15%</li>
+                                    <li>Integrated with payment gateways and bank transfer REST APIs</li>
+                                    <li>Resolved critical issues, fixing crashes and improving app stability</li>
+                                    <li>Collaborated with design and backend API development teams</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="section-padding reveal">
+            <div class="container-custom">
+                <h2 class="section-title">Education</h2>
+                <div class="timeline">
+                    <!-- BSc -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <div class="timeline-header">
+                                <div>
+                                    <span class="timeline-role">Bachelor of Science in Computer Science</span>
+                                    <span class="timeline-company"><a href="https://eub.edu.bd/" target="_blank">@ European University of Bangladesh</a></span>
+                                </div>
+                                <span class="timeline-date">2024 - Current</span>
+                            </div>
+                            <div class="timeline-desc">
+                                <p>Currently pursuing my Bachelor's degree in Computer Science while working full-time as a Flutter developer to align theoretical foundations with practical industry standards.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Diploma -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <div class="timeline-header">
+                                <div>
+                                    <span class="timeline-role">Diploma in Computer Science</span>
+                                    <span class="timeline-company"><a href="https://munshiganj.polytech.gov.bd/" target="_blank">@ Munshiganj Polytechnic Institute</a></span>
+                                </div>
+                                <span class="timeline-date">2018 - 2022</span>
+                            </div>
+                            <div class="timeline-desc">
+                                <p>Completed diploma focusing on core software engineering principles, algorithms, and databases with a cumulative GPA of 3.48 / 4.00.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section-padding reveal">
+            <div class="container-custom">
+                <h2 class="section-title">Get In Touch</h2>
+                
+                <div class="contact-grid">
+                    <!-- Form Side (Left) -->
+                    <div class="contact-form-container">
+                        <form id="contact-form" action="https://formspree.io/f/mqkvgzel" method="POST" class="contact-form">
+                            <div class="form-group">
+                                <input type="text" id="contact-name" name="name" class="form-control" placeholder="Name" required>
+                                <label for="contact-name" class="form-label">Name</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="contact-email" name="email" class="form-control" placeholder="Email" required>
+                                <label for="contact-email" class="form-label">Email Address</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="contact-subject" name="subject" class="form-control" placeholder="Subject" required>
+                                <label for="contact-subject" class="form-label">Subject</label>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="contact-message" name="message" class="form-control" placeholder="Message" required></textarea>
+                                <label for="contact-message" class="form-label">Your Message</label>
+                            </div>
+                            
+                            <button type="submit" class="btn-submit">
+                                Send Message <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Info Cards Side (Right) -->
+                    <div class="contact-info-container reveal-stagger">
+                        <!-- Email Card -->
+                        <div class="contact-card-row" onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=razuahmed8641@gmail.com', '_blank')">
+                            <div class="contact-card-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-card-details">
+                                <span class="contact-card-label">Email Address</span>
+                                <span class="contact-card-value">razuahmed8641@gmail.com</span>
+                            </div>
+                        </div>
+
+                        <!-- GitHub Card -->
+                        <div class="contact-card-row" onclick="window.open('https://github.com/razuahmed75', '_blank')">
+                            <div class="contact-card-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div class="contact-card-details">
+                                <span class="contact-card-label">GitHub Account</span>
+                                <span class="contact-card-value">razuahmed75</span>
+                            </div>
+                        </div>
+
+                        <!-- LinkedIn Card -->
+                        <div class="contact-card-row" onclick="window.open('https://www.linkedin.com/in/razuahmed75', '_blank')">
+                            <div class="contact-card-icon">
+                                <i class="fab fa-linkedin-in"></i>
+                            </div>
+                            <div class="contact-card-details">
+                                <span class="contact-card-label">LinkedIn Connection</span>
+                                <span class="contact-card-value">razuahmed75</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Submit Status Alert Container -->
             <div id="contact-form-status"></div>
         </section>
-    </div>
-    <footer>
-        <div class="text-center pt-2">
-            <span class="px-1">
-                <a href="https://github.com/razuahmed75" aria-label="github">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="2.7em" height="2.7em" viewBox="0 0 1792 1792" alt="GitHub Profile">
-                        <path
-                            d="M522 1352q-8 9-20-3-13-11-4-19 8-9 20 3 12 11 4 19zm-42-61q9 12 0 19-8 6-17-7t0-18q9-7 17 6zm-61-60q-5 7-13 2-10-5-7-12 3-5 13-2 10 5 7 12zm31 34q-6 7-16-3-9-11-2-16 6-6 16 3 9 11 2 16zm129 112q-4 12-19 6-17-4-13-15t19-7q16 5 13 16zm63 5q0 11-16 11-17 2-17-11 0-11 16-11 17-2 17 11zm58-10q2 10-14 14t-18-8 14-15q16-2 18 9zm964-956v960q0 119-84.5 203.5t-203.5 84.5h-224q-16 0-24.5-1t-19.5-5-16-14.5-5-27.5v-239q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-121-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-86-13.5q-44 113-7 204-79 85-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-40 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 .5 103t.5 68q0 22-11 33.5t-22 13-33 1.5h-224q-119 0-203.5-84.5t-84.5-203.5v-960q0-119 84.5-203.5t203.5-84.5h960q119 0 203.5 84.5t84.5 203.5z" />
-                    </svg>
-                </a>
-            </span>
-            <span class="px-1">
-                <a href="https://www.linkedin.com/in/razuahmed75/" aria-label="linkedin">
-                    <svg xmlns="http://www.w3.org/2000/svg" width='2.4em' height='2.4em' fill="#fff"
-                        aria-label="LinkedIn" viewBox="0 0 512 512" alt="LinkedIn Profile">
-                        <rect width="512" height="512" fill="#0077b5" rx="15%" />
-                        <circle cx="142" cy="138" r="37" />
-                        <path stroke="#fff" stroke-width="66" d="M244 194v198M142 194v198" />
-                        <path
-                            d="M276 282c0-20 13-40 36-40 24 0 33 18 33 45v105h66V279c0-61-32-89-76-89-34 0-51 19-59 32" />
-                    </svg>
-                </a>
-            </span>
-            <a href="https://twitter.com/razuahmed8641" aria-label="twitter">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48px" height="48px" alt="Twitter Profile">
-                    <path fill="#03a9f4"
-                        d="M42,37c0,2.762-2.239,5-5,5H11c-2.762,0-5-2.238-5-5V11c0-2.762,2.238-5,5-5h26c2.761,0,5,2.238,5,5 V37z" />
-                    <path fill="#fff"
-                        d="M36,17.12c-0.882,0.391-1.999,0.758-3,0.88c1.018-0.604,2.633-1.862,3-3 c-0.951,0.559-2.671,1.156-3.793,1.372C31.311,15.422,30.033,15,28.617,15C25.897,15,24,17.305,24,20v2c-4,0-7.9-3.047-10.327-6 c-0.427,0.721-0.667,1.565-0.667,2.457c0,1.819,1.671,3.665,2.994,4.543c-0.807-0.025-2.335-0.641-3-1c0,0.016,0,0.036,0,0.057 c0,2.367,1.661,3.974,3.912,4.422C16.501,26.592,16,27,14.072,27c0.626,1.935,3.773,2.958,5.928,3c-1.686,1.307-4.692,2-7,2 c-0.399,0-0.615,0.022-1-0.023C14.178,33.357,17.22,34,20,34c9.057,0,14-6.918,14-13.37c0-0.212-0.007-0.922-0.018-1.13 C34.95,18.818,35.342,18.104,36,17.12" />
-                </svg>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-custom footer-content">
+            <a href="#" class="footer-logo">
+                <img src="/fav.png" alt="Razu Ahmed" width="28" height="28">
+                <span>Razu Ahmed</span>
             </a>
-            <a href="https://www.facebook.com/razu8641/" aria-label="facebook">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48px" height="48px" alt="Facebook Profile">
-                    <path fill="#3F51B5"
-                        d="M42,37c0,2.762-2.238,5-5,5H11c-2.761,0-5-2.238-5-5V11c0-2.762,2.239-5,5-5h26c2.762,0,5,2.238,5,5V37z" />
-                    <path fill="#FFF"
-                        d="M34.368,25H31v13h-5V25h-3v-4h3v-2.41c0.002-3.508,1.459-5.59,5.592-5.59H35v4h-2.287C31.104,17,31,17.6,31,18.723V21h4L34.368,25z" />
-                </svg>
-            </a>
-        </div>
-        <div class="container py-4">
-            <div class="row justify-content-center">
-                <div class="col-md-4 text-center">
-                    <div class="pb-2">
-                        <a href="https://razuahmed75.github.io/" title="Portfolio">
-                            <img alt="Razu Ahmed Portfolio Logo" src="/fav.png" height="40px" width="40px">
-                        </a>
-                    </div>
-                    &copy; 2023 Razu Ahmed. All rights reserved
-                    <div class="text-secondary">
-                        Made with
-                        <span class="text-danger">
-                            &#10084;
-                        </span>
-                    </div>
-                </div>
+            
+            <div class="footer-socials">
+                <a href="https://github.com/razuahmed75" target="_blank" class="social-btn" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/razuahmed75" target="_blank" class="social-btn" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://twitter.com/razuahmed8641" target="_blank" class="social-btn" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.facebook.com/razu8641/" target="_blank" class="social-btn" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
             </div>
+
+            <p class="footer-copy">&copy; 2026 Razu Ahmed. All rights reserved. Made with <span>&#10084;</span></p>
         </div>
     </footer>
 
-    <script src="/bootstrap-5/js/bootstrap.bundle.min.js"></script>
-    <script>
-        if (localStorage.getItem("pref-theme") === "dark") {
-            document.body.classList.add('dark');
-        } else if (localStorage.getItem("pref-theme") === "light") {
-            document.body.classList.remove('dark')
-        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.body.classList.add('dark');
-        }
-    </script>
-    <script>
-        document.getElementById("theme-toggle").addEventListener("click", () => {
-            if (document.body.className.includes("dark")) {
-                document.body.classList.remove('dark');
-                localStorage.setItem("pref-theme", 'light');
-            } else {
-                document.body.classList.add('dark');
-                localStorage.setItem("pref-theme", 'dark');
-            }
-        })
+    <!-- Lenis Smooth Scrolling CDN -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl)
-        })
-    </script>
+    <!-- Companion Redesigned Logic Scripts -->
+    <script src="/js/portfolio.js"></script>
 
-    <script src="js/search.js"></script>
-    <script src="js/project.js"></script>
-
-    <section id="search-content" class="py-2">
-        <div class="container" id="search-results"></div>
-    </section>
-    <!-- Lenis Smooth Scrolling -->
-    <script src="https://unpkg.com/lenis@1.3.16/dist/lenis.min.js"></script>
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const lenis = new Lenis({
-        // Smooth scroll settings
-        duration: 1.8,
-        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smooth: true,
-        });
-
-        function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-    });
-    </script>
-    <!-- Lenis Smooth Scrolling -->
-
-</body>
+    <!-- Google AdSense AMP ads support -->
     <amp-auto-ads type="adsense"
         data-ad-client="ca-pub-5078640249529722">
-</amp-auto-ads>
+    </amp-auto-ads>
+</body>
 
 </html>
