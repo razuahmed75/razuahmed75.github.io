@@ -209,11 +209,11 @@
                                 R<span>a</span><span class="z-anchor">Z</span>u ahmE<span class="d-anchor">d</span>
                                 <svg class="tail-svg" aria-hidden="true">
                                     <path class="tail-path" fill="none" />
+                                    <circle class="tail-dot" r="4" fill="var(--accent-2-color)" />
                                 </svg>
                             </div>
                             <div class="divider"></div>
                             <div class="subtitle">🍜Eat · 💤Sleep · ⚡Repeat</div>
-                            <!-- <div class="subtitle">Sleepy · Hungry · Debugging</div> -->
                         </div>
                     </h1>
                     <h2 class="hero-subtitle reveal" style="transition-delay: 300ms;">
@@ -1008,6 +1008,13 @@
           const controlY2 = startY + 13;
 
           path.setAttribute('d', `M ${startX} ${startY} C ${controlX1} ${controlY1}, ${controlX2} ${controlY2}, ${endX} ${endY}`);
+
+          // Update dot position
+          const dot = document.querySelector('.tail-dot');
+          if (dot) {
+            dot.setAttribute('cx', endX + 8);
+            dot.setAttribute('cy', endY + 10);
+          }
         };
 
         window.addEventListener('load', drawTail);
