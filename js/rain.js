@@ -81,7 +81,7 @@ function initRain() {
       const baseColX = i * colWidth;
       // Staggered column X position within the lane
       const x = baseColX + Math.random() * (colWidth - 30) + 15;
-      const speed = 0.3 + Math.random() * 0.6; // fall speed 0.3 to 0.9 px/frame
+      const speed = 0.3 + Math.random() * 0.7; // fall speed 0.3 to 0.9 px/frame
 
       // Determine how many badges to place in this column
       const badgesCount = Math.random() > 0.5 ? 2 : 1;
