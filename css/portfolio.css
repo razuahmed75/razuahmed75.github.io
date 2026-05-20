@@ -1772,7 +1772,7 @@ h2.section-title,
 
 .name-row {
   position: relative;
-  font-size: clamp(36px, 5vw, 55px);
+  font-size: clamp(32px, 5vw, 55px);
   font-weight: 800;
   line-height: 1.1;
   white-space: nowrap;
