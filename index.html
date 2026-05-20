@@ -204,7 +204,17 @@
                 <div class="hero-left">
                     <span class="hero-greeting reveal" style="transition-delay: 100ms;">Hi<span class="wave-emoji" style="display: inline-block;">👋</span>, I'm</span>
                     <h1 class="hero-title reveal" style="transition-delay: 200ms;">
-                        <span class="text-gradient">Razu Ahmed</span>
+                        <div class="signature-container">
+                            <div class="name-row">
+                                R<span>a</span><span class="z-anchor">Z</span>u ahmE<span class="d-anchor">d</span>
+                                <svg class="tail-svg" aria-hidden="true">
+                                    <path class="tail-path" fill="none" />
+                                </svg>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="subtitle">🍜Eat · 💤Sleep · ⚡Repeat</div>
+                            <!-- <div class="subtitle">Sleepy · Hungry · Debugging</div> -->
+                        </div>
                     </h1>
                     <h2 class="hero-subtitle reveal" style="transition-delay: 300ms;">
                         <span id="typewriter-role" data-roles='["Senior Flutter Developer", "Mobile App Architect", "Cross-Platform Engineer","Aspiring Software Engineer", "Open Source Contributor", "Problem Solver", "Tech Enthusiast"]'></span>
@@ -971,6 +981,39 @@
           repeatDelay: 2,
           transformOrigin: '70% 80%',
         });
+
+        // Dynamic Vector Signature Tail Drawer
+        const drawTail = () => {
+          const nameRow = document.querySelector('.name-row');
+          const zAnchor = document.querySelector('.z-anchor');
+          const dAnchor = document.querySelector('.d-anchor');
+          const path = document.querySelector('.tail-path');
+          
+          if (!nameRow || !zAnchor || !dAnchor || !path) return;
+
+          const rowRect = nameRow.getBoundingClientRect();
+          const zRect = zAnchor.getBoundingClientRect();
+          const dRect = dAnchor.getBoundingClientRect();
+
+          const startX = (zRect.left + zRect.width * 0.45) - rowRect.left;
+          const startY = (zRect.bottom - zRect.height * 0.12) - rowRect.top;
+
+          const endX = (dRect.left + dRect.width * 0.85) - rowRect.left;
+          const endY = (dRect.bottom - dRect.height * 0.08) - rowRect.top;
+
+          // Computed control curves
+          const controlX1 = startX + (endX - startX) * 0.15;
+          const controlY1 = startY + 20;
+          const controlX2 = startX + (endX - startX) * 0.75;
+          const controlY2 = startY + 13;
+
+          path.setAttribute('d', `M ${startX} ${startY} C ${controlX1} ${controlY1}, ${controlX2} ${controlY2}, ${endX} ${endY}`);
+        };
+
+        window.addEventListener('load', drawTail);
+        window.addEventListener('resize', drawTail);
+        document.fonts.ready.then(drawTail);
+        drawTail();
       });
     </script>
 </body>
