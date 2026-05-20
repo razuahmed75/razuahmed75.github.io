@@ -202,7 +202,7 @@
             <div class="hero-bg-grid"></div>
             <div class="container-custom hero-grid">
                 <div class="hero-left">
-                    <span class="hero-greeting reveal" style="transition-delay: 100ms;">Hi👋, I'm</span>
+                    <span class="hero-greeting reveal" style="transition-delay: 100ms;">Hi<span class="wave-emoji" style="display: inline-block;">👋</span>, I'm</span>
                     <h1 class="hero-title reveal" style="transition-delay: 200ms;">
                         <span class="text-gradient">Razu Ahmed</span>
                     </h1>
@@ -956,8 +956,23 @@
     <script src="/js/mouse_cursor.js"></script>
     <script src="/js/scrollbar.js"></script>
     <script src="/js/rain.js"></script>
-
-   
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        gsap.to('.wave-emoji', {
+          keyframes: [
+            { rotate:  22, duration: 0.18, ease: 'power1.inOut' },
+            { rotate: -10, duration: 0.18, ease: 'power1.inOut' },
+            { rotate:  22, duration: 0.18, ease: 'power1.inOut' },
+            { rotate:  -6, duration: 0.18, ease: 'power1.inOut' },
+            { rotate:  14, duration: 0.18, ease: 'power1.inOut' },
+            { rotate:   0, duration: 0.22, ease: 'power2.out'   },
+          ],
+          repeat: -1,
+          repeatDelay: 2,
+          transformOrigin: '70% 80%',
+        });
+      });
+    </script>
 </body>
 
 </html>
