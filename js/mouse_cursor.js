@@ -1,10 +1,8 @@
-
-
- (function () {
-    const dot   = document.getElementById('cursor-dot');
-    const r1    = document.getElementById('cursor-ring');
-    const r2    = document.getElementById('cursor-ring-2');
-    const line  = document.getElementById('cursor-line');
+(function () {
+    const dot  = document.getElementById('cursor-dot');
+    const r1   = document.getElementById('cursor-ring');
+    const r2   = document.getElementById('cursor-ring-2');
+    const line = document.getElementById('cursor-line');
 
     let mx = 0, my = 0, rx = 0, ry = 0, angle = 0, visible = false;
 
@@ -22,6 +20,24 @@
     document.addEventListener('mouseleave', () => {
         visible = false;
         [dot, r1, r2, line].forEach(el => el.style.opacity = '0');
+    });
+
+    document.addEventListener('mousedown', () => {
+        dot.style.width  = '3px';
+        dot.style.height = '3px';
+        r1.style.width   = '28px';
+        r1.style.height  = '28px';
+        r2.style.width   = '14px';
+        r2.style.height  = '14px';
+    });
+
+    document.addEventListener('mouseup', () => {
+        dot.style.width  = '6px';
+        dot.style.height = '6px';
+        r1.style.width   = '50px';
+        r1.style.height  = '50px';
+        r2.style.width   = '26px';
+        r2.style.height  = '26px';
     });
 
     (function loop() {
