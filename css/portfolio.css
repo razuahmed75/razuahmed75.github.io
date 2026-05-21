@@ -507,7 +507,7 @@ body.dark .theme-toggle-btn svg {
   border-radius: var(--radius-sm);
   font-weight: 600;
   font-size: var(--text-sm);
-  border: 1px solid var(--border-color);
+  border: 2px solid var(--border-color);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
