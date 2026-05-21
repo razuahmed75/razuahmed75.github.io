@@ -80,37 +80,37 @@
         }
 
         #cursor-dot {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 6px;
-    height: 6px;
-    background: var(--accent-2-color);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 99999;
-    transform: translate(-50%, -50%);
-    transition: width 0.15s, height 0.15s, opacity 0.3s;
-    box-shadow: 0 0 8px var(--accent-2-color), 0 0 16px var(--accent-2-glow);
-    opacity: 0;
-    will-change: transform;
-}
+           position: fixed;
+           top: 0;
+           left: 0;
+           width: 8px;
+           height: 8px;
+           background: var(--accent-2-color);
+           border-radius: 50%;
+           pointer-events: none;
+           z-index: 99999;
+           transform: translate(-50%, -50%);
+           transition: width 0.15s, height 0.15s, opacity 0.3s;
+           box-shadow: 0 0 8px var(--accent-2-color), 0 0 16px var(--accent-2-glow);
+           opacity: 0;
+           will-change: transform;
+       }
 
-#cursor-ring {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 45px;
-    height: 45px;
-    border: 1px solid var(--accent-2-color);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 99998;
-    transform: translate(-50%, -50%);
-    transition: width 0.15s, height 0.15s, opacity 0.3s;
-    opacity: 0;
-    will-change: transform;
-}
+       #cursor-ring {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 45px;
+          height: 45px;
+          border: 1px solid var(--accent-2-color);
+          border-radius: 50%;
+          pointer-events: none;
+          z-index: 99998;
+          transform: translate(-50%, -50%);
+          transition: width 0.15s, height 0.15s, opacity 0.3s;
+          opacity: 0;
+          will-change: transform;
+       }
 
 #cursor-ring-2 {
     position: fixed;
