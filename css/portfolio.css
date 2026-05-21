@@ -1820,12 +1820,14 @@ h2.section-title,
 /* Line 216 Animation (Subtitle Emojis) */
 .fade-pulse {
   display: inline-block;
-  animation: fade-pulse 2s infinite ease-in-out;
+  animation: fade-pulse 3s ease-in-out infinite;
 }
 
 @keyframes fade-pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.2; transform: scale(1.1); }
+  0%,100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  25%      { transform: translateY(-10px) rotate(15deg); opacity: 0.8; }
+  50%      { transform: translateY(-4px) rotate(-10deg); opacity: 0.5; }
+  75%      { transform: translateY(-8px) rotate(5deg); opacity: 0.9; }
 }
 
 /* Tail Dot Animation */
