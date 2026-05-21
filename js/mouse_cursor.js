@@ -51,8 +51,8 @@
         r2.style.top  = ry + 'px';
 
         const rad = angle * Math.PI / 180;
-        const lx  = rx + Math.cos(rad) * 10;
-        const ly  = ry + Math.sin(rad) * 10;
+        const lx  = rx + Math.cos(rad) * 20;
+        const ly  = ry + Math.sin(rad) * 20;
         const len = Math.hypot(lx - rx, ly - ry);
 
         line.style.left      = rx + 'px';
