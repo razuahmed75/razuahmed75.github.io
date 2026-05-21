@@ -1844,7 +1844,7 @@ h2.section-title,
 
 .arrow-ping {
   display: inline-block;
-  animation: ping 1.2s cubic-bezier(0.4,0,0.6,1) infinite;
+  animation: ping 2.5s cubic-bezier(0.4,0,0.6,1) infinite;
 }
 
 @keyframes ping {
@@ -1856,7 +1856,7 @@ h2.section-title,
 
 .download-ping {
   display: inline-block;
-  animation: downloadPing 1.2s cubic-bezier(0.4,0,0.6,1) infinite;
+  animation: downloadPing 2.5s cubic-bezier(0.4,0,0.6,1) infinite;
 }
 
 @keyframes downloadPing {
