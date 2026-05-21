@@ -1796,15 +1796,6 @@ h2.section-title,
   stroke: var(--accent-2-color);
   stroke-width: 5px;
   stroke-linecap: round;
-  stroke-dasharray: var(--tail-length, 1000);
-  stroke-dashoffset: var(--tail-length, 1000);
-  animation: draw-tail 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
-}
-
-@keyframes draw-tail {
-  to {
-    stroke-dashoffset: 0;
-  }
 }
 
 
@@ -1840,10 +1831,11 @@ h2.section-title,
 /* Tail Dot Animation */
 .tail-dot {
   animation: tail-dot-pulse 2s infinite ease-in-out;
+  transform-origin: center;
+  transform-box: fill-box;
 }
 
 @keyframes tail-dot-pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.2; transform: scale(1.3); }
 }
-

@@ -1008,21 +1008,14 @@
           const controlY2 = startY + 13;
 
           path.setAttribute('d', `M ${startX} ${startY} C ${controlX1} ${controlY1}, ${controlX2} ${controlY2}, ${endX} ${endY}`);
-          
-          // Set path length for animation
-          const length = path.getTotalLength();
-          path.style.setProperty('--tail-length', length);
-          path.style.strokeDasharray = length;
-            path.style.strokeDashoffset = length;
-            path.style.transition = 'none';
-            requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                path.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(0.4,0,0.2,1) 0.3s';
-                path.style.strokeDashoffset = 0;
-            });
-            });
 
-       };
+          // Update dot position
+          const dot = document.querySelector('.tail-dot');
+          if (dot) {
+            dot.setAttribute('cx', endX + 8);
+            dot.setAttribute('cy', endY + 10);
+          }
+        };
 
         window.addEventListener('load', drawTail);
         window.addEventListener('resize', drawTail);
