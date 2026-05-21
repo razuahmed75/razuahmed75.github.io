@@ -591,35 +591,18 @@ body.dark .theme-toggle-btn svg {
   justify-content: center;
 }
 
-/* wide soft outer beam */
-.hero-avatar-wrapper::before {
-    content: '';
-    position: absolute;
-    top: -60px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 180px solid transparent;
-    border-right: 180px solid transparent;
-    border-top: 450px solid rgba(180, 220, 255, 0.07);
-    filter: blur(24px);
-    z-index: 0;
-    pointer-events: none;
-}
-
 /* inner focused beam */
 .hero-avatar-wrapper::after {
     content: '';
     position: absolute;
-    top: -60px;
+    top: -260px;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
     height: 0;
-    border-left: 90px solid transparent;
-    border-right: 90px solid transparent;
-    border-top: 450px solid rgba(255, 255, 255, 0.05);
+    border-left: 190px solid transparent;
+    border-right: 190px solid transparent;
+    border-top: 450px solid rgba(200, 220, 255, 0.1);
     filter: blur(10px);
     z-index: 0;
     pointer-events: none;
@@ -627,14 +610,14 @@ body.dark .theme-toggle-btn svg {
 
 .avatar-glow {
   position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 240px;
-    height: 60px;
-    background: radial-gradient(ellipse, rgba(200, 220, 255, 0.18) 0%, transparent 70%);
-    z-index: 0;
-    pointer-events: none;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  height: 60px;
+  background: radial-gradient(ellipse, rgba(200, 220, 255, 0.3) 0%, transparent 70%);
+  z-index: 0;
+  pointer-events: none;
 }
 
 .hero-avatar {
