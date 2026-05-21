@@ -440,7 +440,7 @@ body.dark .theme-toggle-btn svg {
 }
 
 .hero-greeting {
-  font-size: var(--text-lg);
+  font-size: var(--text-xl);
   font-weight: 600;
   color: var(--accent-2-color);
   letter-spacing: 0.05em;
@@ -1814,6 +1814,29 @@ h2.section-title,
   letter-spacing: 0.4em;
   padding-left: 0.4em;
   opacity: 0.8;
+}
+
+/* Line 216 Animation (Subtitle Emojis) */
+.fade-pulse {
+  display: inline-block;
+  animation: fade-pulse 2s infinite ease-in-out;
+}
+
+@keyframes fade-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.1); }
+}
+
+/* Tail Dot Animation */
+.tail-dot {
+  animation: tail-dot-pulse 2s infinite ease-in-out;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+@keyframes tail-dot-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.3); }
 }
 
 
