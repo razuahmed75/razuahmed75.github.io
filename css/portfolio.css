@@ -1796,6 +1796,15 @@ h2.section-title,
   stroke: var(--accent-2-color);
   stroke-width: 5px;
   stroke-linecap: round;
+  stroke-dasharray: var(--tail-length, 1000);
+  stroke-dashoffset: var(--tail-length, 1000);
+  animation: draw-tail 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+}
+
+@keyframes draw-tail {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 
