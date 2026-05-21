@@ -1825,7 +1825,7 @@ h2.section-title,
 
 @keyframes fade-pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(1.1); }
+  50% { opacity: 0.2; transform: scale(1.1); }
 }
 
 /* Tail Dot Animation */
@@ -1837,6 +1837,6 @@ h2.section-title,
 
 @keyframes tail-dot-pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(1.3); }
+  50% { opacity: 0.2; transform: scale(1.3); }
 }
 
