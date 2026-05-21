@@ -1605,6 +1605,15 @@ html.lenis body {
   .section-padding {
     padding: var(--space-6) 0; /* 48px padding instead of 96px */
   }
+  
+  /* Hide lighting effect on mobile */
+  .hero-avatar-wrapper::after {
+        display: none;
+    }
+
+    .avatar-glow {
+        display: none;
+    }
 }
 
 @media (min-width: 769px) {
