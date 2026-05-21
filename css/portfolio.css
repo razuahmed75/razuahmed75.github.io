@@ -1840,8 +1840,6 @@ h2.section-title,
 /* Tail Dot Animation */
 .tail-dot {
   animation: tail-dot-pulse 2s infinite ease-in-out;
-  transform-origin: center;
-  transform-box: fill-box;
 }
 
 @keyframes tail-dot-pulse {
