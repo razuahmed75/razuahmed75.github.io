@@ -51,7 +51,8 @@
   --text-muted: #71717a;
   
   --accent-color: #0d1b2a;
-  --accent-2-color: #00b4d8;
+  --accent-2-color: #00E5C8;
+  /* --accent-2-color: #00b4d8; */
   --accent-glow: rgba(13, 27, 42, 0.08);
   --accent-2-glow: rgba(0, 180, 216, 0.15);
   --success-color: #10b981;
@@ -75,7 +76,7 @@ body.dark {
   --text-muted: #8b8ba7;
   
   --accent-color: #0d1b2a;
-  --accent-2-color: #00b4d8;
+  --accent-2-color: #00E5C8;
   --accent-glow: rgba(13, 27, 42, 0.15);
   --accent-2-glow: rgba(0, 180, 216, 0.25);
   --success-color: #10b981;

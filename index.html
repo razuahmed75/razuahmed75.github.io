@@ -69,22 +69,6 @@
             background: transparent;
         }
 
-        #cursor-dot {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 8px;
-            height: 8px;
-            background: var(--accent-2-color);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 99999;
-            transform: translate(-50%, -50%);
-            transition: width 0.15s, height 0.15s, background 0.2s, opacity 0.3s;
-            box-shadow: 0 0 6px var(--accent-2-glow);
-            opacity: 0;
-            will-change: transform, width, height;
-        }
         #scroll-canvas {
             position: fixed;
             top: 0;
@@ -95,21 +79,38 @@
             pointer-events: none;
         }
 
-        #cursor-ring {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 36px;
-            height: 36px;
-            border: 1.5px solid var(--accent-2-color);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 99998;
-            transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s, border-color 0.2s, opacity 0.3s;
-            opacity: 0;
-            will-change: transform, width, height;
-        }
+        #cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background: var(--accent-2-color);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: width 0.15s, height 0.15s, opacity 0.3s;
+    box-shadow: 0 0 8px var(--accent-2-color), 0 0 16px var(--accent-2-glow);
+    opacity: 0;
+    will-change: transform, width, height;
+}
+
+#cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid var(--accent-2-color);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, border-color 0.2s, opacity 0.3s;
+    opacity: 0;
+    will-change: transform, width, height;
+}
     </style>
 </head>
 
@@ -948,7 +949,7 @@
                 </a>
             </div>
 
-            <p class="footer-copy">&copy; 2026 Razu Ahmed. All rights reserved. Made with <span>&#10084;</span></p>
+            <p class="footer-copy">&copy; 2023 Razu Ahmed. All rights reserved. Made with <span>&#10084;</span></p>
         </div>
     </footer>
 
