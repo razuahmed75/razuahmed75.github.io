@@ -23,21 +23,21 @@
     });
 
     document.addEventListener('mousedown', () => {
-        dot.style.width  = '3px';
-        dot.style.height = '3px';
-        r1.style.width   = '28px';
-        r1.style.height  = '28px';
-        r2.style.width   = '14px';
-        r2.style.height  = '14px';
+        dot.style.width  = '4px';
+        dot.style.height = '4px';
+        r1.style.width   = '22px';
+        r1.style.height  = '22px';
+        r2.style.width   = '11px';
+        r2.style.height  = '11px';
     });
 
     document.addEventListener('mouseup', () => {
-        dot.style.width  = '6px';
-        dot.style.height = '6px';
-        r1.style.width   = '50px';
-        r1.style.height  = '50px';
-        r2.style.width   = '26px';
-        r2.style.height  = '26px';
+        dot.style.width  = '8px';
+        dot.style.height = '8px';
+        r1.style.width   = '40px';
+        r1.style.height  = '40px';
+        r2.style.width   = '21px';
+        r2.style.height  = '21px';
     });
 
     (function loop() {
@@ -51,14 +51,14 @@
         r2.style.top  = ry + 'px';
 
         const rad = angle * Math.PI / 180;
-        const lx  = rx + Math.cos(rad) * 25;
-        const ly  = ry + Math.sin(rad) * 25;
+        const lx  = rx + Math.cos(rad) * 10;
+        const ly  = ry + Math.sin(rad) * 10;
         const len = Math.hypot(lx - rx, ly - ry);
 
         line.style.left      = rx + 'px';
         line.style.top       = ry + 'px';
         line.style.width     = len + 'px';
-        line.style.transform = `translate(-0%, -50%) rotate(${angle}deg)`;
+        line.style.transform = `translate(0, -50%) rotate(${angle}deg)`;
 
         requestAnimationFrame(loop);
     })();
