@@ -464,14 +464,14 @@ body.dark .theme-toggle-btn svg {
 }
 
 .hero-subtitle {
-  font-size: clamp(20px, 3.5vw, 32px);
+  font-size: clamp(20px, 3.5vw, 22px);
   font-weight: 700;
   color: var(--text-primary);
   min-height: 48px;
 }
 
 .hero-description {
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
   color: var(--text-muted);
   max-width: 600px;
   line-height: 1.6;
