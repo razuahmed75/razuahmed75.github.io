@@ -405,7 +405,8 @@ body.dark .theme-toggle-btn svg {
   width: 100%;
   height: 100%;
   z-index: 0;
-  pointer-events: none;
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 /* Dot Grid Background Overlay */
