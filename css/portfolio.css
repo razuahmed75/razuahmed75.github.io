@@ -443,7 +443,8 @@ body.dark .theme-toggle-btn svg {
 .hero-middle {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: var(--space-4);
   z-index: 2;
 }
 
