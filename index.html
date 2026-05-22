@@ -33,6 +33,7 @@
 
     <!-- Custom Redesigned Stylesheet -->
     <link rel="stylesheet" href="/css/portfolio.css" media="all">
+    <link rel="stylesheet" href="/css/clock.css">
 
     <!-- Local FontAwesome icons (for offline support) -->
     <script defer src="/fontawesome-5/all-5.15.4.js"></script>
@@ -285,6 +286,21 @@
                             <img src="https://www.codewars.com/users/razuahmed75/badges/large" alt="Codewars Badge" class="d-none d-md-inline">
                             <img src="https://www.codewars.com/users/razuahmed75/badges/small" alt="Codewars Badge" class="d-inline d-md-none">
                         </a>
+                    </div>
+                </div>
+
+                <!-- Clock Middle Section -->
+                <div class="hero-middle reveal" style="transition-delay: 400ms;">
+                    <div class="clock-wrapper">
+                        <div class="clock" id="clock">
+                            <div class="face"></div>
+                            <div class="hand hand-hour" id="hand-hour"></div>
+                            <div class="hand hand-minute" id="hand-minute"></div>
+                            <div class="hand hand-second" id="hand-second"></div>
+                            <div class="center-dot"></div>
+                        </div>
+                        <div class="digital-time" id="digital-time">00:00:00</div>
+                        <div class="digital-date" id="digital-date"></div>
                     </div>
                 </div>
 
@@ -1058,6 +1074,7 @@
         drawTail();
       });
     </script>
+    <script src="/js/clock.js"></script>
 </body>
 
 </html>

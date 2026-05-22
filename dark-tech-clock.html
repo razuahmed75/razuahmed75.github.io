@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dark Tech Wall Clock</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #010409;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      gap: 32px;
+    }
+
+    h1 {
+      color: #58a6ff;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* ── CLOCK SHELL ── */
+    .clock {
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: #0d1117;
+      border: 6px solid #30363d;
+      box-shadow:
+        0 0 0 2px #0d1117,
+        0 0 0 4px #21262d,
+        0 12px 48px rgba(0, 0, 0, 0.6);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── FACE ── */
+    .face {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: #0d1117;
+    }
+
+    /* ── LANGUAGE LABELS ── */
+    .lang-label {
+      position: absolute;
+      font-size: 10px;
+      font-weight: 700;
+      text-align: center;
+      transform: translate(-50%, -50%);
+      z-index: 5;
+      white-space: nowrap;
+      pointer-events: none;
+      line-height: 1.1;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── TICK MARKS ── */
+    .tick {
+      position: absolute;
+      border-radius: 1px;
+      transform-origin: center bottom;
+    }
+
+    /* ── HANDS ── */
+    .hand {
+      position: absolute;
+      bottom: 50%;
+      left: 50%;
+      transform-origin: bottom center;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .hand-hour {
+      width: 5px;
+      height: 80px;
+      background: #c9d1d9;
+      margin-left: -2.5px;
+    }
+
+    .hand-minute {
+      width: 3px;
+      height: 110px;
+      background: #c9d1d9;
+      margin-left: -1.5px;
+    }
+
+    .hand-second {
+      width: 2px;
+      height: 120px;
+      background: #58a6ff;
+      margin-left: -1px;
+      box-shadow: 0 0 6px #58a6ff88;
+    }
+
+    /* ── CENTER DOT ── */
+    .center-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #58a6ff;
+      box-shadow: 0 0 10px #58a6ff99;
+      position: absolute;
+      z-index: 20;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* ── DIGITAL TIME ── */
+    .digital-time {
+      color: #58a6ff;
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .digital-date {
+      color: #8b949e;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Dev Clock</h1>
+
+  <div class="clock" id="clock">
+    <div class="face"></div>
+    <div class="hand hand-hour"   id="hand-hour"></div>
+    <div class="hand hand-minute" id="hand-minute"></div>
+    <div class="hand hand-second" id="hand-second"></div>
+    <div class="center-dot"></div>
+  </div>
+
+  <div class="digital-time" id="digital-time">00:00:00</div>
+  <div class="digital-date" id="digital-date"></div>
+
+  <script>
+    const languages = [
+      { label: 'Flutter', color: '#54c5f8' },
+      { label: 'Dart',    color: '#00d2b8' },
+      { label: 'C',       color: '#a8b9cc' },
+      { label: 'Python',  color: '#ffd343' },
+      { label: 'JS',      color: '#f7df1e' },
+      { label: 'HTML',    color: '#e44d26' },
+      { label: 'CSS',     color: '#264de4' },
+      { label: 'React',   color: '#61dafb' },
+      { label: 'Swift',   color: '#fa7343' },
+      { label: 'Kotlin',  color: '#7f52ff' },
+      { label: 'Go',      color: '#00add8' },
+      { label: 'Rust',    color: '#ce4a00' },
+    ];
+
+    const clock  = document.getElementById('clock');
+    const R      = 160; // half of 320px clock diameter
+
+    /* ── Draw tick marks ── */
+    for (let i = 0; i < 60; i++) {
+      const isMajor = i % 5 === 0;
+      const angle   = (i / 60) * 360;
+      const rad     = (angle - 90) * Math.PI / 180;
+      const len     = isMajor ? 14 : 6;
+      const dist    = R - (isMajor ? 20 : 16);
+
+      const tx = R + dist * Math.cos(rad);
+      const ty = R + dist * Math.sin(rad);
+
+      const tick = document.createElement('div');
+      tick.className = 'tick';
+      tick.style.cssText = `
+        width: ${isMajor ? '2px' : '1px'};
+        height: ${len}px;
+        background: ${isMajor ? '#58a6ff' : '#30363d'};
+        left: ${tx}px;
+        top: ${ty - len}px;
+        transform: rotate(${angle}deg);
+        opacity: ${isMajor ? '1' : '0.5'};
+      `;
+      clock.appendChild(tick);
+    }
+
+    /* ── Draw language labels ── */
+    languages.forEach((lang, i) => {
+      const angle   = (i / 12) * 360;
+      const rad     = (angle - 90) * Math.PI / 180;
+      const dist    = R - 48;
+
+      const lx = R + dist * Math.cos(rad);
+      const ly = R + dist * Math.sin(rad);
+
+      const lbl = document.createElement('div');
+      lbl.className = 'lang-label';
+      lbl.textContent = lang.label;
+      lbl.style.left  = lx + 'px';
+      lbl.style.top   = ly + 'px';
+      lbl.style.color = lang.color;
+      lbl.style.fontSize = lang.label.length > 4 ? '9px' : '10.5px';
+      clock.appendChild(lbl);
+    });
+
+    /* ── Clock hands animation ── */
+    function updateClock() {
+      const now = new Date();
+      const h   = now.getHours() % 12;
+      const m   = now.getMinutes();
+      const s   = now.getSeconds();
+      const ms  = now.getMilliseconds();
+
+      const sDeg = (s + ms / 1000) * 6;
+      const mDeg = (m + s  / 60)   * 6;
+      const hDeg = (h + m  / 60)   * 30;
+
+      document.getElementById('hand-hour').style.transform   = `rotate(${hDeg}deg)`;
+      document.getElementById('hand-minute').style.transform = `rotate(${mDeg}deg)`;
+      document.getElementById('hand-second').style.transform = `rotate(${sDeg}deg)`;
+
+      /* Digital display */
+      const pad  = n => String(n).padStart(2, '0');
+      document.getElementById('digital-time').textContent =
+        `${pad(now.getHours())}:${pad(m)}:${pad(s)}`;
+
+      const days   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      document.getElementById('digital-date').textContent =
+        `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()} ${now.getFullYear()}`;
+
+      requestAnimationFrame(updateClock);
+    }
+
+    updateClock();
+  </script>
+
+</body>
+</html>

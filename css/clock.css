@@ -1,0 +1,127 @@
+/* ── CLOCK SHELL ── */
+.clock-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  z-index: 10;
+}
+
+.clock {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: #0d1117;
+  border: 6px solid #30363d;
+  box-shadow:
+    0 0 0 2px #0d1117,
+    0 0 0 4px #21262d,
+    0 12px 48px rgba(0, 0, 0, 0.6);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── FACE ── */
+.face {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #0d1117;
+}
+
+/* ── LANGUAGE LABELS ── */
+.lang-label {
+  position: absolute;
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  white-space: nowrap;
+  pointer-events: none;
+  line-height: 1.1;
+  letter-spacing: 0.03em;
+}
+
+/* ── TICK MARKS ── */
+.tick {
+  position: absolute;
+  border-radius: 1px;
+  transform-origin: center bottom;
+}
+
+/* ── HANDS ── */
+.hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom center;
+  border-radius: 4px 4px 0 0;
+}
+
+.hand-hour {
+  width: 5px;
+  height: 80px;
+  background: #c9d1d9;
+  margin-left: -2.5px;
+}
+
+.hand-minute {
+  width: 3px;
+  height: 110px;
+  background: #c9d1d9;
+  margin-left: -1.5px;
+}
+
+.hand-second {
+  width: 2px;
+  height: 120px;
+  background: #58a6ff;
+  margin-left: -1px;
+  box-shadow: 0 0 6px #58a6ff88;
+}
+
+/* ── CENTER DOT ── */
+.center-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #58a6ff;
+  box-shadow: 0 0 10px #58a6ff99;
+  position: absolute;
+  z-index: 20;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ── DIGITAL TIME ── */
+.digital-time {
+  color: #58a6ff;
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  font-variant-numeric: tabular-nums;
+}
+
+.digital-date {
+  color: #8b949e;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+  .clock {
+    width: 200px;
+    height: 200px;
+  }
+  .hand-hour { height: 50px; }
+  .hand-minute { height: 70px; }
+  .hand-second { height: 80px; }
+  .digital-time { font-size: 20px; }
+}
