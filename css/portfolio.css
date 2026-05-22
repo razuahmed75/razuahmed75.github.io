@@ -443,9 +443,9 @@ body.dark .theme-toggle-btn svg {
 .hero-middle {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding-top: var(--space-4);
+  align-self: flex-start;
   z-index: 2;
+  margin-top: 10px; /* Small adjustment to line up with the greeting text */
 }
 
 .hero-greeting {
