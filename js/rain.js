@@ -47,6 +47,9 @@ function initRain() {
   const colWidth = 80; // horizontal separation lane width
   let columns = [];
 
+  // Dissolve particles pool
+  let particles = [];
+
   function resize() {
     // Robust size detection: try client dimensions first, then bounding rect, fallback to window
     const parent = canvas.parentElement;
@@ -81,7 +84,7 @@ function initRain() {
       const baseColX = i * colWidth;
       // Staggered column X position within the lane
       const x = baseColX + Math.random() * (colWidth - 30) + 15;
-      const speed = 0.3 + Math.random() * 0.6; // fall speed 0.3 to 0.9 px/frame
+      const speed = 0.3 + Math.random() * 0.7; // fall speed 0.3 to 0.9 px/frame
 
       // Determine how many badges to place in this column
       const badgesCount = Math.random() > 0.5 ? 2 : 1;
@@ -159,6 +162,104 @@ function initRain() {
     ctx.restore();
   }
 
+  // Badge hit test (accounts for dpr scaling)
+  function hitTest(bx, by, text, mx, my) {
+    ctx.font = '10px monospace';
+    const textWidth = ctx.measureText(text).width;
+    const badgeW = textWidth + 16;
+    const badgeH = 18;
+    return mx >= bx - badgeW / 2 - 4 && mx <= bx + badgeW / 2 + 4 &&
+           my >= by - badgeH / 2 - 4 && my <= by + badgeH / 2 + 4;
+  }
+
+  // Spawn dissolve particles at (x, y) with given color
+  function spawnDissolve(x, y, color) {
+    const count = 18;
+    for (let i = 0; i < count; i++) {
+      const angle = (i / count) * Math.PI * 2;
+      const speed = 0.5 + Math.random() * 1.5;
+      particles.push({
+        x, y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        r: 3 + Math.random() * 3,
+        color,
+        alpha: 0.95,
+        fade: 0.007 + Math.random() * 0.005,
+        type: 'dot'
+      });
+    }
+    // Three expanding rings
+    [3, 12, 24].forEach((startR, k) => {
+      particles.push({
+        x, y,
+        vx: 0, vy: 0,
+        r: startR,
+        color,
+        alpha: 0.7 - k * 0.15,
+        fade: 0.009,
+        type: 'ring'
+      });
+    });
+  }
+
+  // Draw and update all dissolve particles
+  function updateParticles() {
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.alpha -= p.fade;
+
+      if (p.alpha <= 0) {
+        particles.splice(i, 1);
+        continue;
+      }
+
+      ctx.save();
+      ctx.globalAlpha = Math.max(0, p.alpha);
+
+      if (p.type === 'dot') {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+      } else if (p.type === 'ring') {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.strokeStyle = p.color;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+        p.r += 2; // expand outward
+      }
+
+      ctx.restore();
+    }
+  }
+
+  // Click handler — find which badge was clicked and burst it
+  canvas.addEventListener('click', function (e) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = width / rect.width;
+    const scaleY = height / rect.height;
+    const mx = (e.clientX - rect.left) * scaleX;
+    const my = (e.clientY - rect.top) * scaleY;
+
+    for (let c = 0; c < columns.length; c++) {
+      const col = columns[c];
+      for (let b = col.badges.length - 1; b >= 0; b--) {
+        const badge = col.badges[b];
+        if (hitTest(col.x, badge.y, badge.lang.name, mx, my)) {
+          spawnDissolve(col.x, badge.y, badge.lang.color);
+          // Reset badge above screen with a new language
+          badge.y = -50 - Math.random() * 150;
+          badge.lang = langData[Math.floor(Math.random() * langData.length)];
+          return;
+        }
+      }
+    }
+  });
+
   function animate() {
     ctx.clearRect(0, 0, width, height);
 
@@ -178,6 +279,8 @@ function initRain() {
         drawBadge(col.x, badge.y, badge.lang.name, badge.lang.color, badge.opacity);
       });
     });
+
+    updateParticles();
 
     requestAnimationFrame(animate);
   }

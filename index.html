@@ -33,6 +33,7 @@
 
     <!-- Custom Redesigned Stylesheet -->
     <link rel="stylesheet" href="/css/portfolio.css" media="all">
+    <link rel="stylesheet" href="/css/clock.css">
 
     <!-- Local FontAwesome icons (for offline support) -->
     <script defer src="/fontawesome-5/all-5.15.4.js"></script>
@@ -69,22 +70,6 @@
             background: transparent;
         }
 
-        #cursor-dot {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 8px;
-            height: 8px;
-            background: var(--accent-2-color);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 99999;
-            transform: translate(-50%, -50%);
-            transition: width 0.15s, height 0.15s, background 0.2s, opacity 0.3s;
-            box-shadow: 0 0 6px var(--accent-2-glow);
-            opacity: 0;
-            will-change: transform, width, height;
-        }
         #scroll-canvas {
             position: fixed;
             top: 0;
@@ -95,21 +80,70 @@
             pointer-events: none;
         }
 
-        #cursor-ring {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 36px;
-            height: 36px;
-            border: 1.5px solid var(--accent-2-color);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 99998;
-            transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s, border-color 0.2s, opacity 0.3s;
-            opacity: 0;
-            will-change: transform, width, height;
-        }
+        #cursor-dot {
+           position: fixed;
+           top: 0;
+           left: 0;
+           width: 8px;
+           height: 8px;
+           background: var(--accent-2-color);
+           border-radius: 50%;
+           pointer-events: none;
+           z-index: 99999;
+           transform: translate(-50%, -50%);
+           transition: width 0.15s, height 0.15s, opacity 0.3s;
+           box-shadow: 0 0 8px var(--accent-2-color), 0 0 16px var(--accent-2-glow);
+           opacity: 0;
+           will-change: transform;
+       }
+
+       #cursor-ring {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 40px;
+          height: 40px;
+          border: 1.5px solid var(--accent-2-color);
+          border-radius: 50%;
+          pointer-events: none;
+          z-index: 99998;
+          transform: translate(-50%, -50%);
+          transition: width 0.15s, height 0.15s, opacity 0.3s;
+          opacity: 0;
+          will-change: transform;
+       }
+
+#cursor-ring-2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 21px;
+    height: 21px;
+    border: 1px solid var(--accent-2-glow);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99997;
+    transform: translate(-50%, -50%);
+    transition: width 0.15s, height 0.15s, opacity 0.3s;
+    opacity: 0;
+    will-change: transform;
+}
+
+#cursor-line {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 1px;
+    width: 10px;
+    background: linear-gradient(90deg, var(--accent-2-color), transparent);
+    pointer-events: none;
+    z-index: 99996;
+    transform-origin: left center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+        
     </style>
 </head>
 
@@ -117,6 +151,8 @@
     <!-- Custom Mouse Cursor Elements -->
     <div id="cursor-dot"></div>
     <div id="cursor-ring"></div>
+    <div id="cursor-ring-2"></div>
+    <div id="cursor-line"></div>
 
     <!-- Custom Canvas Scrollbar Element -->
     <canvas id="scroll-canvas"></canvas>
@@ -209,11 +245,11 @@
                                 R<span>a</span><span class="z-anchor">Z</span>u ahmE<span class="d-anchor">d</span>
                                 <svg class="tail-svg" aria-hidden="true">
                                     <path class="tail-path" fill="none" />
+                                    <circle class="tail-dot" r="4" fill="var(--accent-2-color)" />
                                 </svg>
                             </div>
                             <div class="divider"></div>
-                            <div class="subtitle">🍜Eat · 💤Sleep · ⚡Repeat</div>
-                            <!-- <div class="subtitle">Sleepy · Hungry · Debugging</div> -->
+                            <div class="subtitle"><span class="fade-pulse" style="animation-delay: 0s;">🍜</span>Eat · <span class="fade-pulse" style="animation-delay: 0.6s;">💤</span>Sleep · <span class="fade-pulse" style="animation-delay: 1.2s;">⚡</span>Repeat</div>
                         </div>
                     </h1>
                     <h2 class="hero-subtitle reveal" style="transition-delay: 300ms;">
@@ -224,8 +260,8 @@
                     </p>
                     
                     <div class="hero-ctas reveal" style="transition-delay: 500ms;">
-                        <a href="#projects" class="btn-primary">View Projects <i class="fas fa-arrow-right"></i></a>
-                        <a href="https://surl.li/wledoq" target="_blank" class="btn-secondary" download>Download CV <i class="fas fa-download"></i></a>
+                        <a href="#projects" class="btn-primary">View Projects <span class="arrow-ping"><i class="fas fa-arrow-right"></i></span></a>
+                        <a href="https://surl.li/wledoq" target="_blank" class="btn-secondary" download>Download CV <span class="download-ping"><i class="fas fa-download"></i></span></a>
                     </div>
 
                     <div class="social-row reveal" style="transition-delay: 600ms;">
@@ -250,6 +286,22 @@
                             <img src="https://www.codewars.com/users/razuahmed75/badges/large" alt="Codewars Badge" class="d-none d-md-inline">
                             <img src="https://www.codewars.com/users/razuahmed75/badges/small" alt="Codewars Badge" class="d-inline d-md-none">
                         </a>
+                    </div>
+                </div>
+
+                <!-- Clock Middle Section -->
+                <div class="hero-middle reveal" style="transition-delay: 400ms;">
+                    <div class="clock-wrapper">
+                        <div class="clock-title">DEV CLOCK</div>
+                        <div class="clock" id="clock">
+                            <div class="face"></div>
+                            <div class="hand hand-hour" id="hand-hour"></div>
+                            <div class="hand hand-minute" id="hand-minute"></div>
+                            <div class="hand hand-second" id="hand-second"></div>
+                            <div class="center-dot"></div>
+                        </div>
+                        <div class="digital-time" id="digital-time">00:00:00</div>
+                        <div class="digital-date" id="digital-date"></div>
                     </div>
                 </div>
 
@@ -948,12 +1000,29 @@
                 </a>
             </div>
 
-            <p class="footer-copy">&copy; 2026 Razu Ahmed. All rights reserved. Made with <span>&#10084;</span></p>
+            <p class="footer-copy">&copy; 2023 Razu Ahmed. All rights reserved. Made with <span>&#10084;</span></p>
         </div>
     </footer>
 
     <!-- Lenis Smooth Scrolling CDN -->
     <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const lenis = new Lenis({
+        // Smooth scroll settings
+        duration: 1.8,
+        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smooth: true,
+        });
+
+        function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+    });
+    </script>
+    <!-- Lenis Smooth Scrolling -->
 
     <!-- GSAP Animations CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -1008,6 +1077,13 @@
           const controlY2 = startY + 13;
 
           path.setAttribute('d', `M ${startX} ${startY} C ${controlX1} ${controlY1}, ${controlX2} ${controlY2}, ${endX} ${endY}`);
+
+          // Update dot position
+          const dot = document.querySelector('.tail-dot');
+          if (dot) {
+            dot.setAttribute('cx', endX + 8);
+            dot.setAttribute('cy', endY + 10);
+          }
         };
 
         window.addEventListener('load', drawTail);
@@ -1016,6 +1092,7 @@
         drawTail();
       });
     </script>
+    <script src="/js/clock.js"></script>
 </body>
 
 </html>
