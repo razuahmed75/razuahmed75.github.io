@@ -3,8 +3,17 @@
    ========================================================================== */
 
 const CONTACT_CONFIG = {
-  provider: 'web3forms',
+  // ✅ Switch provider here: 'telegram' | 'web3forms' | 'formspree'
+  provider: 'telegram',
+
+  // Telegram Bot API
+  telegramBotToken: '8991056257:AAExVJtzEwqUYiubWjydZahwWecUnDLso8k',
+  telegramChatId: '6930301059',
+
+  // Web3Forms (alternative)
   web3formsKey: '3d9cb423-c521-4981-a0db-23897a6aa9ad',
+
+  // Formspree (alternative)
   formspreeId: 'xnjrnwpk'
 };
 
@@ -332,10 +341,63 @@ function initProjectHover() {
 /* ==========================================================================
    6. CONTACT FORM
    ========================================================================== */
+
+/** Escape HTML special chars to prevent injection in Telegram HTML messages */
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+/** Send contact message via Telegram Bot API */
+async function sendViaTelegram(form) {
+  const name    = form.querySelector('#contact-name').value.trim();
+  const email   = form.querySelector('#contact-email').value.trim();
+  const subject = form.querySelector('#contact-subject').value.trim();
+  const message = form.querySelector('#contact-message').value.trim();
+
+  const text =
+    `📬 <b>New Contact Form Message</b>\n\n` +
+    `👤 <b>Name:</b> ${escapeHtml(name)}\n` +
+    `📧 <b>Email:</b> ${escapeHtml(email)}\n` +
+    `📋 <b>Subject:</b> ${escapeHtml(subject)}\n\n` +
+    `💬 <b>Message:</b>\n${escapeHtml(message)}`;
+
+  const res = await fetch(
+    `https://api.telegram.org/bot${CONTACT_CONFIG.telegramBotToken}/sendMessage`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: CONTACT_CONFIG.telegramChatId,
+        text: text,
+        parse_mode: 'HTML'
+      })
+    }
+  );
+
+  const data = await res.json();
+  if (!data.ok) throw new Error(data.description || 'Telegram API error');
+}
+
+/** Send contact message via Web3Forms / Formspree */
+async function sendViaFormService(form) {
+  const res = await fetch(form.action, {
+    method: form.method,
+    body: new FormData(form),
+    headers: { Accept: 'application/json' }
+  });
+
+  if (!res.ok) {
+    const data = await res.json();
+    const msg  = data.errors?.map(err => err.message).join(', ') || data.message || 'Submission failed.';
+    throw new Error(msg);
+  }
+}
+
 function initContactForm() {
-  const form      = document.getElementById('contact-form');
+  const form = document.getElementById('contact-form');
   if (!form) return;
 
+  // --- Provider-specific form setup ---
   if (CONTACT_CONFIG.provider === 'web3forms') {
     form.action = 'https://api.web3forms.com/submit';
     let keyInput = form.querySelector('input[name="access_key"]');
@@ -348,33 +410,29 @@ function initContactForm() {
     form.action = `https://formspree.io/f/${CONTACT_CONFIG.formspreeId}`;
     form.querySelector('input[name="access_key"]')?.remove();
   }
+  // telegram provider needs no form setup — it's handled entirely via JS
 
+  // --- Unified submit handler ---
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const submitBtn     = form.querySelector('.btn-submit');
-    const originalHtml  = submitBtn.innerHTML;
+    const submitBtn    = form.querySelector('.btn-submit');
+    const originalHtml = submitBtn.innerHTML;
 
     submitBtn.disabled  = true;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
     try {
-      const res = await fetch(e.target.action, {
-        method: form.method,
-        body: new FormData(e.target),
-        headers: { Accept: 'application/json' }
-      });
-
-      if (res.ok) {
-        showToast('success', 'Message sent!', "Thanks for reaching out — I'll get back to you soon.");
-        form.reset();
+      if (CONTACT_CONFIG.provider === 'telegram') {
+        await sendViaTelegram(form);
       } else {
-        const data = await res.json();
-        const msg  = data.errors?.map(err => err.message).join(', ') || data.message || 'Submission failed.';
-        showToast('error', 'Failed to send', msg);
+        await sendViaFormService(form);
       }
-    } catch {
-      showToast('error', 'Network error', 'Please check your connection and try again.');
+
+      showToast('success', 'Message sent!', "Thanks for reaching out — I'll get back to you soon.");
+      form.reset();
+    } catch (err) {
+      showToast('error', 'Failed to send', err.message || 'Please check your connection and try again.');
     } finally {
       submitBtn.disabled  = false;
       submitBtn.innerHTML = originalHtml;
