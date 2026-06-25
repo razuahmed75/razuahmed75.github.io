@@ -354,12 +354,23 @@ async function sendViaTelegram(form) {
   const subject = form.querySelector('#contact-subject').value.trim();
   const message = form.querySelector('#contact-message').value.trim();
 
-  const text =
-    `📬 <b>New Contact Form Message</b>\n\n` +
-    `👤 <b>Name:</b> ${escapeHtml(name)}\n` +
-    `📧 <b>Email:</b> ${escapeHtml(email)}\n` +
-    `📋 <b>Subject:</b> ${escapeHtml(subject)}\n\n` +
-    `💬 <b>Message:</b>\n${escapeHtml(message)}`;
+  // const text =
+  //   `📬 <b>New Contact Form Message</b>\n\n` +
+  //   `👤 <b>Name:</b> ${escapeHtml(name)}\n` +
+  //   `📧 <b>Email:</b> ${escapeHtml(email)}\n` +
+  //   `📋 <b>Subject:</b> ${escapeHtml(subject)}\n\n` +
+  //   `💬 <b>Message:</b>\n${escapeHtml(message)}`;
+
+    const text =
+      `🔔 <b>New Contact Form Submission</b>\n` +
+      `━━━━━━━━━━━━━━━━━━━━\n` +
+      `👤 <b>Name:</b>     ${escapeHtml(name)}\n` +
+      `📧 <b>Email:</b>    ${escapeHtml(email)}\n` +
+      `📋 <b>Subject:</b>  ${escapeHtml(subject)}\n` +
+      `━━━━━━━━━━━━━━━━━━━━\n` +
+      `💬 <b>Message:</b>\n<i>${escapeHtml(message)}</i>\n` +
+      `━━━━━━━━━━━━━━━━━━━━\n` +
+      `🕐 <b>Time:</b> ${new Date().toLocaleString('en-BD', { timeZone: 'Asia/Dhaka' })}`;
 
   const res = await fetch(
     `https://api.telegram.org/bot${CONTACT_CONFIG.telegramBotToken}/sendMessage`,
