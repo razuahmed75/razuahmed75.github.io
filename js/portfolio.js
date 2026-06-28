@@ -3,7 +3,7 @@
    ========================================================================== */
 
 const CONTACT_CONFIG = {
-  // ✅ Switch provider here: 'telegram' | 'web3forms' | 'formspree'
+  // Switch provider here: 'telegram' | 'web3forms' | 'formspree'
   provider: 'telegram',
 
   // Telegram Bot API
