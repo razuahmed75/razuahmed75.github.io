@@ -34,6 +34,7 @@
     <!-- Custom Redesigned Stylesheet -->
     <link rel="stylesheet" href="/css/portfolio.css" media="all">
     <link rel="stylesheet" href="/css/clock.css">
+    <link rel="stylesheet" href="/css/echo-terminal.css">
 
     <!-- Local FontAwesome icons (for offline support) -->
     <script defer src="/fontawesome-5/all-5.15.4.js"></script>
@@ -68,16 +69,6 @@
             pointer-events: none;
             display: block;
             background: transparent;
-        }
-
-        #scroll-canvas {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 22px;
-            height: 100vh;
-            z-index: 99999;
-            pointer-events: none;
         }
 
         #cursor-dot {
@@ -1093,6 +1084,11 @@
       });
     </script>
     <script src="/js/clock.js"></script>
+    <!-- Echo Terminal AI Widget -- Get a free Gemini API key at https://aistudio.google.com/apikey -->
+    <script>
+      window.GEMINI_API_KEY = 'AQ.Ab8RN6K7v9ls7U2OjoJqBmA2GEWn4jSRhObSEuZ-lpq24lZ4zQ'; // <-- Paste your Gemini API key here (starts with AIza...)
+    </script>
+    <script src="/js/echo-terminal.js"></script>
 </body>
 
 </html>
