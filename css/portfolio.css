@@ -1396,11 +1396,9 @@ textarea.form-control {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .btn-submit:hover {
-  transform: translateY(-2px);
   box-shadow: var(--btn-primary-shadow);
 }
 
@@ -1790,8 +1788,7 @@ h2.section-title,
 .timeline-dot,
 .contact-info-container,
 .contact-form-container input,
-.contact-form-container textarea,
-.contact-form-container button {
+.contact-form-container textarea {
   will-change: transform, opacity;
 }
 

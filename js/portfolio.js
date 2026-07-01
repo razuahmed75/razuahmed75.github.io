@@ -600,7 +600,7 @@ function showToast(type, title, message) {
 
   toast.querySelector('.toast-close').addEventListener('click', dismiss);
 
-  const timer = setTimeout(dismiss, 4000);
+  const timer = setTimeout(dismiss, 8000);
   toast.addEventListener('mouseenter', () => {
     clearTimeout(timer);
     toast.querySelector('.toast-progress').style.animationPlayState = 'paused';
