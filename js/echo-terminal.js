@@ -116,6 +116,23 @@
 
   const THINKING_LABELS = ['✨ Thinking', '✨ Processing', '✨ One moment', '✨ Looking that up', '✨ Analyzing', '✨ Computing', '✨ Working on it', '✨ Just a sec', '✨ Fetching data', '✨ Crunching numbers'];
 
+  const TOOLTIP_TEXTS = [
+    '💬 Need help? Ask me anything!',
+    '🛠️ Want to know my skills?',
+    '🚀 Curious about my projects?',
+    '💼 Ask about my experience!',
+    '🎓 See my education details?',
+    '⚡ What tech stack do I use?',
+    '🏆 See my achievements?',
+  ];
+
+  const SUGGESTED_QUESTIONS = [
+    '✨ What skills does Razu have?',
+    '✨ What projects has Razu built?',
+    '✨ What is Razu\'s experience?',
+    '✨ Can you tell me about Razu?',
+  ];
+
   const KB = [
     //-----General-------//
     { topic: 'education', keys: ['education','educational','degree','degrees','background','study','studied','studies','university','universities','college','academic','academics','qualification','qualifications','school','graduate','graduated','bsc','diploma','gpa','learn'], replies: ["BSc in Computer Science, European University of Bangladesh (2024–Current). Diploma in Computer Science, Munshiganj Polytechnic Institute (2018–2022, GPA 3.48/4.00).","Razu is currently pursuing a BSc in Computer Science at European University of Bangladesh (2024–Current), and holds a Diploma in Computer Science from Munshiganj Polytechnic Institute (2018–2022, GPA 3.48/4.00)."], more: "Razu's diploma coursework covered structured programming, databases, and software engineering fundamentals, which built the foundation for his current BSc studies." },
@@ -260,15 +277,8 @@
     return new Promise(r => setTimeout(r, ms));
   }
 
-  const SUGGESTED_QUESTIONS = [
-    '✨ What skills does Razu have?',
-    '✨ What projects has Razu built?',
-    '✨ What is Razu\'s experience?',
-    '✨ Can you tell me about Razu?',
-  ];
-
   function initEchoTerminal() {
-    const fabHtml = `<button class="echo-fab echo-fab-pulse" id="echo-fab" aria-label="Open Echo Terminal"><i class="fas fa-terminal"></i></button>`;
+    const fabHtml = `<button class="echo-fab echo-fab-pulse" id="echo-fab" aria-label="Open Echo Terminal"><i class="fas fa-terminal"></i></button>\n<div class="echo-tooltip" id="echo-tooltip">${TOOLTIP_TEXTS[0]}</div>`;
 
     const windowHtml = `
       <div class="echo-window echo-terminal-font" id="echo-window">
@@ -306,6 +316,7 @@
     document.body.appendChild(container);
 
     const fab = document.getElementById('echo-fab');
+    const tooltip = document.getElementById('echo-tooltip');
     const windowEl = document.getElementById('echo-window');
     const closeDot = document.getElementById('echo-dot-close');
     const closeX = document.getElementById('echo-close-x');
@@ -313,6 +324,15 @@
     const inputField = document.getElementById('echo-input');
     const sendBtn = document.getElementById('echo-send');
     const suggestionsEl = document.getElementById('echo-suggestions');
+
+    let tooltipIndex = 0;
+
+    function rotateTooltip() {
+      tooltipIndex = (tooltipIndex + 1) % TOOLTIP_TEXTS.length;
+      tooltip.textContent = TOOLTIP_TEXTS[tooltipIndex];
+    }
+
+    const tooltipInterval = setInterval(rotateTooltip, 3000);
 
     let availableQuestions = SUGGESTED_QUESTIONS.slice();
 
@@ -367,6 +387,7 @@
         windowEl.classList.add('open');
         fab.classList.remove('echo-fab-pulse');
         fab.innerHTML = '<i class="fas fa-times"></i>';
+        tooltip.classList.add('hidden');
         setTimeout(() => inputField.focus(), 100);
         scrollToBottom();
         pauseLenis();
@@ -374,6 +395,7 @@
         windowEl.classList.remove('open');
         fab.classList.add('echo-fab-pulse');
         fab.innerHTML = '<i class="fas fa-terminal"></i>';
+        tooltip.classList.remove('hidden');
         resumeLenis();
       }
     }
