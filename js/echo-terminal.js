@@ -421,6 +421,12 @@
 
     sendBtn.addEventListener('click', () => sendMessage());
 
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && windowEl.classList.contains('open')) {
+        toggleWindow(true);
+      }
+    });
+
     function appendInstant(senderName, text, role, isNew) {
       const box = document.createElement('div');
       box.className = `echo-message-box ${role === 'user' ? 'user-box' : 'ai-box'}`;
