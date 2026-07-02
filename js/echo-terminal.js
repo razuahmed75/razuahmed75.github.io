@@ -260,6 +260,13 @@
     return new Promise(r => setTimeout(r, ms));
   }
 
+  const SUGGESTED_QUESTIONS = [
+    'What skills does Razu have?',
+    'What projects has Razu built?',
+    'What is Razu\'s experience?',
+    'How can I contact Razu?',
+  ];
+
   function initEchoTerminal() {
     const fabHtml = `<button class="echo-fab echo-fab-pulse" id="echo-fab" aria-label="Open Echo Terminal"><i class="fas fa-terminal"></i></button>`;
 
@@ -277,8 +284,9 @@
         <div class="echo-messages-container" id="echo-messages">
           <div class="echo-message-box">
             <div class="echo-label-welcome">✨ Welcome to Echo Terminal</div>
-            <div>Type your message below and press Enter to chat with Echo.</div>
+            <div>Type a message or pick a suggestion below:</div>
           </div>
+          <div class="echo-suggestions" id="echo-suggestions"></div>
         </div>
         <div class="echo-input-area">
           <div class="echo-input-row">
@@ -304,7 +312,25 @@
     const messagesContainer = document.getElementById('echo-messages');
     const inputField = document.getElementById('echo-input');
     const sendBtn = document.getElementById('echo-send');
+    const suggestionsEl = document.getElementById('echo-suggestions');
 
+    let availableQuestions = SUGGESTED_QUESTIONS.slice();
+
+    function renderSuggestions() {
+      suggestionsEl.innerHTML = '';
+      availableQuestions.forEach(function(q) {
+        const chip = document.createElement('button');
+        chip.className = 'echo-chip';
+        chip.textContent = q;
+        chip.addEventListener('click', function() {
+          chip.remove();
+          availableQuestions = availableQuestions.filter(function(x) { return x !== q; });
+          inputField.value = q;
+          sendMessage();
+        });
+        suggestionsEl.appendChild(chip);
+      });
+    }
     let chatHistory = [];
     let lastTopic = null;
 
@@ -317,11 +343,22 @@
         for (let i = chatHistory.length - 1; i >= 0; i--) {
           if (chatHistory[i].role === 'model' && chatHistory[i].topic) { lastTopic = chatHistory[i].topic; break; }
         }
+        availableQuestions = SUGGESTED_QUESTIONS.filter(function(q) {
+          return !chatHistory.some(function(m) { return m.role === 'user' && m.content === q; });
+        });
       } catch (e) {}
     }
 
     function saveHistory() {
       sessionStorage.setItem('echo_chat_history', JSON.stringify(chatHistory));
+    }
+
+    function pauseLenis() {
+      if (window.lenis) window.lenis.stop();
+    }
+
+    function resumeLenis() {
+      if (window.lenis) window.lenis.start();
     }
 
     function toggleWindow(forceClose = null) {
@@ -332,16 +369,20 @@
         fab.innerHTML = '<i class="fas fa-times"></i>';
         setTimeout(() => inputField.focus(), 100);
         scrollToBottom();
+        pauseLenis();
       } else {
         windowEl.classList.remove('open');
         fab.classList.add('echo-fab-pulse');
         fab.innerHTML = '<i class="fas fa-terminal"></i>';
+        resumeLenis();
       }
     }
 
     fab.addEventListener('click', () => toggleWindow());
     closeDot.addEventListener('click', () => toggleWindow(true));
     closeX.addEventListener('click', () => toggleWindow(true));
+    windowEl.addEventListener('mouseenter', pauseLenis);
+    windowEl.addEventListener('mouseleave', resumeLenis);
 
     inputField.addEventListener('input', () => {
       sendBtn.disabled = !inputField.value.trim();
@@ -411,6 +452,12 @@
       messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
+    messagesContainer.addEventListener('wheel', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      messagesContainer.scrollTop += e.deltaY;
+    }, { passive: false });
+
     let typingEl = null;
     function showTypingIndicator(label) {
       if (typingEl) return;
@@ -460,6 +507,7 @@
     }
 
     loadHistory();
+    renderSuggestions();
   }
 
   if (document.readyState === 'loading') {
