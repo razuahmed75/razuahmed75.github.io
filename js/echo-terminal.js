@@ -261,10 +261,10 @@
   }
 
   const SUGGESTED_QUESTIONS = [
-    'What skills does Razu have?',
-    'What projects has Razu built?',
-    'What is Razu\'s experience?',
-    'Can you tell me about Razu?',
+    '✨ What skills does Razu have?',
+    '✨ What projects has Razu built?',
+    '✨ What is Razu\'s experience?',
+    '✨ Can you tell me about Razu?',
   ];
 
   function initEchoTerminal() {

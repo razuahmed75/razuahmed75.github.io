@@ -59,7 +59,7 @@
   position: fixed;
   bottom: 96px;
   right: 24px;
-  width: 460px;
+  width: 560px;
   height: 580px;
   max-height: calc(100vh - 140px);
   background-color: var(--surface-color);
@@ -160,7 +160,6 @@
   line-height: 1.6;
   color: var(--text-primary);
   word-break: break-word;
-  white-space: pre-wrap;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
@@ -256,8 +255,9 @@
   outline: none;
   transition: border-color var(--transition-fast);
 }
-
+.echo-message-box
 .echo-textarea:focus {
+  caret-color: var(--accent-2-color);
   border-color: var(--accent-2-color);
   box-shadow: 0 0 0 1px var(--accent-2-color);
 }
@@ -308,12 +308,12 @@
 
 .echo-chip {
   background-color: var(--surface-color-2);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--accent-2-color);
   border-radius: 20px;
   padding: 6px 14px;
   font-size: 12px;
   font-family: inherit;
-  color: var(--text-primary);
+  color: var(--accent-2-color);
   cursor: pointer;
   transition: background-color 0.2s ease, border-color 0.2s ease;
   white-space: nowrap;
