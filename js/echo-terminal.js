@@ -120,7 +120,7 @@
     //-----General-------//
     { topic: 'education', keys: ['education','educational','degree','degrees','background','study','studied','studies','university','universities','college','academic','academics','qualification','qualifications','school','graduate','graduated','bsc','diploma','gpa','learn'], replies: ["BSc in Computer Science, European University of Bangladesh (2024–Current). Diploma in Computer Science, Munshiganj Polytechnic Institute (2018–2022, GPA 3.48/4.00).","Razu is currently pursuing a BSc in Computer Science at European University of Bangladesh (2024–Current), and holds a Diploma in Computer Science from Munshiganj Polytechnic Institute (2018–2022, GPA 3.48/4.00)."], more: "Razu's diploma coursework covered structured programming, databases, and software engineering fundamentals, which built the foundation for his current BSc studies." },
     { topic: 'skills', keys: ['skill','skills','skilled','tech','technical','technology','technologies','stack','framework','frameworks','language','languages','proficient','proficiency','expertise','know','knows','good at','capable','capabilities','tools','toolset','programming'], replies: ["Razu works with Dart, Flutter, JavaScript, HTML/CSS. State management: Riverpod, GetX, Bloc, Provider. Local DB: Hive, Isar, SQLite, ObjectBox. Networking: Dio, Retrofit, Chopper. Also Git, Firebase, REST APIs, Clean Architecture.","His core toolkit: Dart & Flutter for cross-platform apps, GetX/Riverpod/Bloc/Provider for state management, Hive/Isar/SQLite/ObjectBox for local storage, and Dio/Retrofit for networking — all backed by Firebase and Clean Architecture."], more: "Beyond the basics: Razu also handles CI/CD pipelines, REST API integration, third-party SDK integration (payments, maps, push notifications), app performance profiling, and reducing APK/IPA build sizes." },
-    { topic: 'projects', keys: ['project','projects','app','apps','application','applications','portfolio','built','build','made','make','created','create','developed','develop','shipped','launched'], replies: ["Razu's projects:\n\n\n• Giftily — Play Store: https://play.google.com/store/apps/details?id=com.giftily_dz.app&hl=en | CodeCanyon: https://codecanyon.net/item/gamers-arena-on-demand-game-shop-cross-platform-mobile-application/51225336\n\n\n• Lama.ng — Play Store: https://play.google.com/store/apps/details?id=com.lama.ng&hl=en | App Store: https://apps.apple.com/us/app/lama-ng/id6756806464\n\n\n• Golala BillPay — Play Store: https://play.google.com/store/apps/details?id=com.golala.billpayment&hl=en | App Store: https://apps.apple.com/us/app/golala-billpay-solutions/id6743252509 | CodeCanyon: https://codecanyon.net/item/bill-pay-topup-recharge-and-utility-bill-payment-mobile-app/50124639?s_rank=26\n\n\n• Agriwealth — Play Store: https://play.google.com/store/apps/details?id=com.stip.club | CodeCanyon: https://codecanyon.net/item/agriwealth-agricultural-hyip-investment-mobile-application-android-ios/55396787?s_rank=15\n\n\n• Listplace — CodeCanyon: https://codecanyon.net/item/listplace-business-directory-listing-flutter-app-android-ios/57380835?s_rank=10\n\n\n• HYIP PRO — CodeCanyon: https://codecanyon.net/item/hyip-pro-cross-platform-mobile-application/49701045?s_rank=28\n\n\n• Coinectra — CodeCanyon: https://codecanyon.net/item/coinectra-buy-sell-and-crypto-currency-exchange-flutter-app-android-ios/58421141?s_rank=6\n\n\n• Waiz — CodeCanyon: https://codecanyon.net/item/waiz-digital-wallet-and-remittance-app-and-website-with-admin-panel/53238316?s_rank=22\n\n\n• Paysecure-User — CodeCanyon: https://codecanyon.net/item/paysecure-digital-wallet-flutter-app-android-ios/58040829?s_rank=7\n\n\n• Paysecure-Merchant — CodeCanyon: https://codecanyon.net/item/pay-secure-digital-wallet-application-for-merchant-android-ios/58793831?s_rank=1\n\n\n• Paysecure-Agent — CodeCanyon: https://codecanyon.net/item/pay-secure-digital-wallet-application-for-agent-android-ios/58793829?s_rank=2"], more: "A few highlights: Giftily handles real-time game top-ups with Pusher signaling; Lama.ng is a full service marketplace with Google Maps integration; Paysecure spans three connected apps (User, Merchant, Agent) for a complete digital wallet ecosystem." },
+    { topic: 'projects', keys: ['project','projects','app','apps','application','applications','portfolio','built','build','made','make','created','create','developed','develop','shipped','launched', 'live', 'published'], replies: ["Razu's projects:\n\n\n• Giftily — Play Store: https://play.google.com/store/apps/details?id=com.giftily_dz.app&hl=en | CodeCanyon: https://codecanyon.net/item/gamers-arena-on-demand-game-shop-cross-platform-mobile-application/51225336\n\n\n• Lama.ng — Play Store: https://play.google.com/store/apps/details?id=com.lama.ng&hl=en | App Store: https://apps.apple.com/us/app/lama-ng/id6756806464\n\n\n• Golala BillPay — Play Store: https://play.google.com/store/apps/details?id=com.golala.billpayment&hl=en | App Store: https://apps.apple.com/us/app/golala-billpay-solutions/id6743252509 | CodeCanyon: https://codecanyon.net/item/bill-pay-topup-recharge-and-utility-bill-payment-mobile-app/50124639?s_rank=26\n\n\n• Agriwealth — Play Store: https://play.google.com/store/apps/details?id=com.stip.club | CodeCanyon: https://codecanyon.net/item/agriwealth-agricultural-hyip-investment-mobile-application-android-ios/55396787?s_rank=15\n\n\n• Listplace — CodeCanyon: https://codecanyon.net/item/listplace-business-directory-listing-flutter-app-android-ios/57380835?s_rank=10\n\n\n• HYIP PRO — CodeCanyon: https://codecanyon.net/item/hyip-pro-cross-platform-mobile-application/49701045?s_rank=28\n\n\n• Coinectra — CodeCanyon: https://codecanyon.net/item/coinectra-buy-sell-and-crypto-currency-exchange-flutter-app-android-ios/58421141?s_rank=6\n\n\n• Waiz — CodeCanyon: https://codecanyon.net/item/waiz-digital-wallet-and-remittance-app-and-website-with-admin-panel/53238316?s_rank=22\n\n\n• Paysecure-User — CodeCanyon: https://codecanyon.net/item/paysecure-digital-wallet-flutter-app-android-ios/58040829?s_rank=7\n\n\n• Paysecure-Merchant — CodeCanyon: https://codecanyon.net/item/pay-secure-digital-wallet-application-for-merchant-android-ios/58793831?s_rank=1\n\n\n• Paysecure-Agent — CodeCanyon: https://codecanyon.net/item/pay-secure-digital-wallet-application-for-agent-android-ios/58793829?s_rank=2"], more: "A few highlights: Giftily handles real-time game top-ups with Pusher signaling; Lama.ng is a full service marketplace with Google Maps integration; Paysecure spans three connected apps (User, Merchant, Agent) for a complete digital wallet ecosystem." },
     { topic: 'experience', keys: ['experience','experienced','job','jobs','career','company','companies','role','roles','position','positions','employer','employers','work history','professional','years of experience','current job','current role'], replies: ["Senior Flutter Developer @ Bug Finder (Nov 2023–Present): leads mobile dev team, architects apps, mentors juniors, optimizes performance, CI/CD. Previously Junior Flutter Developer @ Bringin Technologies Ltd (Feb–Sep 2023).","Currently Senior Flutter Developer at Bug Finder since Nov 2023, leading the mobile team and mentoring developers. Before that, he was a Junior Flutter Developer at Bringin Technologies Ltd (Feb–Sep 2023)."], more: "At Bug Finder, Razu also handles client communication for international projects, sets up CI/CD pipelines, and profiles apps to cut load times and build sizes. At Bringin Technologies, he worked closely with backend teams on secure payment and bank-transfer flows." },
     { topic: 'contact', keys: ['contact','email','e-mail','hire','hiring','reach','linkedin','connect','get in touch','message him','talk to him'], replies: ["Reach Razu at +880 1706-084790, LinkedIn: https://linkedin.com/in/razuahmed75 , or via the contact form on this page.","You can email razuahmed8641@gmail.com, connect on LinkedIn (linkedin.com/in/razuahmed75), or use the contact form above."] },
     { topic: 'resume', keys: ['resume','cv','curriculum vitae'], replies: ["Download Razu's CV: https://surl.li/wledoq"] },
@@ -236,24 +236,24 @@
 
   function getLocalResponse(rawQuery, lastTopic) {
     const q = normalize(rawQuery);
-    if (!q) return { reply: pick(FALLBACK_REPLIES), topic: null };
+    if (!q) return { reply: pick(FALLBACK_REPLIES), topic: null, isFallback: true };
     let best = null, bestScore = 0;
     for (const entry of KB) {
       const s = matchScore(q, entry.keys);
       if (s > bestScore) { bestScore = s; best = entry; }
     }
-    if (best) return finalize(best);
+    if (best) return { ...finalize(best), isFallback: false };
     if (isMoreRequest(q)) {
       if (lastTopic) {
         const entry = KB.find(e => e.topic === lastTopic);
-        if (entry && entry.more) return { reply: entry.more, topic: lastTopic };
-        if (entry) return { reply: "That's about everything I've got on that — ask me something else!", topic: lastTopic };
+        if (entry && entry.more) return { reply: entry.more, topic: lastTopic, isFallback: false };
+        if (entry) return { reply: "That's about everything I've got on that — ask me something else!", topic: lastTopic, isFallback: false };
       }
-      return { reply: "More about what? Try asking about skills, projects, experience, education, or contact first.", topic: null };
+      return { reply: "More about what? Try asking about skills, projects, experience, education, or contact first.", topic: null, isFallback: false };
     }
     const fuzzy = fuzzyMatch(q);
-    if (fuzzy) return finalize(fuzzy);
-    return { reply: pick(FALLBACK_REPLIES), topic: null };
+    if (fuzzy) return { ...finalize(fuzzy), isFallback: false };
+    return { reply: pick(FALLBACK_REPLIES), topic: null, isFallback: true };
   }
 
   function wait(ms) {
@@ -264,7 +264,7 @@
     'What skills does Razu have?',
     'What projects has Razu built?',
     'What is Razu\'s experience?',
-    'How can I contact Razu?',
+    'Can you tell me about Razu?',
   ];
 
   function initEchoTerminal() {
@@ -493,8 +493,14 @@
       saveHistory();
 
       showTypingIndicator(pick(THINKING_LABELS));
-      const { reply, topic } = getLocalResponse(text, lastTopic);
-      await wait(250 + Math.random() * 450);
+      const { reply, topic, isFallback } = getLocalResponse(text, lastTopic);
+      if (isFallback) {
+        removeTypingIndicator();
+        showTypingIndicator('✨ Searching depths...');
+        await wait(4000);
+      } else {
+        await wait(250 + Math.random() * 450);
+      }
       removeTypingIndicator();
       await appendStreaming(reply);
 
