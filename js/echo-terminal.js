@@ -1,15 +1,5 @@
 (function () {
-  // const FALLBACK_REPLIES = [
-  //     "✨ I'm not sure I follow — try asking about Razu's skills, projects, experience, education, or contact info.",
-  //     "✨ Hmm, could you rephrase that? I can talk about Razu's work, background, or how to reach him.",
-  //     "✨ I don't have info on that. Ask me about skills, projects, experience, education, or contact.",
-  //     "✨ Not sure about that — ask about skills, projects, experience, education, or contact.",
-  //     "✨ Try asking about Razu's skills, projects, experience, education, or contact.",
-  //     "✨ Not in my knowledge base. Ask about skills, projects, experience, education, or contact.",
-  // ];
-
   const FALLBACK_REPLIES = [
-    //---------------51 fallback---------//
     "✨ এই প্রশ্ন শুনে আমার CPU বললো, 'আমি ছুটি চাই!' 😵",
     "✨ আমি এতক্ষণ উত্তর খুঁজলাম, শেষে Google-ও বললো 'ভাই, পারলাম না!' 😂",
     "✨ আমার RAM এই প্রশ্ন প্রসেস করতে গিয়ে ফুল হয়ে গেছে! 🧠💥",
@@ -60,8 +50,6 @@
     "✨ এই প্রশ্নে আমি 404 না, 503 Service Unavailable হয়ে গেছি! 🤖",
     "✨ আমার brain.exe stopped working. Windows-ও solution দিতে পারলো না! 💀",
     "✨ একটু easy mode-এ আসো বস, hard mode unlock কইরো না! 🎮",
-    
-    //---------------50 fallback---------//
     "✨ আরে আরে! এই প্রশ্ন শুনে আমার CPU ফ্যান হাওয়া খাওয়া শুরু করে দিছে! 🌪️",
     "✨ আমি উত্তর খুঁজতে গিয়ে নিজের README পড়া শুরু করে দিছি! 📖",
     "✨ এই প্রশ্নটা এতই কঠিন, আমার AI-ও Google খুলে বসছে! 🤖",
@@ -134,7 +122,6 @@
   ];
 
   const KB = [
-    //-----General-------//
     { topic: 'education', keys: ['education','educational','degree','degrees','background','study','studied','studies','university','universities','college','academic','academics','qualification','qualifications','school','graduate','graduated','bsc','diploma','gpa','learn'], replies: ["BSc in Computer Science, European University of Bangladesh (2024–Current). Diploma in Computer Science, Munshiganj Polytechnic Institute (2018–2022, GPA 3.48/4.00).","Razu is currently pursuing a BSc in Computer Science at European University of Bangladesh (2024–Current), and holds a Diploma in Computer Science from Munshiganj Polytechnic Institute (2018–2022, GPA 3.48/4.00)."], more: "Razu's diploma coursework covered structured programming, databases, and software engineering fundamentals, which built the foundation for his current BSc studies." },
     { topic: 'skills', keys: ['skill','skills','skilled','tech','technical','technology','technologies','stack','framework','frameworks','language','languages','proficient','proficiency','expertise','know','knows','good at','capable','capabilities','tools','toolset','programming'], replies: ["Razu works with Dart, Flutter, JavaScript, HTML/CSS. State management: Riverpod, GetX, Bloc, Provider. Local DB: Hive, Isar, SQLite, ObjectBox. Networking: Dio, Retrofit, Chopper. Also Git, Firebase, REST APIs, Clean Architecture.","His core toolkit: Dart & Flutter for cross-platform apps, GetX/Riverpod/Bloc/Provider for state management, Hive/Isar/SQLite/ObjectBox for local storage, and Dio/Retrofit for networking — all backed by Firebase and Clean Architecture."], more: "Beyond the basics: Razu also handles CI/CD pipelines, REST API integration, third-party SDK integration (payments, maps, push notifications), app performance profiling, and reducing APK/IPA build sizes." },
     { topic: 'projects', keys: ['project','projects','app','apps','application','applications','portfolio','built','build','made','make','created','create','developed','develop','shipped','launched', 'live', 'published'], replies: ["Razu's projects:\n\n\n• Giftily — Play Store: https://play.google.com/store/apps/details?id=com.giftily_dz.app&hl=en | CodeCanyon: https://codecanyon.net/item/gamers-arena-on-demand-game-shop-cross-platform-mobile-application/51225336\n\n\n• Lama.ng — Play Store: https://play.google.com/store/apps/details?id=com.lama.ng&hl=en | App Store: https://apps.apple.com/us/app/lama-ng/id6756806464\n\n\n• Golala BillPay — Play Store: https://play.google.com/store/apps/details?id=com.golala.billpayment&hl=en | App Store: https://apps.apple.com/us/app/golala-billpay-solutions/id6743252509 | CodeCanyon: https://codecanyon.net/item/bill-pay-topup-recharge-and-utility-bill-payment-mobile-app/50124639?s_rank=26\n\n\n• Agriwealth — Play Store: https://play.google.com/store/apps/details?id=com.stip.club | CodeCanyon: https://codecanyon.net/item/agriwealth-agricultural-hyip-investment-mobile-application-android-ios/55396787?s_rank=15\n\n\n• Listplace — CodeCanyon: https://codecanyon.net/item/listplace-business-directory-listing-flutter-app-android-ios/57380835?s_rank=10\n\n\n• HYIP PRO — CodeCanyon: https://codecanyon.net/item/hyip-pro-cross-platform-mobile-application/49701045?s_rank=28\n\n\n• Coinectra — CodeCanyon: https://codecanyon.net/item/coinectra-buy-sell-and-crypto-currency-exchange-flutter-app-android-ios/58421141?s_rank=6\n\n\n• Waiz — CodeCanyon: https://codecanyon.net/item/waiz-digital-wallet-and-remittance-app-and-website-with-admin-panel/53238316?s_rank=22\n\n\n• Paysecure-User — CodeCanyon: https://codecanyon.net/item/paysecure-digital-wallet-flutter-app-android-ios/58040829?s_rank=7\n\n\n• Paysecure-Merchant — CodeCanyon: https://codecanyon.net/item/pay-secure-digital-wallet-application-for-merchant-android-ios/58793831?s_rank=1\n\n\n• Paysecure-Agent — CodeCanyon: https://codecanyon.net/item/pay-secure-digital-wallet-application-for-agent-android-ios/58793829?s_rank=2"], more: "A few highlights: Giftily handles real-time game top-ups with Pusher signaling; Lama.ng is a full service marketplace with Google Maps integration; Paysecure spans three connected apps (User, Merchant, Agent) for a complete digital wallet ecosystem." },
@@ -150,15 +137,12 @@
     { topic: 'location', keys: ['location','where','based','dhaka','bangladesh','live','lives','living','from'], replies: ["Razu is based in Uttara, Dhaka, Bangladesh."] },
     { topic: 'phone', keys: ['phone','number','call','mobile','whatsapp'], replies: ["Phone: +880 1706-084790"] },
     { topic: 'who', keys: ['who','yourself','razu','introduce','introduction','bio','about him','about you'], replies: ["Razu Ahmed is a Senior Flutter Developer with 4+ years building cross-platform apps for Android & iOS. Leads mobile dev, architects solutions, mentors developers.","Meet Razu — a Senior Flutter Developer with 4+ years shipping Android & iOS apps, leading teams, and mentoring junior developers."], more: "Outside of Flutter, Razu enjoys exploring new mobile architectures, mentoring junior devs, and tackling coding challenges on Codewars." },
-    
     { topic: 'help', keys: ['help','commands','options','what can you do'], replies: ["✨ Ask about skills, projects, experience, education, contact, resume, or socials!"], smalltalk: true },
     { topic: 'greeting', keys: ['hi','hii','hiii','hello','helloo','hlw','hlww', 'hllw','hhlw','hey','heyy','yo','hiya','hola','sup','wassup','wsp','what\'s up','whats up','howdy','greetings','good morning','good afternoon','good evening','good night','morning','afternoon','evening','hi there','hello there','hey there','how are you','how are u','how r u','how\'s it going','hows it going','how are things','nice to meet you','good to see you','long time no see','are you there','anyone there','echo','echo hi','echo hello','hi echo','hello echo','hey echo','hi razu','hello razu','hey razu','হাই','হ্যালো','হেলো','হেই','হে','সালাম','আসসালামু আলাইকুম','আসসালামুয়ালাইকুম','ওয়ালাইকুম সালাম','শুভ সকাল','সুপ্রভাত','শুভ দুপুর','শুভ সন্ধ্যা','শুভ রাত্রি','কেমন আছো','কেমন আছেন','কি খবর','কী খবর','খবর কি','আছেন নাকি','কেউ আছেন','এই শুনছেন','হ্যালো ভাই','হ্যালো বন্ধু','হাই ভাই','হাই echo','হ্যালো echo'], replies: ["👋 Hey! Welcome! I'm Echo, Razu's AI assistant. Ask me anything about Razu!","😄 Hello! Great to see you. What would you like to know about Razu?","✨ Hi there! I can tell you about Razu's skills, projects, experience, education, or contact information.","🚀 Hey! Ready to explore Razu's portfolio? Ask me anything!","🤖 Hello! I'm Echo. How can I help you today?","🌟 Hi! Want to know about Razu's Flutter journey, projects, or experience?","👋 Welcome aboard! I'm here to answer your questions about Razu.","💙 Assalamu Alaikum! I'm Echo. What would you like to know about Razu?","⚡ Hey buddy! Feel free to ask me anything related to Razu.","😊 Hello! Let's get started. Ask me about Razu's skills, projects, experience, education, or resume!"], smalltalk: true },
     { topic: 'howareyou', keys: ['how are you','hows it going',"how's it going",'how are you doing'], replies: ["✨ Running smoothly, thanks for asking! What would you like to know about Razu?","All systems good here. Ask me anything about Razu's work!"], smalltalk: true },
     { topic: 'identity', keys: ['are you real','are you ai','are you human','are you a bot','are you chatgpt','are you gpt','are you gemini','what are you'], replies: ["✨ I'm Echo — a lightweight assistant built into this portfolio to answer questions about Razu. Not a general-purpose AI, just here to help you learn about his work!"], smalltalk: true },
     { topic: 'thanks', keys: ['thank','thanks','thank you','appreciate'], replies: ["✨ You're welcome! Anything else you'd like to know about Razu?","Anytime! Let me know if you want to know more about Razu's work."], smalltalk: true },
     { topic: 'bye', keys: ['bye','goodbye','see you','later'], replies: ["✨ Goodbye! Feel free to come back anytime.","See you! Come back if you have more questions about Razu."], smalltalk: true },
-
-    //-----Additional-------//
     { topic: 'hobbies', keys: ['hobby','hobbies','interest','interests','free time','spare time','fun','passion','passionate','likes','enjoy','enjoys'], replies: ["When he's not coding, Razu likes tackling algorithm puzzles on Codewars and exploring new Flutter architecture patterns.","Outside work, Razu spends time on Codewars challenges and experimenting with new mobile dev techniques."] },
     { topic: 'why_flutter', keys: ['why flutter','why dart','why does he use flutter','flutter over','why choose flutter'], replies: ["Razu prefers Flutter for its single codebase covering both iOS and Android with near-native performance and a rich widget ecosystem.","He picked Flutter because it lets him ship polished, fast apps to both platforms from one codebase — with hot reload speeding up iteration."] },
     { topic: 'availability', keys: ['available','availability','freelance','freelancing','open to work','looking for work','open for hire','part time','full time'], replies: ["Razu's currently working full-time at Bug Finder, but he's open to interesting freelance or collaboration opportunities — reach out via email or LinkedIn.","He's open to discussing new opportunities; best way in is email or LinkedIn."] },
@@ -168,8 +152,6 @@
     { topic: 'strengths', keys: ['strength','strengths','best at','specialize','specializes','specialty','specialization'], replies: ["Razu's strongest area is building production-grade Flutter apps end-to-end — architecture, state management, API integration, and App Store/Play Store deployment.","He specializes in cross-platform Flutter development, from clean architecture to shipping on both app stores."] },
     { topic: 'teamwork', keys: ['team player','leadership','lead','leads','manage','managing','mentoring','mentor'], replies: ["As a Senior Flutter Developer, Razu leads the mobile team, mentors junior developers, and handles architecture decisions on client projects."] },
     { topic: 'fun_fact', keys: ['fun fact','something interesting','surprise me','random fact','tell me something cool'], replies: ["Fun fact: Razu has shipped 30+ production Flutter apps across fintech, e-commerce, and crypto — from solo builds to leading a team."] },
-
-    //-----Project description-------//
     { topic: 'giftily', keys: ['giftily', 'game'], replies: ["Play Store: https://play.google.com/store/apps/details?id=com.giftily_dz.app&hl=en\nCodeCanyon: https://codecanyon.net/item/gamers-arena-on-demand-game-shop-cross-platform-mobile-application/51225336\n\nGame top-ups & gift cards platform for gamers in Algeria — fast, secure, feature-packed for pros and enthusiasts. Stack: Flutter, Riverpod, Firebase, Pusher, REST API, Dio+Retrofit, Dart Isolate, Isar."] },
     { topic: 'lamang', keys: ['lama ng','lamang','lama', 'lama.ng'], replies: ["Play Store: https://play.google.com/store/apps/details?id=com.lama.ng&hl=en\nApp Store: https://apps.apple.com/us/app/lama-ng/id6756806464\n\nConnects users with trusted service providers across categories — explore, compare, and hire professionals easily. Stack: Flutter, Riverpod, Firebase, Google Map, Pusher."] },
     { topic: 'golala', keys: ['golala','billpay','bill pay'], replies: ["Play Store: https://play.google.com/store/apps/details?id=com.golala.billpayment&hl=en\nApp Store: https://apps.apple.com/us/app/golala-billpay-solutions/id6743252509\nCodeCanyon: https://codecanyon.net/item/bill-pay-topup-recharge-and-utility-bill-payment-mobile-app/50124639?s_rank=26\n\nOne-stop payment app for top-ups, recharges, and utility bill management. Stack: Flutter, Riverpod, Pusher, REST API."] },
@@ -239,9 +221,9 @@
     return /\b(more|elaborate|expand|explain further|go on|continue|tell me more|any more details|anything else about (that|this))\b/.test(q);
   }
 
- function linkify(text) {
+  function linkify(text) {
     return text.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" style="color:#3b82f6;text-decoration:underline;">$1</a>').replace(/\n/g, '<br>');
- }
+  }
 
   function pick(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
@@ -251,6 +233,7 @@
     return { reply: pick(entry.replies), topic: entry.smalltalk ? null : entry.topic };
   }
 
+  // ---- Static keyword-matching response (existing system, used as fallback / when no API key) ----
   function getLocalResponse(rawQuery, lastTopic) {
     const q = normalize(rawQuery);
     if (!q) return { reply: pick(FALLBACK_REPLIES), topic: null, isFallback: true };
@@ -271,6 +254,103 @@
     const fuzzy = fuzzyMatch(q);
     if (fuzzy) return { ...finalize(fuzzy), isFallback: false };
     return { reply: pick(FALLBACK_REPLIES), topic: null, isFallback: true };
+  }
+
+  // ---- Gemini-powered response ----
+  const PORTFOLIO_CONTEXT = `You are Echo, AI assistant on Razu Ahmed's portfolio. Answer ONLY using info below, 1-3 sentences, prefixed with one emoji. Off-topic → redirect to his work.
+
+  About: Senior Flutter Developer, 4+ yrs experience, Dhaka, Bangladesh. Journey began with passion for beautiful, user-friendly interfaces solving real-world problems. Stats: 4+ Years Experience, 20+ Apps Built, 15+ Technologies, Active Open Source.
+
+  Experience:
+  - Senior Flutter Developer @ Bug Finder (https://bugfinder.net), Nov 2023-Present — leads mobile dev team, architects scalable Flutter apps for complex business requirements, mentors junior developers, conducts code reviews, manages international collaborations & project execution, optimizes app performance/reduces build sizes, integrates REST APIs & third-party web services, implements automated CI/CD pipelines.
+  - Junior Flutter Developer @ Bringin Technologies Ltd (https://linkedin.com/company/unboltapp), Feb-Sep 2023 — UI/UX enhancements increasing retention by 15%, integrated payment gateway/bank transfer REST APIs, resolved crashes, improved stability, collaborated with design & backend teams.
+
+  Education:
+  - BSc Computer Science @ European University of Bangladesh (https://eub.edu.bd), 2024-Current — pursuing degree while working full-time, aligning theory with industry practice.
+  - Diploma in Computer Science @ Munshiganj Polytechnic Institute (https://munshiganj.polytech.gov.bd), 2018-2022 — software engineering, algorithms, databases, GPA 3.48/4.00.
+
+  Projects:
+  - Giftily Mobile App — Game top-ups & gift cards platform for gamers in Algeria; fast, secure, feature-packed for professional gamers. Stack: Flutter, Riverpod, Firebase, Pusher, REST API, Dio+Retrofit, Dart Isolate, Isar. Play Store: https://play.google.com/store/apps/details?id=com.giftily_dz.app. CodeCanyon: https://codecanyon.net/item/gamers-arena-on-demand-game-shop-cross-platform-mobile-application/51225336.
+  - Lama.ng Mobile App — Connects users with trusted service providers across categories; explore, compare, hire professionals. Stack: Flutter, Riverpod, Firebase, Google Map, Pusher. Play Store: https://play.google.com/store/apps/details?id=com.lama.ng. App Store: https://apps.apple.com/us/app/lama-ng/id6756806464.
+  - Golala BillPay App — One-stop payment app for top-ups, recharges, utility bill management. Stack: Flutter, Riverpod, Pusher, REST API. Play Store: https://play.google.com/store/apps/details?id=com.golala.billpayment. App Store: https://apps.apple.com/us/app/golala-billpay-solutions/id6743252509. CodeCanyon: https://codecanyon.net/item/bill-pay-topup-recharge-and-utility-bill-payment-mobile-app/50124639.
+  - Agriwealth App — Agricultural investment companion app; portfolio, transactions, real-time updates. Stack: Flutter, Riverpod, Firebase, Hive. Play Store: https://play.google.com/store/apps/details?id=com.stip.club. CodeCanyon: https://codecanyon.net/item/agriwealth-agricultural-hyip-investment-mobile-application-android-ios/55396787.
+  - Listplace Mobile App — Business directory listing app; explore, add, manage listings on the go. Stack: Flutter, GetX, Pusher, Google Map. CodeCanyon: https://codecanyon.net/item/listplace-business-directory-listing-flutter-app-android-ios/57380835.
+  - HYIP PRO Mobile App — High Yield Investment Platform companion app; build, launch, manage investment ventures. Stack: Flutter, GetX, Pusher, REST API. CodeCanyon: https://codecanyon.net/item/hyip-pro-cross-platform-mobile-application/49701045.
+  - Coinectra Mobile App — Crypto currency exchange app; trade swaps, fiat transactions, monitor balances securely. Stack: Flutter, GetX, Pusher, REST API. CodeCanyon: https://codecanyon.net/item/coinectra-buy-sell-and-crypto-currency-exchange-flutter-app-android-ios/58421141.
+  - Waiz Mobile App — Global digital wallet & remittance app; simplifies international transfers, reliable, fast, lower cost. Stack: Flutter, GetX, Pusher, Hive. CodeCanyon: https://codecanyon.net/item/waiz-digital-wallet-and-remittance-app-and-website-with-admin-panel/53238316.
+  - Paysecure-User App — Modern digital wallet app; manage money, transfer balances, secure transactions. Stack: Flutter, GetX, Pusher, REST API. CodeCanyon: https://codecanyon.net/item/paysecure-digital-wallet-flutter-app-android-ios/58040829.
+  - Paysecure-Merchant — Business payment solution; accept payments, track history, check settlements. Stack: Flutter, GetX, Pusher, Hive. CodeCanyon: https://codecanyon.net/item/pay-secure-digital-wallet-application-for-merchant-android-ios/58793831.
+  - Paysecure-Agent App — Field agent app; assists cash deposits, withdrawals, wallet transactions. Stack: Flutter, GetX, Pusher, REST API. CodeCanyon: https://codecanyon.net/item/pay-secure-digital-wallet-application-for-agent-android-ios/58793829.
+
+  GitHub (all projects): https://github.com/razuahmed75
+
+  Blog: https://razuahmed75.blogspot.com
+  Gallery: https://razuahmed75.blogspot.com/p/photo-gallery.html
+
+  Contact:
+  - Email: razuahmed8641@gmail.com
+  - Phone: +880 1706-084790
+  - GitHub: https://github.com/razuahmed75
+  - LinkedIn: https://linkedin.com/in/razuahmed75
+  - Twitter: https://twitter.com/razuahmed8641
+  - Facebook: https://facebook.com/razu8641
+  - Location: Dhaka, Bangladesh
+  - Resume/CV: https://surl.li/wledoq
+  - Codewars: https://codewars.com/users/razuahmed75`;
+          
+  async function getGeminiResponse(history) {
+    const apiKey = window.GEMINI_API_KEY;
+    const contents = history.slice(-10).map(m => ({
+      role: m.role === 'user' ? 'user' : 'model',
+      parts: [{ text: m.content }]
+    }));
+
+    const res = await fetch(
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-goog-api-key': apiKey
+        },
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: PORTFOLIO_CONTEXT }] },
+          contents,
+          // generationConfig: { temperature: 0.7, maxOutputTokens: 200 }
+          generationConfig: {
+            temperature: 0.3,
+            maxOutputTokens: 500,
+            thinkingConfig: { thinkingBudget: 0 }
+          }
+        })
+      }
+    );
+
+    if (!res.ok) throw new Error('Gemini API error: ' + res.status);
+    const data = await res.json();
+    const text = data && data.candidates && data.candidates[0] && data.candidates[0].content &&
+      data.candidates[0].content.parts && data.candidates[0].content.parts[0] &&
+      data.candidates[0].content.parts[0].text;
+    if (!text) throw new Error('Empty Gemini response');
+    return text.trim();
+  }
+
+  // ---- Unified response resolver: Gemini if key present, else static system ----
+  async function getResponse(rawQuery, lastTopic, history) {
+    const apiKey = window.GEMINI_API_KEY;
+    const hasKey = typeof apiKey === 'string' && apiKey.trim().length > 0;
+
+    if (!hasKey) {
+      return getLocalResponse(rawQuery, lastTopic);
+    }
+
+    try {
+      const reply = await getGeminiResponse(history);
+      return { reply, topic: null, isFallback: false };
+    } catch (err) {
+      console.error('Echo Terminal: Gemini request failed, falling back to static system.', err);
+      return getLocalResponse(rawQuery, lastTopic);
+    }
   }
 
   function wait(ms) {
@@ -521,7 +601,9 @@
       saveHistory();
 
       showTypingIndicator(pick(THINKING_LABELS));
-      const { reply, topic, isFallback } = getLocalResponse(text, lastTopic);
+
+      const { reply, topic, isFallback } = await getResponse(text, lastTopic, chatHistory);
+
       if (isFallback) {
         removeTypingIndicator();
         showTypingIndicator('✨ Searching depths...');
