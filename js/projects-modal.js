@@ -212,14 +212,16 @@ document.addEventListener('DOMContentLoaded', () => {
     modalContentEl.innerHTML = `
       <div class="projects-modal-image-wrapper">
         <img class="projects-modal-image" src="${data.cover}" alt="${data.name} Preview Cover">
-        <div class="projects-modal-logo">
-          <img src="${data.logo}" alt="${data.name} Icon">
-        </div>
       </div>
       <div class="projects-modal-body">
         <div class="projects-modal-header">
-          <span class="projects-modal-tagline">${data.tagline}</span>
-          <h2 class="projects-modal-title" id="projects-modal-title-heading">${data.name}</h2>
+          <div class="projects-modal-logo">
+            <img src="${data.logo}" alt="${data.name} Icon">
+          </div>
+          <div class="projects-modal-header-text">
+            <span class="projects-modal-tagline">${data.tagline}</span>
+            <h2 class="projects-modal-title" id="projects-modal-title-heading">${data.name}</h2>
+          </div>
         </div>
         <div class="projects-modal-tags">
           ${tagsHtml}
@@ -299,6 +301,17 @@ document.addEventListener('DOMContentLoaded', () => {
       openModal(projectId, triggerCard);
     }
   });
+
+  // Prevent body scroll when wheeling inside modal content
+  modalContentEl.addEventListener('wheel', (e) => {
+    e.stopPropagation();
+    const { scrollTop, scrollHeight, clientHeight } = modalContentEl;
+    const atTop = scrollTop === 0;
+    const atBottom = scrollHeight - scrollTop - clientHeight <= 1;
+    if ((atTop && e.deltaY < 0) || (atBottom && e.deltaY > 0)) {
+      e.preventDefault();
+    }
+  }, { passive: false });
 
   // Close triggers
   modalCloseBtn.addEventListener('click', closeModal);
