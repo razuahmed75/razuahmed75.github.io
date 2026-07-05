@@ -1,0 +1,326 @@
+/* ==========================================================================
+   PROJECT DETAIL MODAL STYLES (razuahmed75.github.io)
+   ========================================================================== */
+
+/* Modal Backdrop */
+.projects-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(10, 10, 15, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+body.dark .projects-modal-backdrop {
+  background-color: rgba(5, 5, 8, 0.6);
+}
+
+/* Modal Open State for Backdrop */
+.projects-modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Modal Container (Desktop) */
+.projects-modal-card {
+  position: relative;
+  width: 90%;
+  max-width: 680px;
+  max-height: 85vh;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card), 0 20px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: scale(0.92);
+  opacity: 0;
+  transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 200ms ease;
+}
+
+/* Modal Open State for Card */
+.projects-modal-backdrop.open .projects-modal-card {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Modal Close Button */
+.projects-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.projects-modal-close:hover {
+  background-color: rgba(0, 0, 0, 0.75);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.projects-modal-close:focus-visible {
+  outline: 2px solid var(--accent-2-color);
+  outline-offset: 2px;
+}
+
+/* Scrollable Content Wrapper */
+.projects-modal-content {
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+
+.projects-modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.projects-modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.projects-modal-content::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: var(--radius-full);
+}
+
+/* Preview Image Area */
+.projects-modal-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: var(--surface-color-2);
+}
+
+.projects-modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* App Logo Overlay */
+.projects-modal-logo {
+  position: absolute;
+  bottom: -24px;
+  left: 24px;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md);
+  background-color: var(--surface-color);
+  border: 2px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.projects-modal-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Details Body */
+.projects-modal-body {
+  padding: 40px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.projects-modal-header {
+  margin-bottom: var(--space-1);
+}
+
+.projects-modal-title {
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.projects-modal-tagline {
+  font-size: var(--text-sm);
+  color: var(--accent-2-color);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Tech Stack Badges */
+.projects-modal-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: var(--space-1) 0;
+}
+
+.projects-modal-badge {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  background-color: var(--surface-color-2);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+/* Description Area */
+.projects-modal-desc {
+  font-size: var(--text-base);
+  color: var(--text-muted);
+  line-height: 1.6;
+  white-space: pre-line;
+  margin-bottom: var(--space-2);
+}
+
+/* Link Actions Footer */
+.projects-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: 16px 24px;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--surface-color-2);
+  align-items: center;
+}
+
+/* Base button styles matching existing app store styling */
+.projects-modal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.projects-modal-btn-store {
+  background-color: var(--surface-color);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.projects-modal-btn-store:hover {
+  background-color: var(--surface-color-2);
+  border-color: var(--accent-2-color);
+  transform: translateY(-2px);
+}
+
+.projects-modal-btn-store img {
+  height: 18px;
+  width: auto;
+}
+
+.projects-modal-btn-primary {
+  background: var(--btn-primary-bg);
+  color: #ffffff !important;
+  box-shadow: var(--btn-primary-shadow);
+  border: none;
+}
+
+.projects-modal-btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+/* Focus state for links */
+.projects-modal-btn:focus-visible {
+  outline: 2px solid var(--accent-2-color);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   RESPONSIVENESS & BOTTOM SHEET FOR MOBILE
+   ========================================================================== */
+@media (max-width: 768px) {
+  .projects-modal-backdrop {
+    align-items: flex-end; /* Align bottom for bottom sheet */
+  }
+
+  .projects-modal-card {
+    width: 100%;
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    border-bottom: none;
+    transform: translateY(100%);
+    transition: transform 250ms cubic-bezier(0.32, 0.94, 0.6, 1), opacity 250ms ease;
+  }
+
+  .projects-modal-backdrop.open .projects-modal-card {
+    transform: translateY(0);
+  }
+
+  .projects-modal-body {
+    padding: 36px 20px 20px;
+  }
+
+  .projects-modal-logo {
+    width: 56px;
+    height: 56px;
+    bottom: -20px;
+    left: 20px;
+  }
+
+  .projects-modal-close {
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+
+  .projects-modal-actions {
+    padding: 16px 20px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .projects-modal-btn {
+    width: 100%;
+  }
+}
+
+/* Project Card Triggers */
+[data-project-id] {
+  cursor: pointer;
+}
+
+[data-project-id]:focus-visible {
+  outline: 2px solid var(--accent-2-color);
+  outline-offset: 4px;
+  border-radius: var(--radius-lg);
+}
+

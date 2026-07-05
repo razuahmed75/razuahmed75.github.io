@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="/css/portfolio.css" media="all">
     <link rel="stylesheet" href="/css/clock.css">
     <link rel="stylesheet" href="/css/echo-terminal.css">
+    <link rel="stylesheet" href="/css/projects-modal.css">
 
     <!-- Local FontAwesome icons (for offline support) -->
     <script defer src="/fontawesome-5/all-5.15.4.js"></script>
@@ -416,7 +417,7 @@
 
                 <!-- Hero Featured Project -->
                 <div class="featured-project">
-                    <div class="project-hero-card">
+                    <div class="project-hero-card" data-project-id="giftily" tabindex="0" role="button" aria-label="View details for Giftily Mobile App">
                         <div class="project-hero-content">
                             <div>
                                 <span class="featured-tag">Featured Project</span>
@@ -462,7 +463,7 @@
                 <!-- Projects Grid -->
                 <div class="projects-grid reveal-stagger">
                     <!-- Project 2: Lama.ng -->
-                    <div class="project-card">
+                    <div class="project-card" data-project-id="lama" tabindex="0" role="button" aria-label="View details for Lama.ng Mobile App">
                         <div class="project-card-header"></div>
                         <div class="project-card-body">
                             <div class="project-card-head">
@@ -497,7 +498,7 @@
                     </div>
 
                     <!-- Project 3: Golala BillPay -->
-                    <div class="project-card">
+                    <div class="project-card" data-project-id="golala" tabindex="0" role="button" aria-label="View details for Golala BillPay App">
                         <div class="project-card-header"></div>
                         <div class="project-card-body">
                             <div class="project-card-head">
@@ -537,7 +538,7 @@
                     </div>
 
                     <!-- Project 4: Agriwealth -->
-                    <div class="project-card">
+                    <div class="project-card" data-project-id="agriwealth" tabindex="0" role="button" aria-label="View details for Agriwealth App">
                         <div class="project-card-header"></div>
                         <div class="project-card-body">
                             <div class="project-card-head">
@@ -571,7 +572,7 @@
                     </div>
 
                     <!-- Project 5: Listplace -->
-                    <div class="project-card">
+                    <div class="project-card" data-project-id="listplace" tabindex="0" role="button" aria-label="View details for Listplace Mobile App">
                         <div class="project-card-header"></div>
                         <div class="project-card-body">
                             <div class="project-card-head">
@@ -599,7 +600,7 @@
                     </div>
 
                     <!-- Project 6: HYIP PRO -->
-                    <div class="project-card">
+                    <div class="project-card" data-project-id="hyip-pro" tabindex="0" role="button" aria-label="View details for HYIP PRO Mobile App">
                         <div class="project-card-header"></div>
                         <div class="project-card-body">
                             <div class="project-card-head">
@@ -627,7 +628,7 @@
                     </div>
 
                     <!-- Project 7: Coinectra -->
-                    <div class="project-card">
+                    <div class="project-card" data-project-id="coinectra" tabindex="0" role="button" aria-label="View details for Coinectra Mobile App">
                         <div class="project-card-header"></div>
                         <div class="project-card-body">
                             <div class="project-card-head">
@@ -655,7 +656,7 @@
                     </div>
 
                     <!-- Project 8: Waiz -->
-                    <div class="project-card">
+                    <div class="project-card" data-project-id="waiz" tabindex="0" role="button" aria-label="View details for Waiz Mobile App">
                         <div class="project-card-header"></div>
                         <div class="project-card-body">
                             <div class="project-card-head">
@@ -683,7 +684,7 @@
                     </div>
 
                     <!-- Project 9: Paysecure User -->
-                    <div class="project-card">
+                    <div class="project-card" data-project-id="paysecure-user" tabindex="0" role="button" aria-label="View details for Paysecure-User App">
                         <div class="project-card-header"></div>
                         <div class="project-card-body">
                             <div class="project-card-head">
@@ -711,7 +712,7 @@
                     </div>
 
                     <!-- Project 10: Paysecure Merchant -->
-                    <div class="project-card">
+                    <div class="project-card" data-project-id="paysecure-merchant" tabindex="0" role="button" aria-label="View details for Paysecure-Merchant">
                         <div class="project-card-header"></div>
                         <div class="project-card-body">
                             <div class="project-card-head">
@@ -739,7 +740,7 @@
                     </div>
 
                     <!-- Project 11: Paysecure Agent -->
-                    <div class="project-card">
+                    <div class="project-card" data-project-id="paysecure-agent" tabindex="0" role="button" aria-label="View details for Paysecure-Agent App">
                         <div class="project-card-header"></div>
                         <div class="project-card-body">
                             <div class="project-card-head">
@@ -995,6 +996,19 @@
         </div>
     </footer>
 
+    <!-- Project Detail Modal -->
+    <div id="project-detail-modal" class="projects-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="projects-modal-title-heading">
+        <div class="projects-modal-card">
+            <button class="projects-modal-close" aria-label="Close project modal">✕</button>
+            <div class="projects-modal-content">
+                <!-- Dynamically filled content -->
+            </div>
+            <div class="projects-modal-actions">
+                <!-- Dynamically filled action buttons -->
+            </div>
+        </div>
+    </div>
+
     <!-- Lenis Smooth Scrolling CDN -->
     <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
     <script>
@@ -1089,6 +1103,7 @@
       window.GEMINI_API_KEY = 'AIzaSyDSp-jnWEu2TXEffdzmO_Bx-PrxzOXQUIo'; // <-- Paste your Gemini API key here (starts with AIza...)
     </script>
     <script src="/js/echo-terminal.js"></script>
+    <script src="/js/projects-modal.js"></script>
 </body>
 
 </html>
