@@ -200,7 +200,23 @@ body::-webkit-scrollbar-thumb:hover {
 
 .nav-logo img {
   border-radius: var(--radius-full);
-  border: 2px solid var(--accent-2-color);
+  border: 1px solid var(--accent-2-color);
+}
+
+/* Theme-based header & footer logo switching */
+.nav-logo .dark-logo,
+.footer-logo .dark-logo {
+  display: none !important;
+}
+
+body.dark .nav-logo .light-logo,
+body.dark .footer-logo .light-logo {
+  display: none !important;
+}
+
+body.dark .nav-logo .dark-logo,
+body.dark .footer-logo .dark-logo {
+  display: inline !important;
 }
 
 .nav-menu {
