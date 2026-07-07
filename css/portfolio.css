@@ -616,6 +616,16 @@ body.dark .theme-toggle-btn svg {
   justify-content: center;
 }
 
+/* .hero-image {
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  border: 5px solid rgba(149, 191, 71, 0.3);
+  animation: morph 8s ease-in-out infinite;
+  transition: all 0.5s ease-in-out;
+} */
+
 /* inner focused beam */
 .hero-avatar-wrapper::after {
     content: '';
@@ -648,14 +658,19 @@ body.dark .theme-toggle-btn svg {
 .hero-avatar {
   width: 260px;
   height: 260px;
-  border-radius: var(--radius-full);
+  /* border-radius: var(--radius-full);
   object-fit: cover;
-  border: 6px solid var(--surface-color);
+  border: 6px solid var(--surface-color); */
   box-shadow: var(--shadow-card);
   z-index: 2;
-  position: relative;
-  animation: float-avatar 6s ease-in-out infinite;
-  transition: transform var(--transition-normal), border-color var(--transition-normal);
+  /* position: relative; */
+  /* animation: float-avatar 6s ease-in-out infinite;
+  transition: transform var(--transition-normal), border-color var(--transition-normal); */
+  object-fit: cover;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  border: 5px solid rgba(149, 191, 71, 0.3);
+  animation: morph 8s ease-in-out infinite;
+  transition: all 0.5s ease-in-out;
 }
 
 .hero-avatar:hover {
@@ -721,6 +736,13 @@ body.dark .theme-toggle-btn svg {
 @keyframes pulse-glow {
   0% { transform: scale(0.9); opacity: 0.6; }
   100% { transform: scale(1.1); opacity: 1; }
+}
+
+@keyframes morph {
+  0%,100% { border-radius: 30% 70% 70% 30%/30% 30% 70% 70%; }
+  25%      { border-radius: 50% 50% 50% 50%/50% 50% 50% 50%; }
+  50%      { border-radius: 70% 30% 30% 70%/70% 70% 30% 30%; }
+  75%      { border-radius: 50% 50% 50% 50%/50% 50% 50% 50%; }
 }
 
 @keyframes float-avatar {
