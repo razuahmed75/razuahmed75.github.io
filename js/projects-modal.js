@@ -1,7 +1,3 @@
-/* ==========================================================================
-   PROJECT DETAIL MODAL ACTIONS (razuahmed75.github.io)
-   ========================================================================== */
-
 const PROJECTS_DATA = {
   "giftily": {
     id: "giftily",
@@ -148,7 +144,137 @@ const PROJECTS_DATA = {
   }
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+function renderProjectsSection() {
+  const featuredContainer = document.getElementById('projects-featured-container');
+  const gridContainer = document.getElementById('projects-grid-container');
+  if (!featuredContainer || !gridContainer) return;
+
+  const projectKeys = Object.keys(PROJECTS_DATA);
+  if (projectKeys.length === 0) return;
+
+  function buildGridFooter(data) {
+    let rows = '';
+    if (data.playStore) {
+      rows += `
+        <div class="project-footer-row">
+          <a href="${data.playStore}" target="_blank" class="project-store-link" rel="noopener noreferrer">
+            <img src="/images/googleplay.png" alt="Google Play"> Play Store
+          </a>
+          <a href="${data.playStore}" target="_blank" class="project-cta-link" rel="noopener noreferrer">View</a>
+        </div>`;
+    }
+    if (data.appStore) {
+      rows += `
+        <div class="project-footer-row">
+          <a href="${data.appStore}" target="_blank" class="project-store-link" rel="noopener noreferrer">
+            <img src="/images/appstore.png" alt="App Store"> App Store
+          </a>
+          <a href="${data.appStore}" target="_blank" class="project-cta-link" rel="noopener noreferrer">View</a>
+        </div>`;
+    }
+    if (data.codeCanyon) {
+      rows += `
+        <div class="project-footer-row">
+          <a href="${data.codeCanyon}" target="_blank" class="project-store-link" rel="noopener noreferrer">
+            <img src="/images/envato.webp" alt="Envato"> CodeCanyon
+          </a>
+          <a href="${data.codeCanyon}" target="_blank" class="project-cta-link" rel="noopener noreferrer">View</a>
+        </div>`;
+    }
+    if (!rows && data.liveDemo) {
+      rows += `
+        <div class="project-footer-row">
+          <a href="${data.liveDemo}" target="_blank" class="project-cta-link" rel="noopener noreferrer">View Live</a>
+        </div>`;
+    }
+    return rows;
+  }
+
+  function buildHeroLinks(data) {
+    let links = '';
+    if (data.playStore) {
+      links += `
+        <a href="${data.playStore}" target="_blank" class="project-store-link" rel="noopener noreferrer">
+          <img src="/images/googleplay.png" alt="Google Play">
+          <span>Play Store</span>
+        </a>`;
+    }
+    if (data.appStore) {
+      links += `
+        <a href="${data.appStore}" target="_blank" class="project-store-link" rel="noopener noreferrer">
+          <img src="/images/appstore.png" alt="App Store">
+          <span>App Store</span>
+        </a>`;
+    }
+    if (data.codeCanyon) {
+      links += `
+        <a href="${data.codeCanyon}" target="_blank" class="project-store-link" style="margin-left: var(--space-2);" rel="noopener noreferrer">
+          <img src="/images/envato.webp" alt="Envato">
+          <span>CodeCanyon</span>
+        </a>`;
+    }
+    return links;
+  }
+
+  const featuredKey = projectKeys[0];
+  const featuredData = PROJECTS_DATA[featuredKey];
+  const heroTagsHtml = featuredData.tags.map(t => `<span class="project-badge">${t}</span>`).join('');
+  const heroLiveUrl = featuredData.liveDemo || featuredData.playStore || featuredData.appStore || featuredData.codeCanyon;
+
+  featuredContainer.innerHTML = `
+    <div class="project-hero-card" data-project-id="${featuredData.id}" tabindex="0" role="button" aria-label="View details for ${featuredData.name}">
+      <div class="project-hero-content">
+        <div>
+          <span class="featured-tag">Featured Project</span>
+          <h3 class="project-hero-title" style="margin-top: var(--space-1);">${featuredData.name}</h3>
+          <p class="project-hero-desc" style="margin-top: var(--space-1);">
+            ${featuredData.tagline}. ${featuredData.description.split('\n')[0]}
+          </p>
+        </div>
+        <div class="project-hero-info">
+          <div class="project-hero-tags">${heroTagsHtml}</div>
+          <div class="project-hero-actions">
+            <div class="project-links">${buildHeroLinks(featuredData)}</div>
+            ${heroLiveUrl ? `<a href="${heroLiveUrl}" target="_blank" class="project-link-btn" rel="noopener noreferrer">View Live <i class="fas fa-external-link-alt"></i></a>` : ''}
+          </div>
+        </div>
+      </div>
+      <div class="project-hero-img-wrapper">
+        <img src="${featuredData.cover}" alt="${featuredData.name} Cover">
+      </div>
+    </div>`;
+
+  const gridHtml = projectKeys.slice(1).map(key => {
+    const data = PROJECTS_DATA[key];
+    const tagsHtml = data.tags.map(t => `<span class="project-badge">${t}</span>`).join('');
+    const shortDesc = data.description.split('\n')[0];
+    return `
+      <div class="project-card" data-project-id="${data.id}" tabindex="0" role="button" aria-label="View details for ${data.name}">
+        <div class="project-card-header"></div>
+        <div class="project-card-body">
+          <div class="project-card-head">
+            <img src="${data.logo}" data-hover="${data.cover}" alt="${data.name}" class="project-icon">
+            <h3 class="project-card-title">${data.name}</h3>
+          </div>
+          <p class="project-card-desc">${shortDesc}</p>
+          <div class="project-card-tags">${tagsHtml}</div>
+        </div>
+        <div class="project-card-footer">${buildGridFooter(data)}</div>
+      </div>`;
+  }).join('');
+
+  gridContainer.innerHTML = gridHtml;
+}
+
+// ── Init render ──────────────────────────────────────────────────────────────
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', renderProjectsSection);
+} else {
+  renderProjectsSection();
+}
+
+// ── Modal logic (runs immediately — script is at bottom of body) ─────────────
+(function initModal() {
   const modalBackdrop = document.getElementById('project-detail-modal');
   if (!modalBackdrop) return;
 
@@ -157,58 +283,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalActionsEl = modalBackdrop.querySelector('.projects-modal-actions');
   let lastFocusedElement = null;
 
-  // Open Modal Logic
   function openModal(projectId, triggerCard) {
     const data = PROJECTS_DATA[projectId];
     if (!data) return;
-
-    // Track active trigger element to restore focus on close
     lastFocusedElement = triggerCard;
-
-    // Render Modal Content
     renderModalContent(data);
-
-    // Show modal and lock page scrolling
     modalBackdrop.classList.add('open');
     modalBackdrop.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    
-    // Stop Lenis scrolling if enabled
-    if (window.lenis) {
-      window.lenis.stop();
-    }
-
-    // Set initial focus inside modal
-    setTimeout(() => {
-      modalCloseBtn.focus();
-    }, 100);
+    if (window.lenis) window.lenis.stop();
+    setTimeout(() => modalCloseBtn.focus(), 100);
   }
 
-  // Close Modal Logic
   function closeModal() {
     if (!modalBackdrop.classList.contains('open')) return;
-
     modalBackdrop.classList.remove('open');
     modalBackdrop.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
-
-    // Resume Lenis scrolling if enabled
-    if (window.lenis) {
-      window.lenis.start();
-    }
-
-    // Restore focus to card trigger
-    if (lastFocusedElement) {
-      lastFocusedElement.focus();
-    }
+    if (window.lenis) window.lenis.start();
+    if (lastFocusedElement) lastFocusedElement.focus();
   }
 
-  // Dynamic Content Rendering
   function renderModalContent(data) {
-    // Generate Tags HTML
     const tagsHtml = data.tags.map(tag => `<span class="projects-modal-badge">${tag}</span>`).join('');
-
-    // Prepare Rendered Content HTML
     modalContentEl.innerHTML = `
       <div class="projects-modal-image-wrapper">
         <img class="projects-modal-image" src="${data.cover}" alt="${data.name} Preview Cover">
@@ -223,131 +320,88 @@ document.addEventListener('DOMContentLoaded', () => {
             <h2 class="projects-modal-title" id="projects-modal-title-heading">${data.name}</h2>
           </div>
         </div>
-        <div class="projects-modal-tags">
-          ${tagsHtml}
-        </div>
+        <div class="projects-modal-tags">${tagsHtml}</div>
         <p class="projects-modal-desc">${data.description}</p>
-      </div>
-    `;
+      </div>`;
 
-    // Render Action buttons based on availability
     let actionsHtml = '';
-
     if (data.playStore) {
       actionsHtml += `
         <a href="${data.playStore}" target="_blank" class="projects-modal-btn projects-modal-btn-store" rel="noopener noreferrer">
           <img src="/images/googleplay.png" alt=""> Play Store
-        </a>
-      `;
+        </a>`;
     }
-
     if (data.appStore) {
       actionsHtml += `
         <a href="${data.appStore}" target="_blank" class="projects-modal-btn projects-modal-btn-store" rel="noopener noreferrer">
           <img src="/images/appstore.png" alt=""> App Store
-        </a>
-      `;
+        </a>`;
     }
-
     if (data.codeCanyon) {
       actionsHtml += `
         <a href="${data.codeCanyon}" target="_blank" class="projects-modal-btn projects-modal-btn-store" rel="noopener noreferrer">
           <img src="/images/envato.webp" alt=""> CodeCanyon
-        </a>
-      `;
+        </a>`;
     }
-
     if (data.liveDemo && data.liveDemo !== data.playStore) {
       actionsHtml += `
         <a href="${data.liveDemo}" target="_blank" class="projects-modal-btn projects-modal-btn-primary" rel="noopener noreferrer">
           View Live <i class="fas fa-external-link-alt"></i>
-        </a>
-      `;
+        </a>`;
     } else if (data.playStore || data.appStore || data.codeCanyon) {
-      // If we don't have a distinct live demo link, fallback/duplicate PlayStore or CodeCanyon as live button if none is primary
       const primaryUrl = data.liveDemo || data.playStore || data.appStore || data.codeCanyon;
       actionsHtml += `
         <a href="${primaryUrl}" target="_blank" class="projects-modal-btn projects-modal-btn-primary" rel="noopener noreferrer">
           View Details <i class="fas fa-external-link-alt"></i>
-        </a>
-      `;
+        </a>`;
     }
-
     modalActionsEl.innerHTML = actionsHtml;
   }
 
-  // Setup Event Listeners
-  // Trigger card clicks (Delegation for performance and handling dynamically rendered elements)
   document.addEventListener('click', (e) => {
     const triggerCard = e.target.closest('[data-project-id]');
     if (triggerCard) {
-      // Prevent double triggers if clicked inside links
       if (e.target.closest('a')) return;
-      
       e.preventDefault();
-      const projectId = triggerCard.getAttribute('data-project-id');
-      openModal(projectId, triggerCard);
+      openModal(triggerCard.getAttribute('data-project-id'), triggerCard);
     }
   });
 
-  // Handle keyboard triggers (Enter/Space) on cards
   document.addEventListener('keydown', (e) => {
     const triggerCard = e.target.closest('[data-project-id]');
     if (triggerCard && (e.key === 'Enter' || e.key === ' ')) {
       if (e.target.closest('a')) return;
-      
       e.preventDefault();
-      const projectId = triggerCard.getAttribute('data-project-id');
-      openModal(projectId, triggerCard);
+      openModal(triggerCard.getAttribute('data-project-id'), triggerCard);
     }
   });
 
-  // Prevent body scroll when wheeling inside modal content
   modalContentEl.addEventListener('wheel', (e) => {
     e.stopPropagation();
     const { scrollTop, scrollHeight, clientHeight } = modalContentEl;
     const atTop = scrollTop === 0;
     const atBottom = scrollHeight - scrollTop - clientHeight <= 1;
-    if ((atTop && e.deltaY < 0) || (atBottom && e.deltaY > 0)) {
-      e.preventDefault();
-    }
+    if ((atTop && e.deltaY < 0) || (atBottom && e.deltaY > 0)) e.preventDefault();
   }, { passive: false });
 
-  // Close triggers
   modalCloseBtn.addEventListener('click', closeModal);
-  
+
   modalBackdrop.addEventListener('click', (e) => {
-    if (e.target === modalBackdrop) {
-      closeModal();
-    }
+    if (e.target === modalBackdrop) closeModal();
   });
 
-  // Keyboard Close (ESC) and Focus Trap
   document.addEventListener('keydown', (e) => {
     if (!modalBackdrop.classList.contains('open')) return;
-
-    if (e.key === 'Escape') {
-      closeModal();
-      return;
-    }
-
+    if (e.key === 'Escape') { closeModal(); return; }
     if (e.key === 'Tab') {
-      // Find all focusable elements within the modal
       const focusableEls = modalBackdrop.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])');
       const firstFocusable = focusableEls[0];
       const lastFocusable = focusableEls[focusableEls.length - 1];
-
-      if (e.shiftKey) { // Shift + Tab
-        if (document.activeElement === firstFocusable) {
-          lastFocusable.focus();
-          e.preventDefault();
-        }
-      } else { // Tab
-        if (document.activeElement === lastFocusable) {
-          firstFocusable.focus();
-          e.preventDefault();
-        }
+      if (e.shiftKey) {
+        if (document.activeElement === firstFocusable) { lastFocusable.focus(); e.preventDefault(); }
+      } else {
+        if (document.activeElement === lastFocusable) { firstFocusable.focus(); e.preventDefault(); }
       }
     }
   });
-});
+})();
