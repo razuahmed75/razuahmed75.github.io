@@ -187,14 +187,15 @@ body.dark .projects-modal-backdrop {
   margin: var(--space-1) 0;
 }
 
+
 .projects-modal-badge {
   font-size: var(--text-xs);
   font-weight: 500;
   padding: 4px 10px;
   border-radius: var(--radius-sm);
-  background-color: var(--surface-color-2);
-  color: var(--text-primary);
-  border: 1px solid var(--border-color);
+  background-color: color-mix(in srgb, var(--accent-2-color) 10%, transparent);
+  color: var(--accent-2-color);
+  border: 1px solid color-mix(in srgb, var(--accent-2-color) 20%, transparent);
 }
 
 /* Description Area */
