@@ -316,7 +316,7 @@
             </div>
 
             <!-- Bottom scroll arrow -->
-            <div class="scroll-indicator" onclick="document.getElementById('about').scrollIntoView();">
+            <div class="scroll-indicator">
                 <span>Scroll Down</span>
                 <svg viewBox="0 0 24 24">
                     <path d="M7 10l5 5 5-5"></path>
@@ -667,23 +667,6 @@
 
     <!-- Lenis Smooth Scrolling CDN -->
     <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const lenis = new Lenis({
-        // Smooth scroll settings
-        duration: 1.8,
-        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smooth: true,
-        });
-
-        function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-    });
-    </script>
-    <!-- Lenis Smooth Scrolling -->
 
     <!-- GSAP Animations CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

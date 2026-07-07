@@ -303,11 +303,9 @@ function initMobileMenu() {
         if (target) {
           e.preventDefault();
           close();
-          setTimeout(() => {
-            window.lenis
-              ? window.lenis.scrollTo(target, { offset: -80 })
-              : target.scrollIntoView({ behavior: 'smooth' });
-          }, 150);
+          window.lenis
+            ? window.lenis.scrollTo(target, { offset: -80 })
+            : target.scrollIntoView({ behavior: 'smooth' });
         }
       } else {
         close();
@@ -614,13 +612,13 @@ function showToast(type, title, message) {
 }
 
 /* ==========================================================================
-   8. LENIS SMOOTH SCROLLING
-   ========================================================================== */
+    8. LENIS SMOOTH SCROLLING
+    ========================================================================== */
 function initLenis() {
   if (typeof Lenis === 'undefined') return;
 
   const lenis = new Lenis({
-    duration: 1.2,
+    duration: 0.8,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true,
     smoothTouch: false,
@@ -631,12 +629,28 @@ function initLenis() {
   const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
   requestAnimationFrame(raf);
 
+  if (typeof ScrollTrigger !== 'undefined') {
+    lenis.on('scroll', ScrollTrigger.update);
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const id = this.getAttribute('href');
-      if (id === '#') return;
-      const target = document.querySelector(id);
-      if (target) { e.preventDefault(); lenis.scrollTo(target); }
-    });
+    if (anchor.closest('.mobile-drawer')) return;
+    const id = anchor.getAttribute('href');
+    if (id === '#') return;
+    const target = document.querySelector(id);
+    if (target) {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        lenis.scrollTo(target, { offset: -80 });
+      });
+    }
   });
+
+  const scrollIndicator = document.querySelector('.scroll-indicator');
+  if (scrollIndicator) {
+    scrollIndicator.addEventListener('click', () => {
+      const about = document.querySelector('#about');
+      if (about) lenis.scrollTo(about);
+    });
+  }
 }
