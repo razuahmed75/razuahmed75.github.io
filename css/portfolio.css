@@ -1182,7 +1182,12 @@ body.dark .theme-toggle-btn svg {
   align-items: center;
   gap: 4px;
   font-weight: 600;
+  padding: 4px 10px;
   color: var(--accent-2-color);
+  border-radius: var(--radius-sm);
+  background-color: color-mix(in srgb, var(--accent-2-color) 10%, transparent);
+  color: var(--accent-2-color);
+  border: 1px solid color-mix(in srgb, var(--accent-2-color) 20%, transparent);
 }
 
 .project-cta-link:hover {
