@@ -42,7 +42,7 @@
         tick.style.cssText = `
           width: ${isMajor ? '2px' : '1px'};
           height: ${len}px;
-          background: ${isMajor ? '#58a6ff' : '#30363d'};
+          background: ${isMajor ? 'var(--accent-2-color)' : 'var(--border-color)'};
           left: ${tx}px;
           top: ${ty - len}px;
           transform: rotate(${angle}deg);
