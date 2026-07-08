@@ -488,35 +488,96 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Magnetic hover effect on Submit button
+
+
+// Submit button blob-morph hover animation
   const submitBtn = document.querySelector('#contact-form .btn-submit');
   if (submitBtn) {
-    submitBtn.addEventListener('mousemove', (e) => {
-      const rect = submitBtn.getBoundingClientRect();
-      // Calculate center position
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      
-      const distanceX = e.clientX - centerX;
-      const distanceY = e.clientY - centerY;
+    const blob = submitBtn.querySelector('.blob');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const origTextColor = getComputedStyle(btnText).color;
 
-      // Shift button 30% of target distance
-      gsap.to(submitBtn, {
-        x: distanceX * 0.3,
-        y: distanceY * 0.3,
-        duration: 0.3,
-        ease: 'power2.out'
+    function entrySide(event, rect) {
+      const ox = event.clientX - rect.left;
+      const oy = event.clientY - rect.top;
+      const dist = {
+        top: oy,
+        bottom: rect.height - oy,
+        left: ox,
+        right: rect.width - ox
+      };
+      const min = Math.min(dist.top, dist.bottom, dist.left, dist.right);
+      if (dist.top === min) return { ox, oy: 0 };
+      if (dist.bottom === min) return { ox, oy: rect.height };
+      if (dist.left === min) return { ox: 0, oy };
+      return { ox: rect.width, oy };
+    }
+
+    let hoverTl = null;
+
+    submitBtn.addEventListener('mouseenter', (event) => {
+      const rect = submitBtn.getBoundingClientRect();
+      const entry = entrySide(event, rect);
+      const diagonal = Math.hypot(rect.width, rect.height);
+      const finalSize = diagonal * 1.8;
+
+      if (hoverTl) hoverTl.kill();
+
+      gsap.killTweensOf([blob, btnText]);
+      gsap.set(blob, {
+        left: entry.ox,
+        top: entry.oy,
+        width: 0,
+        height: 0,
+        borderRadius: '50%',
+        opacity: 1
       });
+
+      hoverTl = gsap.timeline();
+      hoverTl
+        .to(blob, {
+          width: finalSize,
+          height: finalSize,
+          borderRadius: '44% 56% 52% 48% / 54% 44% 56% 46%',
+          duration: 0.55,
+          ease: 'power2.out'
+        })
+        .to(blob, {
+          borderRadius: '50%',
+          duration: 0.35,
+          ease: 'sine.inOut'
+        }, '-=0.2')
+        .to(btnText, {
+          color: '#ffffff',
+          duration: 0.25,
+          ease: 'sine.out'
+        }, 0.15);
     });
 
-    submitBtn.addEventListener('mouseleave', () => {
-      // Spring back using elastic easing
-      gsap.to(submitBtn, {
-        x: 0,
-        y: 0,
-        duration: 1.2,
-        ease: 'elastic.out(1, 0.5)'
-      });
+    submitBtn.addEventListener('mouseleave', (event) => {
+      const rect = submitBtn.getBoundingClientRect();
+      const exit = entrySide(event, rect);
+
+      if (hoverTl) hoverTl.kill();
+      gsap.killTweensOf([blob, btnText]);
+
+      hoverTl = gsap.timeline();
+      hoverTl
+        .to(blob, {
+          left: exit.ox,
+          top: exit.oy,
+          width: 0,
+          height: 0,
+          borderRadius: '50%',
+          duration: 0.4,
+          ease: 'power2.in',
+          onComplete: () => gsap.set(blob, { opacity: 0 })
+        }, 0)
+        .to(btnText, {
+          color: origTextColor,
+          duration: 0.25,
+          ease: 'sine.in'
+        }, 0);
     });
   }
 

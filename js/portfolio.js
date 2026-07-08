@@ -630,7 +630,17 @@ function initLenis() {
   requestAnimationFrame(raf);
 
   if (typeof ScrollTrigger !== 'undefined') {
+    ScrollTrigger.scrollerProxy(document.body, {
+      scrollTop(value) {
+        return arguments.length ? lenis.scrollTo(value) : lenis.scroll;
+      },
+      getBoundingClientRect() {
+        return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+      },
+      pinType: document.body.style.transform ? 'transform' : 'fixed'
+    });
     lenis.on('scroll', ScrollTrigger.update);
+    ScrollTrigger.refresh();
   }
 
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
