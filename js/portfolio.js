@@ -421,9 +421,43 @@ function initContactForm() {
   }
   // telegram provider needs no form setup — it's handled entirely via JS
 
+  // --- Custom client-side validation ---
+  const fields = form.querySelectorAll('.form-control');
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function clearFieldError(field) {
+    field.classList.remove('is-invalid');
+  }
+
+  function validateField(field) {
+    clearFieldError(field);
+    if (!field.hasAttribute('required')) return true;
+    const value = field.value.trim();
+    if (!value) return false;
+    if (field.type === 'email' && !emailRegex.test(value)) return false;
+    return true;
+  }
+
+  function validateForm() {
+    let valid = true;
+    fields.forEach(f => { if (!validateField(f)) { f.classList.add('is-invalid'); valid = false; } });
+    return valid;
+  }
+
+  fields.forEach(f => {
+    f.addEventListener('input', () => clearFieldError(f));
+    f.addEventListener('blur', () => validateField(f));
+  });
+
   // --- Unified submit handler ---
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      const count = form.querySelectorAll('.is-invalid').length;
+      showToast('error', 'Form incomplete', `Please fill in ${count} required field${count > 1 ? 's' : ''} correctly.`);
+      return;
+    }
 
     const submitBtn    = form.querySelector('.btn-submit');
     const originalHtml = submitBtn.innerHTML;
@@ -460,7 +494,7 @@ function injectToastStyles() {
     #toast-container {
       position: fixed;
       bottom: 24px;
-      right: 24px;
+      left: 24px;
       z-index: 9999;
       display: flex;
       flex-direction: column;
@@ -571,6 +605,7 @@ function getToastContainer() {
 
 function showToast(type, title, message) {
   const tc      = getToastContainer();
+  tc.innerHTML = '';
   const isOk    = type === 'success';
   const toast   = document.createElement('div');
   toast.className = `toast toast-${type}`;

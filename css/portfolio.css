@@ -1376,17 +1376,25 @@ body.dark .theme-toggle-btn svg {
   font-size: var(--text-sm);
   padding: 18px 16px 6px;
   background: var(--surface-color-2);
-  border: 1px solid var(--border-color);
+  border: 1.5px solid var(--border-color);
   border-radius: var(--radius-sm);
   color: var(--text-primary);
   outline: none;
-  transition: border-color var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
 }
 
 .form-control:focus {
   border-color: var(--accent-2-color);
   background: var(--surface-color);
-  box-shadow: 0 0 0 4px var(--accent-glow);
+}
+
+.form-control.is-invalid {
+  border-color: var(--error-color);
+  animation: shake 0.4s ease;
+}
+
+.form-control.is-invalid:focus {
+  border-color: var(--error-color);
 }
 
 .form-label {
@@ -1407,13 +1415,49 @@ body.dark .theme-toggle-btn svg {
   color: var(--accent-2-color);
 }
 
+.form-control.is-invalid ~ .form-label {
+  color: var(--error-color);
+}
+
 .form-control::placeholder {
   color: transparent;
+}
+
+.error-message {
+  display: none;
+  font-size: 11px;
+  color: var(--error-color);
+  margin-top: 3px;
+  padding-left: 4px;
+  animation: fadeSlideDown 0.25s ease both;
+}
+
+.form-control.is-invalid ~ .error-message {
+  display: block;
 }
 
 textarea.form-control {
   min-height: 120px;
   resize: vertical;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .btn-submit {
