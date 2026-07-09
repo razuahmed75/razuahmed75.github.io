@@ -51,6 +51,32 @@ const PROJECTS_DATA = {
     codeCanyon: "https://codecanyon.net/item/agriwealth-agricultural-hyip-investment-mobile-application-android-ios/55396787?s_rank=15",
     liveDemo: "https://play.google.com/store/apps/details?id=com.stip.club"
   },
+  "etrendz":{
+    id: "etrendz",
+    name: "eTrendz Mobile App",
+    tagline: "Multi-Vendor eCommerce Platform",
+    description: "A modern multi-vendor eCommerce mobile application designed for seamless online shopping. Browse products, manage carts, place secure orders, track deliveries, and enjoy a smooth shopping experience.\n\nBuilt with Flutter, integrated with REST APIs, Firebase Push Notifications, secure payment gateways, and real-time order tracking to deliver a fast, scalable, and user-friendly marketplace experience.",
+    logo: "/images/etrendz.png",
+    cover: "/images/covers/etrendz_cover.png",
+    tags: [ "Flutter", "Provider", "REST API", "Firebase (FCM)", "Payment Gateway"],
+    playStore: "",
+    appStore: "",
+    codeCanyon: "https://codecanyon.net/item/etrendz-ecommerce-with-multi-vendor-pos-system-and-mobile-app-bundle/55163187?s_rank=21",
+    liveDemo: ""
+  },
+  "travel-advaizar":{
+    id: "travel-advaizar",
+    name: "Travel Advaizar",
+    tagline: "AI-Powered Trip Planner",
+    description: "An AI-powered travel planning application that helps users create personalized trip itineraries, discover destinations, translate languages, and receive real-time travel assistance. Plan, edit, and share itineraries while staying updated with weather, transportation, and travel reminders.\n\nBuilt with Flutter, integrated with Google Gemini AI, REST APIs, Firebase Push Notifications, Google Maps, and secure payment gateways to deliver an intelligent and seamless travel planning experience.",
+    logo: "/images/travel_advaizar.png",
+    cover: "/images/covers/travel_advaizar_cover.png",
+    tags: ["Riverpod", "Google Gemini AI", "REST API", "Firebase (FCM)", "Google Map", "AI Chat Assistant", "Voice Translation"],
+    playStore: "",
+    appStore: "",
+    codeCanyon: "https://codecanyon.net/item/travel-advaizar-trip-planner-app-with-admin-panel/53299728?s_rank=26",
+    liveDemo: ""
+  },
   "listplace": {
     id: "listplace",
     name: "Listplace Mobile App",
