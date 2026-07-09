@@ -319,6 +319,7 @@ if (document.readyState === 'loading') {
     if (window.lenis) window.lenis.stop();
     setTimeout(() => modalCloseBtn.focus(), 100);
   }
+  window.openModal = openModal;
 
   function closeModal() {
     if (!modalBackdrop.classList.contains('open')) return;

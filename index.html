@@ -212,7 +212,7 @@
                 <li><a href="https://razuahmed75.blogspot.com/p/photo-gallery.html" target="_blank" class="nav-link">Gallery <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i></a></li>
             </ul>
 
-            <!-- Right Actions (CTA, Theme Toggle & Hamburger) -->
+            <!-- Right Actions (CTA, Theme Toggle, Hamburger) -->
             <div style="display: flex; align-items: center; gap: 16px;">
                 <a href="#contact" class="nav-cta-btn">
                     Contact
@@ -245,7 +245,6 @@
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
                 </button>
-
                 <button id="hamburger-toggle" class="hamburger" aria-label="Toggle menu">
                     <span></span>
                     <span></span>
@@ -253,6 +252,15 @@
                 </button>
             </div>
         </div>
+
+        <!-- Search toggle outside container to avoid max-width: 1200px constraint -->
+        <button id="search-toggle" class="search-toggle-btn search-toggle-abs" aria-label="Search (press / to search)">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span class="search-toggle-hint"><span class="search-hint-text">press</span> <kbd>/</kbd> <span class="search-hint-text">to search</span></span>
+        </button>
     </header>
 
     <!-- Mobile Drawer Menu -->
@@ -717,6 +725,23 @@
         </div>
     </div>
 
+    <!-- Search Modal -->
+    <div id="search-modal" class="search-backdrop" role="dialog" aria-modal="true" aria-label="Search">
+        <div class="search-panel">
+            <div class="search-input-wrapper">
+                <svg class="search-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="search-input" class="search-input" placeholder="press / to search" autocomplete="off" spellcheck="false">
+                <span class="search-input-hint"><kbd>ESC</kbd> to close</span>
+            </div>
+            <div class="search-results" id="search-results">
+                <div class="search-empty">Type to start searching...</div>
+            </div>
+        </div>
+    </div>
+
     <!-- Lenis Smooth Scrolling CDN -->
     <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 
@@ -728,6 +753,7 @@
     <!-- Companion Redesigned Logic Scripts -->
     <script src="/js/portfolio.js"></script>
     <script src="/js/animations.js"></script>
+    <script src="/js/portfolio-search.js"></script>
     <script src="/js/mouse_cursor.js"></script>
     <script src="/js/scrollbar.js"></script>
     <script src="/js/rain.js"></script>
