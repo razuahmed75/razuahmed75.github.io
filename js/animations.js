@@ -81,10 +81,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const arrow2 = ctaIcon.querySelector('.icon-hover');
     if (arrow1 && arrow2) {
       ctaBtn.addEventListener('mouseenter', () => {
+        gsap.to(ctaIcon, { rotate: 15, duration: 0.3, ease: 'power2.out' });
         gsap.to(arrow1, { x: 12, y: -12, opacity: 0, duration: 0.3, ease: 'power2.in' });
         gsap.to(arrow2, { x: 0, y: 0, opacity: 1, duration: 0.3, ease: 'power2.out' });
       });
       ctaBtn.addEventListener('mouseleave', () => {
+        gsap.to(ctaIcon, { rotate: 0, duration: 0.3, ease: 'power2.out' });
         gsap.to(arrow1, { x: 0, y: 0, opacity: 1, duration: 0.3, ease: 'power2.out' });
         gsap.to(arrow2, { x: -12, y: 12, opacity: 0, duration: 0.3, ease: 'power2.in' });
       });
