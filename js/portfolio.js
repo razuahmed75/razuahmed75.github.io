@@ -653,10 +653,10 @@ function initLenis() {
   if (typeof Lenis === 'undefined') return;
 
   const lenis = new Lenis({
-    duration: 0.8,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    duration: 1.2,
+    easing: (t) => 1 - Math.pow(1 - t, 4),
     smoothWheel: true,
-    smoothTouch: false,
+    smoothTouch: true,
   });
 
   window.lenis = lenis;
