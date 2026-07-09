@@ -697,14 +697,8 @@ body.dark .theme-toggle-btn svg {
 .hero-avatar {
   width: 260px;
   height: 260px;
-  /* border-radius: var(--radius-full);
-  object-fit: cover;
-  border: 6px solid var(--surface-color); */
   box-shadow: var(--shadow-card);
   z-index: 2;
-  /* position: relative; */
-  /* animation: float-avatar 6s ease-in-out infinite;
-  transition: transform var(--transition-normal), border-color var(--transition-normal); */
   object-fit: cover;
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
   border: 5px solid rgba(0, 180, 216, 0.25);
