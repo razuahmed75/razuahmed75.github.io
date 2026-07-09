@@ -260,6 +260,54 @@ body.dark .footer-logo .dark-logo {
   transform-origin: left;
 }
 
+/* Nav CTA Button */
+.nav-cta-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--accent-2-color);
+  color: #ffffff;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  padding: 6px 6px 6px 22px;
+  border-radius: 999px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.nav-cta-btn:hover {
+  opacity: 0.92;
+  color: #ffffff;
+}
+
+.nav-cta-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #000000;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.nav-cta-icon .icon-arrow {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  color: #DCFC36;
+  display: block;
+}
+
+.nav-cta-icon .icon-hover {
+  opacity: 0;
+  transform: translate(-12px, 12px);
+}
+
 /* Theme Toggle Button */
 .theme-toggle-btn {
   background: transparent;

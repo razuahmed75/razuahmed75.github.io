@@ -73,6 +73,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Nav CTA button arrow-swap hover
+  const ctaBtn = document.querySelector('.nav-cta-btn');
+  const ctaIcon = document.querySelector('.nav-cta-icon');
+  if (ctaBtn && ctaIcon) {
+    const arrow1 = ctaIcon.querySelector('.icon-arrow:not(.icon-hover)');
+    const arrow2 = ctaIcon.querySelector('.icon-hover');
+    if (arrow1 && arrow2) {
+      ctaBtn.addEventListener('mouseenter', () => {
+        gsap.to(arrow1, { x: 12, y: -12, opacity: 0, duration: 0.3, ease: 'power2.in' });
+        gsap.to(arrow2, { x: 0, y: 0, opacity: 1, duration: 0.3, ease: 'power2.out' });
+      });
+      ctaBtn.addEventListener('mouseleave', () => {
+        gsap.to(arrow1, { x: 0, y: 0, opacity: 1, duration: 0.3, ease: 'power2.out' });
+        gsap.to(arrow2, { x: -12, y: 12, opacity: 0, duration: 0.3, ease: 'power2.in' });
+      });
+    }
+  }
+
   // Stagger nav links
   const navLinks = document.querySelectorAll('.nav-menu .nav-link');
   if (navLinks.length > 0) {
