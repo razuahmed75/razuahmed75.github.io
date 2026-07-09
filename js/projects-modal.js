@@ -251,7 +251,6 @@ function renderProjectsSection() {
     <div class="project-hero-card" data-project-id="${featuredData.id}" tabindex="0" role="button" aria-label="View details for ${featuredData.name}">
       <div class="project-hero-content">
         <div>
-          <span class="featured-tag">Featured Project</span>
           <h3 class="project-hero-title" style="margin-top: var(--space-1);">${featuredData.name}</h3>
           <p class="project-hero-desc" style="margin-top: var(--space-1);">
             ${featuredData.tagline}. ${featuredData.description.split('\n')[0]}
