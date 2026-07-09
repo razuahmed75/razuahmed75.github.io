@@ -840,7 +840,6 @@ body.dark .theme-toggle-btn svg {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 140px;
 }
 
 .stat-card:hover {
@@ -851,7 +850,7 @@ body.dark .theme-toggle-btn svg {
 
 .stat-number {
   font-family: var(--font-display);
-  font-size: var(--text-3xl);
+  font-size: var(--text-2xl);
   font-weight: 800;
   color: var(--accent-2-color);
   line-height: 1;
