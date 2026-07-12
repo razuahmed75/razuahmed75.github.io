@@ -2218,7 +2218,7 @@ html.lenis body {
   width: 100vw;
   height: 110vh;
   overflow: hidden;
-  fill: var(--surface-color);
+  fill: var(--surface-color); /* preloader background */
 }
 
 :root {
