@@ -450,6 +450,16 @@ body.dark .theme-toggle-btn svg {
   .hamburger.open span:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
   }
+
+  .search-toggle-btn,
+  .search-toggle-abs,
+  .nav-cta-btn {
+    display: none;
+  }
+
+  #project-slider-section {
+    display: none;
+  }
 }
 
 /* ==========================================================================
