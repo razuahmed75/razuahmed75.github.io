@@ -454,11 +454,11 @@ body.dark .theme-toggle-btn svg {
   .search-toggle-btn,
   .search-toggle-abs,
   .nav-cta-btn {
-    display: none;
+    display: none !important;
   }
 
   #project-slider-section {
-    display: none;
+    display: none !important;
   }
 }
 
