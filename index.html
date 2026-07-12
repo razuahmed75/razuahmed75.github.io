@@ -159,7 +159,6 @@
   });
   const devtoolsMsg = '%cStop!',
         devtoolsStyle = 'font-size:48px;font-weight:800;color:#e74c3c;';
-  console.log('%c⚠️ This browser feature is disabled for this site.', devtoolsStyle);
   const devtoolsCheck = () => {
     if (!document.body) return;
     const threshold = 160;
@@ -479,6 +478,21 @@
 
                 <div class="projects-cta-container">
                     <a href="https://github.com/razuahmed75" target="_blank" class="btn-primary">View All on GitHub <i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Slider Section -->
+        <section id="project-slider-section" class="section-padding reveal" style="padding-top: 0;">
+            <div class="container-fluid" style="padding: 0; overflow: hidden; position: relative;">
+                <div class="projects-header">
+                    <h2 class="section-title" style="margin-bottom: 8px;">Project Showcase</h2>
+                    <p style="color: var(--text-muted);">A continuous gallery of mobile applications.</p>
+                </div>
+                <div class="project-marquee-wrapper" aria-label="Projects Showcase Slider" role="region">
+                    <div class="project-marquee-track" id="project-marquee-track">
+                        <!-- Dynamically populated by JavaScript -->
+                    </div>
                 </div>
             </div>
         </section>

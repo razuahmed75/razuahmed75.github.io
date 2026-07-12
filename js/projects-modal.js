@@ -431,3 +431,128 @@ if (document.readyState === 'loading') {
     }
   });
 })();
+
+// ── Project Slider Showcase ──────────────────────────────────────────────────
+function renderProjectSlider() {
+  const marqueeTrack = document.getElementById('project-marquee-track');
+  if (!marqueeTrack) return;
+
+  const projects = Object.values(PROJECTS_DATA);
+  if (projects.length === 0) return;
+
+  // Render cards (Original list)
+  const cardsHtml = projects.map(proj => {
+    // Badges generation
+    let badgesHtml = '';
+    const hasPlay = !!(proj.playStore || proj.playStoreUrl);
+    const hasApp = !!(proj.appStore || proj.appStoreUrl);
+    const hasCanyon = !!(proj.codeCanyon || proj.codeCanyonUrl);
+
+    const playUrl = proj.playStore || proj.playStoreUrl || '';
+    const appUrl = proj.appStore || proj.appStoreUrl || '';
+    const canyonUrl = proj.codeCanyon || proj.codeCanyonUrl || '';
+
+    if (hasPlay) {
+      badgesHtml += `
+        <a href="${playUrl}" target="_blank" rel="noopener noreferrer" class="project-card-badge-btn" aria-label="Open ${proj.name} on Google Play Store" title="Google Play">
+          <i class="fab fa-google-play"></i>
+        </a>`;
+    }
+    if (hasApp) {
+      badgesHtml += `
+        <a href="${appUrl}" target="_blank" rel="noopener noreferrer" class="project-card-badge-btn" aria-label="Open ${proj.name} on App Store" title="App Store">
+          <i class="fab fa-apple"></i>
+        </a>`;
+    }
+
+    const firstUrl = playUrl || appUrl || canyonUrl || '#';
+    const coverImg = proj.cover || proj.coverImage || '';
+
+    return `
+      <div class="project-marquee-card" 
+           data-play="${playUrl}"
+           data-app="${appUrl}"
+           data-canyon="${canyonUrl}"
+           data-first-url="${firstUrl}"
+           tabindex="0"
+           role="button"
+           aria-label="${proj.name} - opens in new tab">
+        
+        <img src="${coverImg}" loading="lazy" class="project-card-bg-img" alt="">
+
+        <div class="project-card-badges">
+          ${badgesHtml}
+        </div>
+
+        <div class="project-card-content">
+          <h3 class="project-card-title">${proj.name}</h3>
+        </div>
+      </div>`;
+  }).join('');
+
+  // Duplicate the list of cards back-to-back for a seamless marquee loop
+  marqueeTrack.innerHTML = cardsHtml + cardsHtml;
+
+  // Calculate speed dynamically to ensure uniform visual scrolling speed
+  function adjustMarqueeDuration() {
+    const cardEl = marqueeTrack.querySelector('.project-marquee-card');
+    if (!cardEl) return;
+    
+    const cardStyles = window.getComputedStyle(cardEl);
+    const cardWidth = parseFloat(cardStyles.width) || 180;
+    
+    // Read the gap from margin-right on the card
+    const gap = parseFloat(cardStyles.marginRight) || 24;
+    
+    const singleSetWidth = projects.length * (cardWidth + gap);
+    const speed = 165; // Pixels per second (adjustable for desired speed)
+    const duration = singleSetWidth / speed;
+    
+    marqueeTrack.style.setProperty('--marquee-duration', `${duration}s`);
+  }
+
+  // Adjust on load and window resize
+  adjustMarqueeDuration();
+  window.addEventListener('resize', adjustMarqueeDuration);
+
+  // Click & keyboard events handler
+  marqueeTrack.addEventListener('click', (e) => {
+    // If the click is inside a badge-btn, let the browser open its link normally
+    if (e.target.closest('.project-card-badge-btn')) {
+      return;
+    }
+
+    const card = e.target.closest('.project-marquee-card');
+    if (card) {
+      const url = card.getAttribute('data-first-url');
+      if (url && url !== '#') {
+        window.open(url, '_blank', 'noopener,noreferrer');
+      }
+    }
+  });
+
+  marqueeTrack.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      // If focusing a badge link, don't trigger the card's full click action
+      if (e.target.closest('.project-card-badge-btn')) {
+        return;
+      }
+      
+      const card = e.target.closest('.project-marquee-card');
+      if (card) {
+        e.preventDefault();
+        const url = card.getAttribute('data-first-url');
+        if (url && url !== '#') {
+          window.open(url, '_blank', 'noopener,noreferrer');
+        }
+      }
+    }
+  });
+}
+
+// Initialize project slider after DOM load
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', renderProjectSlider);
+} else {
+  renderProjectSlider();
+}
