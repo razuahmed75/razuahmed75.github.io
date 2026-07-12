@@ -10,6 +10,7 @@
     const DPR = window.devicePixelRatio || 1;
     const CW = 22;
     const cx = CW / 2;
+    const THUMB_W = 8;
 
     let canvasH = 0;
     let scrollRatio = 0;
@@ -24,6 +25,7 @@
     let boltPts = [];
     let boltLife = 0;
     let boltBranch = null;
+    let boltBranch2 = null;
 
     function getAccent() {
         const v = getComputedStyle(document.documentElement)
@@ -54,30 +56,29 @@
     }
 
     function roundedRect(x, y, w, h, r) {
+        const rr = Math.min(r, w / 2, h / 2);
         ctx.beginPath();
-        ctx.moveTo(x + r, y);
-        ctx.lineTo(x + w - r, y);
-        ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-        ctx.lineTo(x + w, y + h - r);
-        ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-        ctx.lineTo(x + r, y + h);
-        ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-        ctx.lineTo(x + r, y);
-        ctx.quadraticCurveTo(x, y, x + r, y);
+        ctx.moveTo(x + rr, y);
+        ctx.arcTo(x + w, y, x + w, y + h, rr);
+        ctx.arcTo(x + w, y + h, x, y + h, rr);
+        ctx.arcTo(x, y + h, x, y, rr);
+        ctx.arcTo(x, y, x + w, y, rr);
         ctx.closePath();
     }
 
     function createBolt(ty, thumbH) {
         boltPts = [];
         boltBranch = null;
+        boltBranch2 = null;
         const segments = 12;
         for (let i = 0; i <= segments; i++) {
             boltPts.push({
-                x: cx + (Math.random() - 0.5) * 8,
+                x: cx + (Math.random() - 0.5) * 12,
                 y: ty + (i / segments) * thumbH
             });
         }
         boltBranch = boltPts[Math.floor(segments * 0.4)];
+        boltBranch2 = boltPts[Math.floor(segments * 0.7)];
         boltLife = 1;
     }
 
@@ -159,15 +160,15 @@
             ctx.fill();
         }
 
-        // Lightning bolt every 7 frames
-        if (frame % 7 === 0) createBolt(ty, thumbH);
+        // Lightning bolt every 4 frames — more frequent storm
+        if (frame % 4 === 0) createBolt(ty, thumbH);
 
         if (boltLife > 0 && boltPts.length > 1) {
             ctx.save();
             ctx.shadowColor = ACCENT;
             ctx.shadowBlur = 10;
-            ctx.strokeStyle = rgba(ACCENT, boltLife * 0.85);
-            ctx.lineWidth = 1.2;
+            ctx.strokeStyle = rgba(ACCENT, boltLife * 0.9);
+            ctx.lineWidth = 1.6;
             ctx.globalAlpha = boltLife;
             ctx.beginPath();
             ctx.moveTo(boltPts[0].x, boltPts[0].y);
@@ -178,42 +179,45 @@
                 ctx.beginPath();
                 ctx.moveTo(boltBranch.x, boltBranch.y);
                 ctx.lineTo(
-                    boltBranch.x + Math.cos(a) * 12,
-                    boltBranch.y + Math.sin(a) * 12
+                    boltBranch.x + Math.cos(a) * 18,
+                    boltBranch.y + Math.sin(a) * 18
                 );
                 ctx.lineWidth = 0.7;
-                ctx.globalAlpha = boltLife * 0.45;
+                ctx.globalAlpha = boltLife * 0.5;
+                ctx.stroke();
+            }
+            if (boltBranch2) {
+                const a2 = Math.random() * Math.PI - Math.PI / 2;
+                ctx.beginPath();
+                ctx.moveTo(boltBranch2.x, boltBranch2.y);
+                ctx.lineTo(
+                    boltBranch2.x + Math.cos(a2) * 18,
+                    boltBranch2.y + Math.sin(a2) * 18
+                );
+                ctx.lineWidth = 0.7;
+                ctx.globalAlpha = boltLife * 0.5;
                 ctx.stroke();
             }
             ctx.restore();
-            boltLife -= 0.16;
+            boltLife -= 0.12;
         }
 
-        // Thumb body
+        // Thumb body — unified width, fully rounded top and bottom, no arrow
         ctx.save();
         ctx.shadowColor = ACCENT;
         ctx.shadowBlur = 14;
 
         // Outer glow fill
-        roundedRect(cx - 4, ty, 8, thumbH, 3);
+        roundedRect(cx - THUMB_W / 2 - 1, ty, THUMB_W + 2, thumbH, (THUMB_W + 2) / 2);
         ctx.fillStyle = rgba(ACCENT, 0.15);
         ctx.fill();
 
         // Solid thumb
-        roundedRect(cx - 3, ty + 1, 6, thumbH - 2, 2);
+        roundedRect(cx - THUMB_W / 2, ty + 1, THUMB_W, thumbH - 2, THUMB_W / 2);
         ctx.fillStyle = rgba(ACCENT, 0.85);
         ctx.fill();
 
-        // CENTERED arrow — pointing down (toward scroll direction)
-        ctx.beginPath();
-        ctx.moveTo(cx, midY + 5);
-        ctx.lineTo(cx - 5, midY - 4);
-        ctx.lineTo(cx + 5, midY - 4);
-        ctx.closePath();
-        ctx.fillStyle = 'rgba(255,255,255,0.95)';
-        ctx.fill();
-
-        // Pulsing dot at center of arrow
+        // Pulsing dot at center of thumb
         const pulse = Math.sin(t * 3) * 0.3 + 0.6;
         ctx.beginPath();
         ctx.arc(cx, midY, 2.2, 0, Math.PI * 2);
