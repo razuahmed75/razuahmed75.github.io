@@ -12,25 +12,72 @@ document.addEventListener('DOMContentLoaded', () => {
   // Respect user preferences for reduced motion
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     gsap.globalTimeline.timeScale(0.01);
-    const overlay = document.getElementById('page-overlay');
-    if (overlay) overlay.style.display = 'none';
+    const loader = document.querySelector('.loader-wrap');
+    if (loader) loader.style.display = 'none';
     return;
   }
 
   /* ==========================================================================
-     PAGE TRANSITION OVERLAY (Cinematic Slow)
+     <!-- Page Pre Loader -->
      ========================================================================== */
-  const pageOverlay = document.getElementById('page-overlay');
-  if (pageOverlay) {
-    gsap.to(pageOverlay, {
-      scaleY: 0,
-      transformOrigin: 'top center',
-      duration: 1.6,
-      ease: 'power4.inOut',
-      delay: 0.1,
-      onComplete: () => {
-        pageOverlay.style.pointerEvents = 'none';
+  const svg = document.getElementById('curtain-svg');
+  const p5mask = document.getElementById('p5mask');
+  const loaderWrap = document.querySelector('.loader-wrap');
+
+  if (svg && p5mask && loaderWrap) {
+    const curve = 'M0 502S175 272 500 272s500 230 500 230V0H0Z';
+    const flat = 'M0 2S175 1 500 1s500 1 500 1V0H0Z';
+
+    gsap.to('#p5mask', {
+      backgroundPosition: '0% 0',
+      duration: 2,
+      repeat: 0,
+      ease: 'power1.inOut'
+    });
+
+    const c = { value: 0 };
+    gsap.to(c, {
+      value: 100,
+      duration: 2,
+      repeat: 0,
+      ease: 'power1.inOut',
+      onUpdate: () => {
+        const p1 = document.getElementById('p1');
+        const val = Math.round(c.value);
+        p1.textContent = val + '%';
+        if (val >= 100) p1.style.opacity = '0';
       }
+    });
+
+    const revealDuration = 2.5;
+
+    const tl = gsap.timeline();
+
+    tl.to('#p5mask', revealDuration * 0.05, {
+      opacity: 0,
+      ease: 'power2.in'
+    }, 2.0);
+
+    tl.to(svg, revealDuration * 0.35, {
+      attr: { d: curve },
+      ease: 'power4.in'
+    }, 2.0 + revealDuration * 0.05);
+
+    tl.to(svg, revealDuration * 0.45, {
+      attr: { d: flat },
+      ease: 'power4.out'
+    }, 2.0 + revealDuration * 0.4);
+
+    tl.to(loaderWrap, {
+      y: -1500,
+      duration: revealDuration * 0.15,
+      ease: 'power4.inOut'
+    }, 2.0 + revealDuration * 0.85);
+
+    tl.to(loaderWrap, {
+      zIndex: -1,
+      display: 'none',
+      duration: 0
     });
   }
 

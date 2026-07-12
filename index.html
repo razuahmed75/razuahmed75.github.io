@@ -186,8 +186,14 @@
     <!-- Scroll Progress Bar -->
     <div id="scroll-progress"></div>
 
-    <!-- Page Transition Overlay -->
-    <div id="page-overlay"></div>
+    <!-- Page Pre Loader -->
+    <div class="loader-wrap">
+        <svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
+            <path id="curtain-svg" d="M0,1005S175,995,500,995s500,5,500,5V0H0Z"></path>
+        </svg>
+        <div id="p5mask">LOADING...</div>
+        <div id="p1">0%</div>
+    </div>
 
     <!-- Sticky Glassmorphism Header -->
     <header class="header-nav">

@@ -2193,17 +2193,69 @@ html.lenis body {
   will-change: transform;
 }
 
-#page-overlay {
+/* ==========================================================================
+  <!-- Page Pre Loader START-->
+  ========================================================================== */
+.loader-wrap {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
-  background: var(--surface-color);
-  z-index: 10000;
-  transform-origin: top center;
-  will-change: transform;
+  z-index: 9999;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
+.loader-wrap svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 110vh;
+  overflow: hidden;
+  fill: var(--surface-color);
+}
+
+:root {
+  --loader-from: #000;
+  --loader-to: #ccc;
+}
+
+body.dark {
+  --loader-from: #fff;
+  --loader-to: #444;
+}
+
+#p5mask {
+  z-index: 10000;
+  font-size: 28px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  background-image: linear-gradient(90deg, var(--loader-from) 50%, var(--loader-to) 50%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+#p1 {
+  z-index: 10000;
+  font-family: monospace;
+  font-size: 32px;
+  font-weight: 500;
+  margin-top: 12px;
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+  <!-- Page Pre Loader END -->
+  ========================================================================== */
 
 .header-nav.scrolled {
   background: rgba(10, 10, 15, 0.85);
