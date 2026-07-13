@@ -45,7 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const p1 = document.getElementById('p1');
         const val = Math.round(c.value);
         p1.textContent = val + '%';
-        if (val >= 100) p1.style.opacity = '0';
+        if (val >= 100 && !p1.dataset.hiding) {
+          p1.dataset.hiding = '1';
+          setTimeout(() => { p1.style.opacity = '0'; }, 450);
+        }
       }
     });
 
