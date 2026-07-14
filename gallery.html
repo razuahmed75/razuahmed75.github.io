@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/fav_icon.png" type="image/png">
+    <link rel="icon" href="/fav.png" type="image/png">
+
+    <title>Image Gallery – Razu Ahmed</title>
+    <meta name="description" content="Browse the photo gallery of Razu Ahmed — a curated collection of photography and visual stories.">
+
+    <link rel="canonical" href="https://razuahmed75.github.io/gallery.html" />
+
+    <link rel="stylesheet" href="/css/portfolio.css" media="all">
+    <link rel="stylesheet" href="/css/clock.css">
+    <link rel="stylesheet" href="/css/echo-terminal.css">
+    <link rel="stylesheet" href="/css/projects-modal.css">
+
+    <link href="https://fonts.bunny.net/css?family=just-me-again-down-here:400" rel="stylesheet">
+
+    <script defer src="/fontawesome-5/all-5.15.4.js"></script>
+
+    <script>
+        const savedTheme = localStorage.getItem('pref-theme') || 'dark';
+        if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
+    <style>
+        html { scrollbar-width: none; }
+        body::-webkit-scrollbar { display: none; }
+        body { overflow-x: hidden; }
+
+        @property --rotate {
+            syntax: "<number>";
+            inherits: true;
+            initial-value: 0;
+        }
+
+        .gallery-page-body {
+            --cards: 16;
+            height: calc(var(--cards) * 80svh);
+            margin: 0;
+            font-family: 'Bricolage Grotesque', 'Inter', system-ui, -apple-system, sans-serif;
+            color: var(--text-primary);
+
+            animation: --page-rotate 1s linear;
+            animation-timeline: scroll(nearest block);
+            animation-timing-function: steps(var(--cards));
+        }
+
+        .gallery-page-body .gallery-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-color: var(--bg-primary);
+        }
+
+        @keyframes --page-rotate {
+            to { --rotate: 1; }
+        }
+
+        .gallery-page-body .wrapper {
+            --card-border-radius: 14px;
+            --cards: 16;
+            --card-width: max(120px, min(250px, 18vw));
+            --card-height: calc(var(--card-width) * 6 / 4);
+            --radius: calc(var(--card-width) * var(--cards) / (2 * 3.1416));
+
+            font-family: 'Just Me Again Down Here', handwriting;
+            position: fixed;
+            width: calc(var(--radius) * 2);
+            height: calc(var(--radius) * 2);
+
+            top: calc(50% + var(--card-height) / 2);
+            left: 50%;
+            transform-origin: center center;
+            transform: translateX(-50%) rotate(calc(var(--rotate) * 360deg));
+            transition: transform 300ms linear;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .gallery-page-body .wrapper > div {
+            --card-i: 1;
+
+            --card-offset-radius: circle(var(--radius) at 50% 50%);
+            --card-offset-distance: calc((var(--card-i) - 1) / var(--cards) * 100%);
+
+            --card-phase: calc((var(--card-i) - 1) / var(--cards) - 0.75);
+            --card-pos: mod(calc(var(--card-phase) + var(--rotate) + 1), 1);
+            --card-dist: min(var(--card-pos), calc(1 - var(--card-pos)));
+
+            --card-grayscale: clamp(0, calc(var(--card-dist) * var(--cards)), 1);
+            --card-opacity: calc(1 - (var(--card-dist) / 0.15));
+
+            --card-focus-range: .1;
+            --card-max-blur: 7px;
+            --card-norm-dist: min(var(--card-dist), var(--card-focus-range));
+            --card-blur-progress: calc(var(--card-norm-dist) / var(--card-focus-range));
+            --card-blur: calc(var(--card-blur-progress) * var(--card-max-blur));
+
+            --caption-active: clamp(0, 1 - (var(--card-dist) / 0.001), 1);
+            --caption-opacity: var(--caption-active);
+            --caption-y: calc(-150px * (1 - var(--caption-active)));
+
+            filter: blur(var(--card-blur)) grayscale(var(--card-grayscale));
+            opacity: var(--card-opacity);
+            container: size;
+
+            offset-path: var(--card-offset-radius);
+            offset-distance: var(--card-offset-distance);
+            offset-rotate: auto;
+            offset-anchor: 50% 100%;
+
+            position: absolute;
+            width: var(--card-width);
+            aspect-ratio: 4/6;
+            object-fit: cover;
+            border-radius: var(--card-border-radius);
+            transition: all 300ms ease-in-out;
+            transform-origin: center calc(var(--card-height) * 2 * -1);
+        }
+
+        .gallery-page-body .wrapper > div:nth-child(1) { --card-i: 1; }
+        .gallery-page-body .wrapper > div:nth-child(2) { --card-i: 2; }
+        .gallery-page-body .wrapper > div:nth-child(3) { --card-i: 3; }
+        .gallery-page-body .wrapper > div:nth-child(4) { --card-i: 4; }
+        .gallery-page-body .wrapper > div:nth-child(5) { --card-i: 5; }
+        .gallery-page-body .wrapper > div:nth-child(6) { --card-i: 6; }
+        .gallery-page-body .wrapper > div:nth-child(7) { --card-i: 7; }
+        .gallery-page-body .wrapper > div:nth-child(8) { --card-i: 8; }
+        .gallery-page-body .wrapper > div:nth-child(9) { --card-i: 9; }
+        .gallery-page-body .wrapper > div:nth-child(10) { --card-i: 10; }
+        .gallery-page-body .wrapper > div:nth-child(11) { --card-i: 11; }
+        .gallery-page-body .wrapper > div:nth-child(12) { --card-i: 12; }
+        .gallery-page-body .wrapper > div:nth-child(13) { --card-i: 13; }
+        .gallery-page-body .wrapper > div:nth-child(14) { --card-i: 14; }
+        .gallery-page-body .wrapper > div:nth-child(15) { --card-i: 15; }
+        .gallery-page-body .wrapper > div:nth-child(16) { --card-i: 16; }
+
+        .gallery-page-body .wrapper > div::after {
+            content: attr(data-title);
+            position: absolute;
+            top: 100%;
+            left: 1rem;
+            opacity: var(--caption-opacity);
+            translate: 0 var(--caption-y);
+            font-size: clamp(1rem, 2vw + 0.045rem, 1.6rem);
+            z-index: -1;
+            transition: opacity 300ms ease-in-out, translate 300ms ease-in-out;
+            white-space: nowrap;
+        }
+
+        .gallery-page-body .wrapper > div > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: inherit;
+        }
+
+        .gallery-page-body .mouse {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            translate: -50% 0;
+            width: 50px;
+            height: 50px;
+            opacity: 1;
+            color: var(--text-primary);
+            display: none;
+            animation-name: mouse-fade;
+            animation-duration: 1s;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+            animation-timeline: scroll(nearest block);
+            z-index: 1000;
+        }
+
+        @supports (animation-timeline: scroll()) {
+            .gallery-page-body .wrapper { opacity: 1; pointer-events: auto; }
+            .gallery-page-body .mouse { display: block; }
+        }
+
+        @keyframes mouse-fade {
+            75% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        @supports not (animation-timeline: scroll()) {
+            .gallery-page-body::after {
+                content: "Sorry, your browser doesn't support scroll-driven animations";
+                position: fixed;
+                top: 5rem;
+                left: 50%;
+                translate: -50% 0;
+                font-size: 0.8rem;
+                z-index: 100;
+                background: var(--bg-primary);
+                padding: 0.5rem 1rem;
+                border-radius: 8px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .gallery-page-body .wrapper {
+                --card-width: max(100px, min(200px, 18vw));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-page-body {
+                height: calc(var(--cards) * 90svh);
+            }
+            .gallery-page-body .wrapper {
+                --card-width: max(90px, min(180px, 20vw));
+            }
+            .gallery-page-body .wrapper > div::after {
+                font-size: 0.8rem;
+                left: 0.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-page-body {
+                height: calc(var(--cards) * 100svh);
+            }
+            .gallery-page-body .wrapper {
+                --card-width: max(70px, min(140px, 26vw));
+                --card-border-radius: 10px;
+            }
+            .gallery-page-body .wrapper > div::after {
+                font-size: 0.7rem;
+                left: 0.2rem;
+            }
+        }
+    </style>
+
+    <script>
+      document.addEventListener('contextmenu', e => e.preventDefault());
+      document.addEventListener('keydown', e => {
+        if (e.key === 'F12' ||
+            (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key.toUpperCase())) ||
+            (e.ctrlKey && e.key.toUpperCase() === 'U')) {
+          e.preventDefault();
+        }
+      });
+      const devtoolsCheck = () => {
+        if (!document.body) return;
+        const threshold = 160;
+        const widthDiff = window.outerWidth - window.innerWidth;
+        const heightDiff = window.outerHeight - window.innerHeight;
+        if (widthDiff > threshold || heightDiff > threshold) {
+          document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#0a0a0f;color:#fff;font-family:sans-serif;text-align:center;padding:2rem;"><div><h1 style="color:#e74c3c;">Access Denied</h1><p>Developer tools are not allowed on this site.</p></div></div>';
+        }
+      };
+      setInterval(devtoolsCheck, 1000);
+    </script>
+</head>
+
+<body class="dark gallery-page-body">
+    <div class="gallery-bg"></div>
+
+    <header class="header-nav">
+        <div class="container-custom navbar-container">
+            <a href="/" class="nav-logo">
+                <img class="header-logo light-logo" src="/header2.png" alt="Razu Ahmed" width="40" height="40">
+                <img class="header-logo dark-logo" src="/header1.png" alt="Razu Ahmed" width="40" height="40">
+                <span>Razu Ahmed</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/#about" class="nav-link">About</a></li>
+                <li><a href="/#skills" class="nav-link">Skills</a></li>
+                <li><a href="/#projects" class="nav-link">Projects</a></li>
+                <li><a href="/#experience" class="nav-link">Experience</a></li>
+                <li><a href="/#education" class="nav-link">Education</a></li>
+                <li><a href="https://razuahmed75.blogspot.com/" target="_blank" class="nav-link">Blogs <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i></a></li>
+                <li><a href="/gallery.html" class="nav-link active">Gallery <i class="fas fa-external-link-alt" style="font-size: 0.75rem;"></i></a></li>
+            </ul>
+            <div class="nav-right-actions">
+                <a href="/#contact" class="nav-cta-btn">Contact<span class="nav-cta-icon">
+                    <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                    <svg class="icon-arrow icon-hover" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </span></a>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                <button id="hamburger-toggle" class="hamburger" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="mobile-drawer" class="mobile-drawer">
+        <ul class="nav-menu-mobile">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li><a href="/#about" class="nav-link">About</a></li>
+            <li><a href="/#skills" class="nav-link">Skills</a></li>
+            <li><a href="/#projects" class="nav-link">Projects</a></li>
+            <li><a href="/#experience" class="nav-link">Experience</a></li>
+            <li><a href="/#education" class="nav-link">Education</a></li>
+            <li><a href="https://razuahmed75.blogspot.com/" target="_blank" class="nav-link">Blogs <i class="fas fa-external-link-alt" style="font-size: 0.8rem;"></i></a></li>
+            <li><a href="/gallery.html" class="nav-link">Gallery <i class="fas fa-external-link-alt" style="font-size: 0.8rem;"></i></a></li>
+            <li><a href="/#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </div>
+    <div id="drawer-overlay" class="drawer-overlay"></div>
+
+    <section class="wrapper">
+        <div data-title="A misty Morning">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjuYzhQdCXBmzP1wIGk6FBEKr_o16WcaQtSxOVKCw4P-CGoMTMseyThazOQnf0k8WQ6zTB1-jkLbjSsu55fUHJ5VWDNdw4Q_WF3_bx45O4STdLH9_-VaNBaWYWuunqF0AATnUiZfXTSZWTcha2QWz0yd5vYsLnw8i7_n3OAe40caj4qtWvTVckVti8JzTU/s4032/IMG_7728.HEIC" alt="" loading="lazy">
+        </div>
+        <div data-title="Harvest">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgQD4_Xf_WBfWHCtOJ_laQMGx08kkVykQM8GIsBmdDgOGo6olbKlKBHxAeFmWpVa9wHDsvSMzhN1MwfosVe9WVxCy9A4pZEiEKArty4eNhi4CqQg5hsMgKhYlKbc-iEGjtCju4d8T_ivhlg9JI6baQPqTFX1Q3VPwopA2-REgAYj6aqpqQOgziGjNdNAmM/s1579/IMG_1921.JPG" alt="" loading="lazy">
+        </div>
+        <div data-title="Waiting">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjZqHwbEmjgjqs_bS-W6ZnMW_yw1yrBrrwY138aJkrL0hJHH1NJYsef865ds0Hw_tagS7YHXOmAdazOfFuMmL_nZTb8moU-jIXcmJq2t40Y48b2mRqKDfyJ4C9mhn9spqPkPJiJo5wY5yaUYJJdKECPRIKu59vDR0hBeDgHIrTgpLHzYHUUFIdO4nACSnk/s4032/IMG_20250403_234436.jpg" alt="" loading="lazy">
+        </div>
+        <div data-title="Time for Everything">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhbwclU189F20auenKtTwxsYy8GeXpn2rgbZuI5NKEyNgPYEHNTko-ABhtAr54wM_bz64sAydTDeRk-qJHlcLJzZx_2x21oKJ7ev1thcbBfO9F2SxhAV-W1q2A2jmRdZHl3zTZwDrCuPmLu553GS0L9yVKo23liWEsuX6V54jYTLB60ailRqL40H3VZ6ug/s4032/IMG_20250404_003805_530.JPG" alt="" loading="lazy">
+        </div>
+        <div data-title="Cross over">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtWVSX2uh1SEwDiXG54Naunin1OiDaVZMKT6eAkgD-VerOtETLxBnDDYq3GY8o5v2QCqu-0XXMTIOvR_FNKvvNkme2kCifveFA3oFMIHVLfkKU17BKcXJzCFyJ4-svOWvX0bx31pxj4OMvD-8vfYOsKJZ6snh5of-zQCngbvW18nbmm_pVQ52lnPGymfQ/s4032/IMG_20250403_233741.jpg" alt="" loading="lazy">
+        </div>
+        <div data-title="In The City">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjdIW6LHLoSzzQ8eZKg6aZVVCysmWrCW9hyphenhyphenEtYbQVrToyRtXRMS3nC32UGQwMB0UJSOUT2fHKoPXx-ShEfCjRItYzib2BhlV3Uogg1MpioyHna8p_aDZnpVe58Nb-9I_ra6Yh_ggRhPK60KwIsSzdiHJLDFF5H6ZRZHu2J0E-sphJMVIE8YphHj4ergHuM/s4032/IMG_20250402_233714.jpg" alt="" loading="lazy">
+        </div>
+        <div data-title="A Boat Trip">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLAyNpBGzcaFT8T4XAmUuqcHZLvmmPVBUzqXnkk7v8yEhYRulPbLrEioYh_UsZsr2bJjdPHCMwFJh09VPbZQq0GKKfD1I8SjgTcm5uhxzCswTGPXWkuL7RQFjj4DMikW7fnzmISXlhXctRzRq9dp7aVm3lKATxoicSfqcsRzsfQCzEojGjBaA7m_DwPSw/s4608/pexels-dorran-737683-1643280.jpg" alt="" loading="lazy">
+        </div>
+        <div data-title="Waiting">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiKPAzmcbDL6FgXpachKVIzqFQpRr6yA3oMzO9IX-bh6AAPlWx9CS1W1aErOM6dBy2OJFjA597TkE-U2i8A1aCNZokmN9Tmh_-FNa5LOPuOuIXqTiXS1xq48Rqgwyn4z205urhFZNMXf7Af1BwJ3HR4ATX2daq-ARQnGGFORX1a2sfC1ZDhpuYBk3s9zbI/s4657/pexels-julienblt-923311.jpg" alt="" loading="lazy">
+        </div>
+        <div data-title="Stories to tell">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhR-SJaEgOABPOTazURmBMPirizg4z0-43jt1Telp0OWkiUkoTmrd8bBkyy22XgZtYwAl8Q3aft1-BcKlG8yPMt8N58_frboPe5YVVFR8081nRXAhlGuqpIi2HQ8cEB1upiMmQ6StsqoyPNJUMXhQCW8A_dB4WtzP1j9g1b67OHTcIPoMM9qGtRdqUYdHQ/s320/pexels-karolina-grabowska-5412500.jpg" alt="" loading="lazy">
+        </div>
+        <div data-title="A Perfect Day">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhjhZSuxa-I2Sb4fFdM1ODbaXL6tOjgQpmPz2XSRE9b2HzN1rDW2grrUWVgr0gIhGsI-XrNSYVPohiG49YMKCc3qI5hk7coJlhDoJNDKOHVwXsFblBcxTWsatrfWteFUQeSdGQjsPTw_PSLGr5wFy1Iv5n19mB1H_Zl6GUDTMXEg0rHI-hDqqCd6sOf5aM/s5184/pexels-kindelmedia-7054758.jpg" alt="" loading="lazy">
+        </div>
+        <div data-title="Riding the Curve">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh6C0K-MPovo8a-nq_k1JL9mJq5CZuDn2JbOgxcdHQ7dn0u051kBl-0CCOjU9-sEEeLR_h2jqHL4nrnbB5Zpzx8EPBC3z7mhQcb7DJM2OOnviITsUpTKQt8K7x2e_FBWXloS0Cj47V85YQ_Uo_OluCjXxzpUGyRhWfdNgi3EZKmddkTfYys7_XCSJN_6Yk/s4548/pexels-lukas-hartmann-304281-1055613.jpg" alt="" loading="lazy">
+        </div>
+        <div data-title="Raindrops">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjgQGVcc8QPU5OPCCDeLr930kNiYaxBlr29aEtYRE4Ty_qfiMN6zF-3rc3futdaB09HmID5i5Tgb8KrF5G20oORAo4av3rbE4JPLm3-sdmHEHb5GFXeHCd7K4Tnr311dCmYPgHXEUGJfSVUllR3hxuvZp3vlh-cuXFobWtC9seRXr9w2bxWaf3TK9-mMtw/s5184/pexels-muffin-1327891.jpg" alt="" loading="lazy">
+        </div>
+        <div data-title="A misty Morning">
+            <img src="https://picsum.photos/id/634/1200/1200" alt="" loading="lazy">
+        </div>
+        <div data-title="Harvest">
+            <img src="https://picsum.photos/id/228/1200/1200" alt="" loading="lazy">
+        </div>
+        <div data-title="Waiting">
+            <img src="https://picsum.photos/id/661/1200/1200" alt="" loading="lazy">
+        </div>
+        <div data-title="Time for Everything">
+            <img src="https://picsum.photos/id/380/1200/1200" alt="" loading="lazy">
+        </div>
+        <div data-title="Cross over">
+            <img src="https://picsum.photos/id/392/1200/1200" alt="" loading="lazy">
+        </div>
+        <div data-title="In The City">
+            <img src="https://picsum.photos/id/238/1200/1200" alt="" loading="lazy">
+        </div>
+        <div id="img-7" data-title="A Boat Trip">
+            <img src="https://picsum.photos/id/469/1200/1200" alt="" loading="lazy">
+        </div>
+        <div data-title="Waiting">
+            <img src="https://picsum.photos/id/311/1200/1200" alt="" loading="lazy">
+        </div>
+        <div data-title="Stories to tell">
+            <img src="https://picsum.photos/id/515/1200/1200" alt="" loading="lazy">
+        </div>
+        <div data-title="A Perfect Day">
+            <img src="https://picsum.photos/id/521/1200/1200" alt="" loading="lazy">
+        </div>
+        <div data-title="Riding the Curve">
+            <img src="https://picsum.photos/id/549/1200/1200" alt="" loading="lazy">
+        </div>
+        <div data-title="Raindrops">
+            <img src="https://picsum.photos/id/178/1200/1200" alt="" loading="lazy">
+        </div>
+    </section>
+
+    <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mouse">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M6 3m0 4a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-4a4 4 0 0 1 -4 -4z" />
+            <path d="M12 7l0 4" />
+            <path d="M8 26l4 4l4 -4">
+                <animateTransform attributeType="XML" attributeName="transform" type="translate" values="0 0; 0 4; 0 0" dur="1s" repeatCount="indefinite" />
+            </path>
+        </svg>
+    </div>
+
+
+
+    <div id="project-detail-modal" class="projects-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="projects-modal-title-heading">
+        <div class="projects-modal-card">
+            <button class="projects-modal-close" aria-label="Close project modal">✕</button>
+            <div class="projects-modal-content"></div>
+            <div class="projects-modal-actions"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="/js/portfolio.js"></script>
+    <script src="/js/mouse_cursor.js"></script>
+    <script src="/js/scrollbar.js"></script>
+    <script src="/js/projects-modal.js"></script>
+</body>
+
+</html>

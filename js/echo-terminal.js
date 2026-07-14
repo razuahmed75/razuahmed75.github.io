@@ -132,7 +132,7 @@
     { topic: 'twitter', keys: ['twitter','tweet','tweets','x profile'], replies: ["Twitter/X: https://twitter.com/razuahmed8641"] },
     { topic: 'facebook', keys: ['facebook','fb'], replies: ["Facebook: https://www.facebook.com/razu8641/"] },
     { topic: 'blog', keys: ['blog','blogs','writing','articles'], replies: ["Blog: https://razuahmed75.blogspot.com/"] },
-    { topic: 'photos', keys: ['photo','photos','gallery','pictures','images'], replies: ["Photo Gallery: https://razuahmed75.blogspot.com/p/photo-gallery.html"] },
+    { topic: 'photos', keys: ['photo','photos','gallery','pictures','images'], replies: ["Photo Gallery: https://razuahmed75.github.io/gallery.html"] },
     { topic: 'codewars', keys: ['codewars','coding challenges','katas'], replies: ["Codewars: https://www.codewars.com/users/razuahmed75"] },
     { topic: 'location', keys: ['location','where','based','dhaka','bangladesh','live','lives','living','from'], replies: ["Razu is based in Uttara, Dhaka, Bangladesh."] },
     { topic: 'phone', keys: ['phone','number','call','mobile','whatsapp'], replies: ["Phone: +880 1706-084790"] },
@@ -285,7 +285,7 @@
   GitHub (all projects): https://github.com/razuahmed75
 
   Blog: https://razuahmed75.blogspot.com
-  Gallery: https://razuahmed75.blogspot.com/p/photo-gallery.html
+  Gallery: https://razuahmed75.github.io/gallery.html
 
   Contact:
   - Email: razuahmed8641@gmail.com
